@@ -34,7 +34,7 @@ services:
             POSTGRES_DB: openbmp
         
     web:
-        image: bgpdata/bgpdata:0.1.4
+        image: bgpdata/bgpdata:0.1.5
         restart: unless-stopped
         deploy:
             restart_policy:
@@ -59,13 +59,12 @@ services:
             FLASK_HOST: http://localhost:8080
             ENVIRONMENT: production
         depends_on:
-            postgres:
-                condition: service_healthy
+            - postgres
         volumes:
         entrypoint: >
             /bin/sh -c "python manage.py migrate && python manage.py run --host 0.0.0.0"
     relay-rrc00:
-        image: bgpdata/bgpdata:0.1.4
+        image: bgpdata/bgpdata:0.1.5
         restart: unless-stopped
         stop_signal: SIGTERM                    # Wind down relay safely before stopping
         stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
@@ -80,15 +79,14 @@ services:
             KAFKA_CONNECT: stream.ris-kafka.com:9092
             OPENBMP_CONNECT: collector-rrc00:5000
         depends_on:
-            collector-rrc00:
-                condition: service_healthy
+            - collector-rrc00
         volumes:
             - relay_rrc00_data:/var/lib/rocksdb
         entrypoint: >
             python manage.py relay
     
     relay-rrc01:
-        image: bgpdata/bgpdata:0.1.4
+        image: bgpdata/bgpdata:0.1.5
         restart: unless-stopped
         stop_signal: SIGTERM                    # Wind down relay safely before stopping
         stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
@@ -103,15 +101,14 @@ services:
             KAFKA_CONNECT: stream.ris-kafka.com:9092
             OPENBMP_CONNECT: collector-rrc01:5000
         depends_on:
-            collector-rrc01:
-                condition: service_healthy
+            - collector-rrc01
         volumes:
             - relay_rrc01_data:/var/lib/rocksdb
         entrypoint: >
             python manage.py relay
     
     relay-rrc03:
-        image: bgpdata/bgpdata:0.1.4
+        image: bgpdata/bgpdata:0.1.5
         restart: unless-stopped
         stop_signal: SIGTERM                    # Wind down relay safely before stopping
         stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
@@ -126,15 +123,14 @@ services:
             KAFKA_CONNECT: stream.ris-kafka.com:9092
             OPENBMP_CONNECT: collector-rrc03:5000
         depends_on:
-            collector-rrc03:
-                condition: service_healthy
+            - collector-rrc03
         volumes:
             - relay_rrc03_data:/var/lib/rocksdb
         entrypoint: >
             python manage.py relay
     
     relay-rrc04:
-        image: bgpdata/bgpdata:0.1.4
+        image: bgpdata/bgpdata:0.1.5
         restart: unless-stopped
         stop_signal: SIGTERM                    # Wind down relay safely before stopping
         stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
@@ -149,15 +145,14 @@ services:
             KAFKA_CONNECT: stream.ris-kafka.com:9092
             OPENBMP_CONNECT: collector-rrc04:5000
         depends_on:
-            collector-rrc04:
-                condition: service_healthy
+            - collector-rrc04
         volumes:
             - relay_rrc04_data:/var/lib/rocksdb
         entrypoint: >
             python manage.py relay
     
     relay-rrc05:
-        image: bgpdata/bgpdata:0.1.4
+        image: bgpdata/bgpdata:0.1.5
         restart: unless-stopped
         stop_signal: SIGTERM                    # Wind down relay safely before stopping
         stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
@@ -172,15 +167,14 @@ services:
             KAFKA_CONNECT: stream.ris-kafka.com:9092
             OPENBMP_CONNECT: collector-rrc05:5000
         depends_on:
-            collector-rrc05:
-                condition: service_healthy
+            - collector-rrc05
         volumes:
             - relay_rrc05_data:/var/lib/rocksdb
         entrypoint: >
             python manage.py relay
     
     relay-rrc06:
-        image: bgpdata/bgpdata:0.1.4
+        image: bgpdata/bgpdata:0.1.5
         restart: unless-stopped
         stop_signal: SIGTERM                    # Wind down relay safely before stopping
         stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
@@ -195,15 +189,14 @@ services:
             KAFKA_CONNECT: stream.ris-kafka.com:9092
             OPENBMP_CONNECT: collector-rrc06:5000
         depends_on:
-            collector-rrc06:
-                condition: service_healthy
+            - collector-rrc06
         volumes:
             - relay_rrc06_data:/var/lib/rocksdb
         entrypoint: >
             python manage.py relay
     
     relay-rrc07:
-        image: bgpdata/bgpdata:0.1.4
+        image: bgpdata/bgpdata:0.1.5
         restart: unless-stopped
         stop_signal: SIGTERM                    # Wind down relay safely before stopping
         stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
@@ -218,15 +211,14 @@ services:
             KAFKA_CONNECT: stream.ris-kafka.com:9092
             OPENBMP_CONNECT: collector-rrc07:5000
         depends_on:
-            collector-rrc07:
-                condition: service_healthy
+            - collector-rrc07
         volumes:
             - relay_rrc07_data:/var/lib/rocksdb
         entrypoint: >
             python manage.py relay
     
     relay-rrc10:
-        image: bgpdata/bgpdata:0.1.4
+        image: bgpdata/bgpdata:0.1.5
         restart: unless-stopped
         stop_signal: SIGTERM                    # Wind down relay safely before stopping
         stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
@@ -241,15 +233,14 @@ services:
             KAFKA_CONNECT: stream.ris-kafka.com:9092
             OPENBMP_CONNECT: collector-rrc10:5000
         depends_on:
-            collector-rrc10:
-                condition: service_healthy
+            - collector-rrc10
         volumes:
             - relay_rrc10_data:/var/lib/rocksdb
         entrypoint: >
             python manage.py relay
     
     relay-rrc11:
-        image: bgpdata/bgpdata:0.1.4
+        image: bgpdata/bgpdata:0.1.5
         restart: unless-stopped
         stop_signal: SIGTERM                    # Wind down relay safely before stopping
         stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
@@ -264,15 +255,14 @@ services:
             KAFKA_CONNECT: stream.ris-kafka.com:9092
             OPENBMP_CONNECT: collector-rrc11:5000
         depends_on:
-            collector-rrc11:
-                condition: service_healthy
+            - collector-rrc11
         volumes:
             - relay_rrc11_data:/var/lib/rocksdb
         entrypoint: >
             python manage.py relay
     
     relay-rrc12:
-        image: bgpdata/bgpdata:0.1.4
+        image: bgpdata/bgpdata:0.1.5
         restart: unless-stopped
         stop_signal: SIGTERM                    # Wind down relay safely before stopping
         stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
@@ -287,15 +277,14 @@ services:
             KAFKA_CONNECT: stream.ris-kafka.com:9092
             OPENBMP_CONNECT: collector-rrc12:5000
         depends_on:
-            collector-rrc12:
-                condition: service_healthy
+            - collector-rrc12
         volumes:
             - relay_rrc12_data:/var/lib/rocksdb
         entrypoint: >
             python manage.py relay
     
     relay-amsix-ams:
-        image: bgpdata/bgpdata:0.1.4
+        image: bgpdata/bgpdata:0.1.5
         restart: unless-stopped
         stop_signal: SIGTERM                    # Wind down collector safely before stopping
         stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
@@ -310,15 +299,14 @@ services:
             KAFKA_CONNECT: stream.routeviews.org:9092
             OPENBMP_CONNECT: collector-amsix-ams:5000
         depends_on:
-            collector-amsix-ams:
-                condition: service_healthy
+            - collector-amsix-ams
         volumes:
             - relay_amsix_ams_data:/var/lib/rocksdb
         entrypoint: >
             python manage.py relay
     
     relay-route-views-amsix:
-        image: bgpdata/bgpdata:0.1.4
+        image: bgpdata/bgpdata:0.1.5
         restart: unless-stopped
         stop_signal: SIGTERM                    # Wind down collector safely before stopping
         stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
@@ -333,15 +321,14 @@ services:
             KAFKA_CONNECT: stream.routeviews.org:9092
             OPENBMP_CONNECT: collector-route-views-amsix:5000
         depends_on:
-            collector-route-views-amsix:
-                condition: service_healthy
+            - collector-route-views-amsix
         volumes:
             - relay_route_views_amsix_data:/var/lib/rocksdb
         entrypoint: >
             python manage.py relay
     
     relay-route-views-bknix:
-        image: bgpdata/bgpdata:0.1.4
+        image: bgpdata/bgpdata:0.1.5
         restart: unless-stopped
         stop_signal: SIGTERM                    # Wind down collector safely before stopping
         stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
@@ -356,15 +343,14 @@ services:
             KAFKA_CONNECT: stream.routeviews.org:9092
             OPENBMP_CONNECT: collector-route-views-bknix:5000
         depends_on:
-            collector-route-views-bknix:
-                condition: service_healthy
+            - collector-route-views-bknix
         volumes:
             - relay_route_views_bknix_data:/var/lib/rocksdb
         entrypoint: >
             python manage.py relay
     
     relay-route-views-chicago:
-        image: bgpdata/bgpdata:0.1.4
+        image: bgpdata/bgpdata:0.1.5
         restart: unless-stopped
         stop_signal: SIGTERM                    # Wind down collector safely before stopping
         stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
@@ -379,15 +365,14 @@ services:
             KAFKA_CONNECT: stream.routeviews.org:9092
             OPENBMP_CONNECT: collector-route-views-chicago:5000
         depends_on:
-            collector-route-views-chicago:
-                condition: service_healthy
+            - collector-route-views-chicago
         volumes:
             - relay_route_views_chicago_data:/var/lib/rocksdb
         entrypoint: >
             python manage.py relay
     
     relay-route-views-chile:
-        image: bgpdata/bgpdata:0.1.4
+        image: bgpdata/bgpdata:0.1.5
         restart: unless-stopped
         stop_signal: SIGTERM                    # Wind down collector safely before stopping
         stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
@@ -402,15 +387,14 @@ services:
             KAFKA_CONNECT: stream.routeviews.org:9092
             OPENBMP_CONNECT: collector-route-views-chile:5000
         depends_on:
-            collector-route-views-chile:
-                condition: service_healthy
+            - collector-route-views-chile
         volumes:
             - relay_route_views_chile_data:/var/lib/rocksdb
         entrypoint: >
             python manage.py relay
     
     relay-cix-atl:
-        image: bgpdata/bgpdata:0.1.4
+        image: bgpdata/bgpdata:0.1.5
         restart: unless-stopped
         stop_signal: SIGTERM                    # Wind down collector safely before stopping
         stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
@@ -425,15 +409,14 @@ services:
             KAFKA_CONNECT: stream.routeviews.org:9092
             OPENBMP_CONNECT: collector-cix-atl:5000
         depends_on:
-            collector-cix-atl:
-                condition: service_healthy
+            - collector-cix-atl
         volumes:
             - relay_cix_atl_data:/var/lib/rocksdb
         entrypoint: >
             python manage.py relay
     
     relay-decix-jhb:
-        image: bgpdata/bgpdata:0.1.4
+        image: bgpdata/bgpdata:0.1.5
         restart: unless-stopped
         stop_signal: SIGTERM                    # Wind down collector safely before stopping
         stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
@@ -448,15 +431,14 @@ services:
             KAFKA_CONNECT: stream.routeviews.org:9092
             OPENBMP_CONNECT: collector-decix-jhb:5000
         depends_on:
-            collector-decix-jhb:
-                condition: service_healthy
+            - collector-decix-jhb
         volumes:
             - relay_decix_jhb_data:/var/lib/rocksdb
         entrypoint: >
             python manage.py relay
     
     relay-route-views-eqix:
-        image: bgpdata/bgpdata:0.1.4
+        image: bgpdata/bgpdata:0.1.5
         restart: unless-stopped
         stop_signal: SIGTERM                    # Wind down collector safely before stopping
         stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
@@ -471,15 +453,14 @@ services:
             KAFKA_CONNECT: stream.routeviews.org:9092
             OPENBMP_CONNECT: collector-route-views-eqix:5000
         depends_on:
-            collector-route-views-eqix:
-                condition: service_healthy
+            - collector-route-views-eqix
         volumes:
             - relay_route_views_eqix_data:/var/lib/rocksdb
         entrypoint: >
             python manage.py relay
     
     relay-route-views-flix:
-        image: bgpdata/bgpdata:0.1.4
+        image: bgpdata/bgpdata:0.1.5
         restart: unless-stopped
         stop_signal: SIGTERM                    # Wind down collector safely before stopping
         stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
@@ -494,15 +475,14 @@ services:
             KAFKA_CONNECT: stream.routeviews.org:9092
             OPENBMP_CONNECT: collector-route-views-flix:5000
         depends_on:
-            collector-route-views-flix:
-                condition: service_healthy
+            - collector-route-views-flix
         volumes:
             - relay_route_views_flix_data:/var/lib/rocksdb
         entrypoint: >
             python manage.py relay
     
     relay-route-views-fortaleza:
-        image: bgpdata/bgpdata:0.1.4
+        image: bgpdata/bgpdata:0.1.5
         restart: unless-stopped
         stop_signal: SIGTERM                    # Wind down collector safely before stopping
         stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
@@ -517,8 +497,7 @@ services:
             KAFKA_CONNECT: stream.routeviews.org:9092
             OPENBMP_CONNECT: collector-route-views-fortaleza:5000
         depends_on:
-            collector-route-views-fortaleza:
-                condition: service_healthy
+            - collector-route-views-fortaleza
         volumes:
             - relay_route_views_fortaleza_data:/var/lib/rocksdb
         entrypoint: >
@@ -539,10 +518,8 @@ services:
                 constraints:
                     - node.role == worker
         depends_on:
-            postgres:
-                condition: service_healthy
-            kafka:
-                condition: service_healthy
+            - postgres
+            - kafka
         volumes:
             - openbmp_data:/config
         environment:
@@ -589,12 +566,9 @@ services:
             interval: 30s
             timeout: 10s
             retries: 3
-        
         depends_on:
-            postgres:
-                condition: service_healthy
-            kafka:
-                condition: service_healthy
+            - postgres
+            - kafka
         sysctls:
             - net.ipv4.tcp_keepalive_intvl=30
             - net.ipv4.tcp_keepalive_probes=5
@@ -618,12 +592,9 @@ services:
             interval: 30s
             timeout: 10s
             retries: 3
-        
         depends_on:
-            postgres:
-                condition: service_healthy
-            kafka:
-                condition: service_healthy
+            - postgres
+            - kafka
         sysctls:
             - net.ipv4.tcp_keepalive_intvl=30
             - net.ipv4.tcp_keepalive_probes=5
@@ -647,12 +618,9 @@ services:
             interval: 30s
             timeout: 10s
             retries: 3
-        
         depends_on:
-            postgres:
-                condition: service_healthy
-            kafka:
-                condition: service_healthy
+            - postgres
+            - kafka
         sysctls:
             - net.ipv4.tcp_keepalive_intvl=30
             - net.ipv4.tcp_keepalive_probes=5
@@ -676,12 +644,9 @@ services:
             interval: 30s
             timeout: 10s
             retries: 3
-        
         depends_on:
-            postgres:
-                condition: service_healthy
-            kafka:
-                condition: service_healthy
+            - postgres
+            - kafka
         sysctls:
             - net.ipv4.tcp_keepalive_intvl=30
             - net.ipv4.tcp_keepalive_probes=5
@@ -705,12 +670,9 @@ services:
             interval: 30s
             timeout: 10s
             retries: 3
-        
         depends_on:
-            postgres:
-                condition: service_healthy
-            kafka:
-                condition: service_healthy
+            - postgres
+            - kafka
         sysctls:
             - net.ipv4.tcp_keepalive_intvl=30
             - net.ipv4.tcp_keepalive_probes=5
@@ -734,12 +696,9 @@ services:
             interval: 30s
             timeout: 10s
             retries: 3
-        
         depends_on:
-            postgres:
-                condition: service_healthy
-            kafka:
-                condition: service_healthy
+            - postgres
+            - kafka
         sysctls:
             - net.ipv4.tcp_keepalive_intvl=30
             - net.ipv4.tcp_keepalive_probes=5
@@ -763,12 +722,9 @@ services:
             interval: 30s
             timeout: 10s
             retries: 3
-        
         depends_on:
-            postgres:
-                condition: service_healthy
-            kafka:
-                condition: service_healthy
+            - postgres
+            - kafka
         sysctls:
             - net.ipv4.tcp_keepalive_intvl=30
             - net.ipv4.tcp_keepalive_probes=5
@@ -792,12 +748,9 @@ services:
             interval: 30s
             timeout: 10s
             retries: 3
-        
         depends_on:
-            postgres:
-                condition: service_healthy
-            kafka:
-                condition: service_healthy
+            - postgres
+            - kafka
         sysctls:
             - net.ipv4.tcp_keepalive_intvl=30
             - net.ipv4.tcp_keepalive_probes=5
@@ -821,12 +774,9 @@ services:
             interval: 30s
             timeout: 10s
             retries: 3
-        
         depends_on:
-            postgres:
-                condition: service_healthy
-            kafka:
-                condition: service_healthy
+            - postgres
+            - kafka
         sysctls:
             - net.ipv4.tcp_keepalive_intvl=30
             - net.ipv4.tcp_keepalive_probes=5
@@ -850,12 +800,9 @@ services:
             interval: 30s
             timeout: 10s
             retries: 3
-        
         depends_on:
-            postgres:
-                condition: service_healthy
-            kafka:
-                condition: service_healthy
+            - postgres
+            - kafka
         sysctls:
             - net.ipv4.tcp_keepalive_intvl=30
             - net.ipv4.tcp_keepalive_probes=5
@@ -879,12 +826,9 @@ services:
             interval: 30s
             timeout: 10s
             retries: 3
-        
         depends_on:
-            postgres:
-                condition: service_healthy
-            kafka:
-                condition: service_healthy
+            - postgres
+            - kafka
         sysctls:
             - net.ipv4.tcp_keepalive_intvl=30
             - net.ipv4.tcp_keepalive_probes=5
@@ -908,12 +852,9 @@ services:
             interval: 30s
             timeout: 10s
             retries: 3
-        
         depends_on:
-            postgres:
-                condition: service_healthy
-            kafka:
-                condition: service_healthy
+            - postgres
+            - kafka
         sysctls:
             - net.ipv4.tcp_keepalive_intvl=30
             - net.ipv4.tcp_keepalive_probes=5
@@ -937,12 +878,9 @@ services:
             interval: 30s
             timeout: 10s
             retries: 3
-        
         depends_on:
-            postgres:
-                condition: service_healthy
-            kafka:
-                condition: service_healthy
+            - postgres
+            - kafka
         sysctls:
             - net.ipv4.tcp_keepalive_intvl=30
             - net.ipv4.tcp_keepalive_probes=5
@@ -966,12 +904,9 @@ services:
             interval: 30s
             timeout: 10s
             retries: 3
-        
         depends_on:
-            postgres:
-                condition: service_healthy
-            kafka:
-                condition: service_healthy
+            - postgres
+            - kafka
         sysctls:
             - net.ipv4.tcp_keepalive_intvl=30
             - net.ipv4.tcp_keepalive_probes=5
@@ -995,12 +930,9 @@ services:
             interval: 30s
             timeout: 10s
             retries: 3
-        
         depends_on:
-            postgres:
-                condition: service_healthy
-            kafka:
-                condition: service_healthy
+            - postgres
+            - kafka
         sysctls:
             - net.ipv4.tcp_keepalive_intvl=30
             - net.ipv4.tcp_keepalive_probes=5
@@ -1024,12 +956,9 @@ services:
             interval: 30s
             timeout: 10s
             retries: 3
-        
         depends_on:
-            postgres:
-                condition: service_healthy
-            kafka:
-                condition: service_healthy
+            - postgres
+            - kafka
         sysctls:
             - net.ipv4.tcp_keepalive_intvl=30
             - net.ipv4.tcp_keepalive_probes=5
@@ -1053,12 +982,9 @@ services:
             interval: 30s
             timeout: 10s
             retries: 3
-        
         depends_on:
-            postgres:
-                condition: service_healthy
-            kafka:
-                condition: service_healthy
+            - postgres
+            - kafka
         sysctls:
             - net.ipv4.tcp_keepalive_intvl=30
             - net.ipv4.tcp_keepalive_probes=5
@@ -1082,12 +1008,9 @@ services:
             interval: 30s
             timeout: 10s
             retries: 3
-        
         depends_on:
-            postgres:
-                condition: service_healthy
-            kafka:
-                condition: service_healthy
+            - postgres
+            - kafka
         sysctls:
             - net.ipv4.tcp_keepalive_intvl=30
             - net.ipv4.tcp_keepalive_probes=5
@@ -1111,12 +1034,9 @@ services:
             interval: 30s
             timeout: 10s
             retries: 3
-        
         depends_on:
-            postgres:
-                condition: service_healthy
-            kafka:
-                condition: service_healthy
+            - postgres
+            - kafka
         sysctls:
             - net.ipv4.tcp_keepalive_intvl=30
             - net.ipv4.tcp_keepalive_probes=5
@@ -1140,12 +1060,9 @@ services:
             interval: 30s
             timeout: 10s
             retries: 3
-        
         depends_on:
-            postgres:
-                condition: service_healthy
-            kafka:
-                condition: service_healthy
+            - postgres
+            - kafka
         sysctls:
             - net.ipv4.tcp_keepalive_intvl=30
             - net.ipv4.tcp_keepalive_probes=5
@@ -1177,8 +1094,7 @@ services:
         volumes:
             - openbmp_data:/config
         depends_on:
-            postgres:
-                condition: service_healthy
+            - postgres
         ports:
             - "4300:43"
         environment:
@@ -1223,8 +1139,7 @@ services:
             timeout: 60s # Command may take some time.
             retries: 10
         depends_on:
-            zookeeper:
-                condition: service_healthy
+            - zookeeper
         volumes:
             - kafka_data:/var/lib/kafka/data
         environment:
