@@ -2,7 +2,6 @@ version: '3'
 services:
     postgres:
         image: openbmp/postgres:2.2.1
-        platform: linux/amd64
         restart: unless-stopped
         deploy:
             restart_policy:
@@ -34,7 +33,7 @@ services:
             POSTGRES_DB: openbmp
         
     web:
-        image: bgpdata/bgpdata:0.1.8
+        image: bgpdata/bgpdata:0.1.9
         restart: unless-stopped
         deploy:
             restart_policy:
@@ -65,7 +64,7 @@ services:
         entrypoint: >
             /bin/sh -c "python manage.py migrate && python manage.py run --host 0.0.0.0"
     relay-rrc00:
-        image: bgpdata/bgpdata:0.1.8
+        image: bgpdata/bgpdata:0.1.9
         restart: unless-stopped
         stop_signal: SIGTERM                    # Wind down relay safely before stopping
         stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
@@ -87,7 +86,7 @@ services:
             python manage.py relay
     
     relay-rrc01:
-        image: bgpdata/bgpdata:0.1.8
+        image: bgpdata/bgpdata:0.1.9
         restart: unless-stopped
         stop_signal: SIGTERM                    # Wind down relay safely before stopping
         stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
@@ -109,7 +108,7 @@ services:
             python manage.py relay
     
     relay-rrc03:
-        image: bgpdata/bgpdata:0.1.8
+        image: bgpdata/bgpdata:0.1.9
         restart: unless-stopped
         stop_signal: SIGTERM                    # Wind down relay safely before stopping
         stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
@@ -131,7 +130,7 @@ services:
             python manage.py relay
     
     relay-rrc04:
-        image: bgpdata/bgpdata:0.1.8
+        image: bgpdata/bgpdata:0.1.9
         restart: unless-stopped
         stop_signal: SIGTERM                    # Wind down relay safely before stopping
         stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
@@ -153,7 +152,7 @@ services:
             python manage.py relay
     
     relay-rrc05:
-        image: bgpdata/bgpdata:0.1.8
+        image: bgpdata/bgpdata:0.1.9
         restart: unless-stopped
         stop_signal: SIGTERM                    # Wind down relay safely before stopping
         stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
@@ -175,7 +174,7 @@ services:
             python manage.py relay
     
     relay-rrc06:
-        image: bgpdata/bgpdata:0.1.8
+        image: bgpdata/bgpdata:0.1.9
         restart: unless-stopped
         stop_signal: SIGTERM                    # Wind down relay safely before stopping
         stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
@@ -197,7 +196,7 @@ services:
             python manage.py relay
     
     relay-rrc07:
-        image: bgpdata/bgpdata:0.1.8
+        image: bgpdata/bgpdata:0.1.9
         restart: unless-stopped
         stop_signal: SIGTERM                    # Wind down relay safely before stopping
         stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
@@ -219,7 +218,7 @@ services:
             python manage.py relay
     
     relay-rrc10:
-        image: bgpdata/bgpdata:0.1.8
+        image: bgpdata/bgpdata:0.1.9
         restart: unless-stopped
         stop_signal: SIGTERM                    # Wind down relay safely before stopping
         stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
@@ -241,7 +240,7 @@ services:
             python manage.py relay
     
     relay-rrc11:
-        image: bgpdata/bgpdata:0.1.8
+        image: bgpdata/bgpdata:0.1.9
         restart: unless-stopped
         stop_signal: SIGTERM                    # Wind down relay safely before stopping
         stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
@@ -263,7 +262,7 @@ services:
             python manage.py relay
     
     relay-rrc12:
-        image: bgpdata/bgpdata:0.1.8
+        image: bgpdata/bgpdata:0.1.9
         restart: unless-stopped
         stop_signal: SIGTERM                    # Wind down relay safely before stopping
         stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
@@ -285,7 +284,7 @@ services:
             python manage.py relay
     
     relay-amsix-ams:
-        image: bgpdata/bgpdata:0.1.8
+        image: bgpdata/bgpdata:0.1.9
         restart: unless-stopped
         stop_signal: SIGTERM                    # Wind down collector safely before stopping
         stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
@@ -307,7 +306,7 @@ services:
             python manage.py relay
     
     relay-route-views-amsix:
-        image: bgpdata/bgpdata:0.1.8
+        image: bgpdata/bgpdata:0.1.9
         restart: unless-stopped
         stop_signal: SIGTERM                    # Wind down collector safely before stopping
         stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
@@ -329,7 +328,7 @@ services:
             python manage.py relay
     
     relay-route-views-bknix:
-        image: bgpdata/bgpdata:0.1.8
+        image: bgpdata/bgpdata:0.1.9
         restart: unless-stopped
         stop_signal: SIGTERM                    # Wind down collector safely before stopping
         stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
@@ -351,7 +350,7 @@ services:
             python manage.py relay
     
     relay-route-views-chicago:
-        image: bgpdata/bgpdata:0.1.8
+        image: bgpdata/bgpdata:0.1.9
         restart: unless-stopped
         stop_signal: SIGTERM                    # Wind down collector safely before stopping
         stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
@@ -373,7 +372,7 @@ services:
             python manage.py relay
     
     relay-route-views-chile:
-        image: bgpdata/bgpdata:0.1.8
+        image: bgpdata/bgpdata:0.1.9
         restart: unless-stopped
         stop_signal: SIGTERM                    # Wind down collector safely before stopping
         stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
@@ -395,7 +394,7 @@ services:
             python manage.py relay
     
     relay-cix-atl:
-        image: bgpdata/bgpdata:0.1.8
+        image: bgpdata/bgpdata:0.1.9
         restart: unless-stopped
         stop_signal: SIGTERM                    # Wind down collector safely before stopping
         stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
@@ -417,7 +416,7 @@ services:
             python manage.py relay
     
     relay-decix-jhb:
-        image: bgpdata/bgpdata:0.1.8
+        image: bgpdata/bgpdata:0.1.9
         restart: unless-stopped
         stop_signal: SIGTERM                    # Wind down collector safely before stopping
         stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
@@ -439,7 +438,7 @@ services:
             python manage.py relay
     
     relay-route-views-eqix:
-        image: bgpdata/bgpdata:0.1.8
+        image: bgpdata/bgpdata:0.1.9
         restart: unless-stopped
         stop_signal: SIGTERM                    # Wind down collector safely before stopping
         stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
@@ -461,7 +460,7 @@ services:
             python manage.py relay
     
     relay-route-views-flix:
-        image: bgpdata/bgpdata:0.1.8
+        image: bgpdata/bgpdata:0.1.9
         restart: unless-stopped
         stop_signal: SIGTERM                    # Wind down collector safely before stopping
         stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
@@ -483,7 +482,7 @@ services:
             python manage.py relay
     
     relay-route-views-fortaleza:
-        image: bgpdata/bgpdata:0.1.8
+        image: bgpdata/bgpdata:0.1.9
         restart: unless-stopped
         stop_signal: SIGTERM                    # Wind down collector safely before stopping
         stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
