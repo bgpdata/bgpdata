@@ -31,7 +31,7 @@ services:
             POSTGRES_DB: openbmp
         
     web:
-        image: bgpdata/bgpdata:0.1.11
+        image: bgpdata/bgpdata:0.1.12
         restart: unless-stopped
         deploy:
             restart_policy:
@@ -62,7 +62,7 @@ services:
         entrypoint: >
             /bin/sh -c "python manage.py migrate && python manage.py run --host 0.0.0.0"
     relay-rrc00:
-        image: bgpdata/bgpdata:0.1.11
+        image: bgpdata/bgpdata:0.1.12
         restart: no
         stop_signal: SIGTERM                    # Wind down relay safely before stopping
         stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
@@ -83,7 +83,7 @@ services:
             bash -c "sleep $$((0 * 120)) && python manage.py relay"
     
     relay-rrc01:
-        image: bgpdata/bgpdata:0.1.11
+        image: bgpdata/bgpdata:0.1.12
         restart: no
         stop_signal: SIGTERM                    # Wind down relay safely before stopping
         stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
@@ -104,7 +104,7 @@ services:
             bash -c "sleep $$((1 * 120)) && python manage.py relay"
     
     relay-rrc03:
-        image: bgpdata/bgpdata:0.1.11
+        image: bgpdata/bgpdata:0.1.12
         restart: no
         stop_signal: SIGTERM                    # Wind down relay safely before stopping
         stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
@@ -125,7 +125,7 @@ services:
             bash -c "sleep $$((2 * 120)) && python manage.py relay"
     
     relay-rrc04:
-        image: bgpdata/bgpdata:0.1.11
+        image: bgpdata/bgpdata:0.1.12
         restart: no
         stop_signal: SIGTERM                    # Wind down relay safely before stopping
         stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
@@ -146,7 +146,7 @@ services:
             bash -c "sleep $$((3 * 120)) && python manage.py relay"
     
     relay-rrc05:
-        image: bgpdata/bgpdata:0.1.11
+        image: bgpdata/bgpdata:0.1.12
         restart: no
         stop_signal: SIGTERM                    # Wind down relay safely before stopping
         stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
@@ -167,7 +167,7 @@ services:
             bash -c "sleep $$((4 * 120)) && python manage.py relay"
     
     relay-rrc06:
-        image: bgpdata/bgpdata:0.1.11
+        image: bgpdata/bgpdata:0.1.12
         restart: no
         stop_signal: SIGTERM                    # Wind down relay safely before stopping
         stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
@@ -188,7 +188,7 @@ services:
             bash -c "sleep $$((5 * 120)) && python manage.py relay"
     
     relay-rrc07:
-        image: bgpdata/bgpdata:0.1.11
+        image: bgpdata/bgpdata:0.1.12
         restart: no
         stop_signal: SIGTERM                    # Wind down relay safely before stopping
         stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
@@ -209,7 +209,7 @@ services:
             bash -c "sleep $$((6 * 120)) && python manage.py relay"
     
     relay-rrc10:
-        image: bgpdata/bgpdata:0.1.11
+        image: bgpdata/bgpdata:0.1.12
         restart: no
         stop_signal: SIGTERM                    # Wind down relay safely before stopping
         stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
@@ -230,7 +230,7 @@ services:
             bash -c "sleep $$((7 * 120)) && python manage.py relay"
     
     relay-rrc11:
-        image: bgpdata/bgpdata:0.1.11
+        image: bgpdata/bgpdata:0.1.12
         restart: no
         stop_signal: SIGTERM                    # Wind down relay safely before stopping
         stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
@@ -251,7 +251,7 @@ services:
             bash -c "sleep $$((8 * 120)) && python manage.py relay"
     
     relay-rrc12:
-        image: bgpdata/bgpdata:0.1.11
+        image: bgpdata/bgpdata:0.1.12
         restart: no
         stop_signal: SIGTERM                    # Wind down relay safely before stopping
         stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
@@ -272,7 +272,7 @@ services:
             bash -c "sleep $$((9 * 120)) && python manage.py relay"
     
     relay-rrc13:
-        image: bgpdata/bgpdata:0.1.11
+        image: bgpdata/bgpdata:0.1.12
         restart: no
         stop_signal: SIGTERM                    # Wind down relay safely before stopping
         stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
@@ -293,7 +293,7 @@ services:
             bash -c "sleep $$((10 * 120)) && python manage.py relay"
     
     relay-rrc14:
-        image: bgpdata/bgpdata:0.1.11
+        image: bgpdata/bgpdata:0.1.12
         restart: no
         stop_signal: SIGTERM                    # Wind down relay safely before stopping
         stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
@@ -314,7 +314,7 @@ services:
             bash -c "sleep $$((11 * 120)) && python manage.py relay"
     
     relay-rrc15:
-        image: bgpdata/bgpdata:0.1.11
+        image: bgpdata/bgpdata:0.1.12
         restart: no
         stop_signal: SIGTERM                    # Wind down relay safely before stopping
         stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
@@ -335,7 +335,7 @@ services:
             bash -c "sleep $$((12 * 120)) && python manage.py relay"
     
     relay-rrc16:
-        image: bgpdata/bgpdata:0.1.11
+        image: bgpdata/bgpdata:0.1.12
         restart: no
         stop_signal: SIGTERM                    # Wind down relay safely before stopping
         stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
@@ -356,7 +356,7 @@ services:
             bash -c "sleep $$((13 * 120)) && python manage.py relay"
     
     relay-rrc18:
-        image: bgpdata/bgpdata:0.1.11
+        image: bgpdata/bgpdata:0.1.12
         restart: no
         stop_signal: SIGTERM                    # Wind down relay safely before stopping
         stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
@@ -377,7 +377,7 @@ services:
             bash -c "sleep $$((14 * 120)) && python manage.py relay"
     
     relay-rrc19:
-        image: bgpdata/bgpdata:0.1.11
+        image: bgpdata/bgpdata:0.1.12
         restart: no
         stop_signal: SIGTERM                    # Wind down relay safely before stopping
         stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
@@ -398,7 +398,7 @@ services:
             bash -c "sleep $$((15 * 120)) && python manage.py relay"
     
     relay-rrc20:
-        image: bgpdata/bgpdata:0.1.11
+        image: bgpdata/bgpdata:0.1.12
         restart: no
         stop_signal: SIGTERM                    # Wind down relay safely before stopping
         stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
@@ -419,7 +419,7 @@ services:
             bash -c "sleep $$((16 * 120)) && python manage.py relay"
     
     relay-rrc21:
-        image: bgpdata/bgpdata:0.1.11
+        image: bgpdata/bgpdata:0.1.12
         restart: no
         stop_signal: SIGTERM                    # Wind down relay safely before stopping
         stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
@@ -440,7 +440,7 @@ services:
             bash -c "sleep $$((17 * 120)) && python manage.py relay"
     
     relay-rrc22:
-        image: bgpdata/bgpdata:0.1.11
+        image: bgpdata/bgpdata:0.1.12
         restart: no
         stop_signal: SIGTERM                    # Wind down relay safely before stopping
         stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
@@ -461,7 +461,7 @@ services:
             bash -c "sleep $$((18 * 120)) && python manage.py relay"
     
     relay-rrc23:
-        image: bgpdata/bgpdata:0.1.11
+        image: bgpdata/bgpdata:0.1.12
         restart: no
         stop_signal: SIGTERM                    # Wind down relay safely before stopping
         stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
@@ -482,7 +482,7 @@ services:
             bash -c "sleep $$((19 * 120)) && python manage.py relay"
     
     relay-rrc24:
-        image: bgpdata/bgpdata:0.1.11
+        image: bgpdata/bgpdata:0.1.12
         restart: no
         stop_signal: SIGTERM                    # Wind down relay safely before stopping
         stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
@@ -503,7 +503,7 @@ services:
             bash -c "sleep $$((20 * 120)) && python manage.py relay"
     
     relay-rrc25:
-        image: bgpdata/bgpdata:0.1.11
+        image: bgpdata/bgpdata:0.1.12
         restart: no
         stop_signal: SIGTERM                    # Wind down relay safely before stopping
         stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
@@ -524,7 +524,7 @@ services:
             bash -c "sleep $$((21 * 120)) && python manage.py relay"
     
     relay-rrc26:
-        image: bgpdata/bgpdata:0.1.11
+        image: bgpdata/bgpdata:0.1.12
         restart: no
         stop_signal: SIGTERM                    # Wind down relay safely before stopping
         stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
@@ -544,8 +544,8 @@ services:
         entrypoint: >
             bash -c "sleep $$((22 * 120)) && python manage.py relay"
     
-    relay-amsix-ams:
-        image: bgpdata/bgpdata:0.1.11
+    relay-route-views2:
+        image: bgpdata/bgpdata:0.1.12
         restart: no
         stop_signal: SIGTERM                    # Wind down relay safely before stopping
         stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
@@ -556,395 +556,17 @@ services:
                 constraints:
                     - node.role == manager
         environment:
-            HOST: amsix.ams
-            OPENBMP_CONNECT: collector-amsix-ams:5000
+            HOST: route-views2
+            OPENBMP_CONNECT: collector-route-views2:5000
         depends_on:
-            - collector-amsix-ams
+            - collector-route-views2
         volumes:
-            - relay_amsix_ams_data:/var/lib/rocksdb
+            - relay_route_views2_data:/var/lib/rocksdb
         entrypoint: >
             bash -c "sleep $$((23 * 120)) && python manage.py relay"
     
-    relay-amsix:
-        image: bgpdata/bgpdata:0.1.11
-        restart: no
-        stop_signal: SIGTERM                    # Wind down relay safely before stopping
-        stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
-        deploy:
-            restart_policy:
-                condition: none
-            placement:
-                constraints:
-                    - node.role == manager
-        environment:
-            HOST: amsix
-            OPENBMP_CONNECT: collector-amsix:5000
-        depends_on:
-            - collector-amsix
-        volumes:
-            - relay_amsix_data:/var/lib/rocksdb
-        entrypoint: >
-            bash -c "sleep $$((24 * 120)) && python manage.py relay"
-    
-    relay-bknix:
-        image: bgpdata/bgpdata:0.1.11
-        restart: no
-        stop_signal: SIGTERM                    # Wind down relay safely before stopping
-        stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
-        deploy:
-            restart_policy:
-                condition: none
-            placement:
-                constraints:
-                    - node.role == manager
-        environment:
-            HOST: bknix
-            OPENBMP_CONNECT: collector-bknix:5000
-        depends_on:
-            - collector-bknix
-        volumes:
-            - relay_bknix_data:/var/lib/rocksdb
-        entrypoint: >
-            bash -c "sleep $$((25 * 120)) && python manage.py relay"
-    
-    relay-chicago:
-        image: bgpdata/bgpdata:0.1.11
-        restart: no
-        stop_signal: SIGTERM                    # Wind down relay safely before stopping
-        stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
-        deploy:
-            restart_policy:
-                condition: none
-            placement:
-                constraints:
-                    - node.role == manager
-        environment:
-            HOST: chicago
-            OPENBMP_CONNECT: collector-chicago:5000
-        depends_on:
-            - collector-chicago
-        volumes:
-            - relay_chicago_data:/var/lib/rocksdb
-        entrypoint: >
-            bash -c "sleep $$((26 * 120)) && python manage.py relay"
-    
-    relay-chile:
-        image: bgpdata/bgpdata:0.1.11
-        restart: no
-        stop_signal: SIGTERM                    # Wind down relay safely before stopping
-        stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
-        deploy:
-            restart_policy:
-                condition: none
-            placement:
-                constraints:
-                    - node.role == manager
-        environment:
-            HOST: chile
-            OPENBMP_CONNECT: collector-chile:5000
-        depends_on:
-            - collector-chile
-        volumes:
-            - relay_chile_data:/var/lib/rocksdb
-        entrypoint: >
-            bash -c "sleep $$((27 * 120)) && python manage.py relay"
-    
-    relay-cix-atl:
-        image: bgpdata/bgpdata:0.1.11
-        restart: no
-        stop_signal: SIGTERM                    # Wind down relay safely before stopping
-        stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
-        deploy:
-            restart_policy:
-                condition: none
-            placement:
-                constraints:
-                    - node.role == manager
-        environment:
-            HOST: cix.atl
-            OPENBMP_CONNECT: collector-cix-atl:5000
-        depends_on:
-            - collector-cix-atl
-        volumes:
-            - relay_cix_atl_data:/var/lib/rocksdb
-        entrypoint: >
-            bash -c "sleep $$((28 * 120)) && python manage.py relay"
-    
-    relay-decix-jhb:
-        image: bgpdata/bgpdata:0.1.11
-        restart: no
-        stop_signal: SIGTERM                    # Wind down relay safely before stopping
-        stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
-        deploy:
-            restart_policy:
-                condition: none
-            placement:
-                constraints:
-                    - node.role == manager
-        environment:
-            HOST: decix.jhb
-            OPENBMP_CONNECT: collector-decix-jhb:5000
-        depends_on:
-            - collector-decix-jhb
-        volumes:
-            - relay_decix_jhb_data:/var/lib/rocksdb
-        entrypoint: >
-            bash -c "sleep $$((29 * 120)) && python manage.py relay"
-    
-    relay-eqix:
-        image: bgpdata/bgpdata:0.1.11
-        restart: no
-        stop_signal: SIGTERM                    # Wind down relay safely before stopping
-        stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
-        deploy:
-            restart_policy:
-                condition: none
-            placement:
-                constraints:
-                    - node.role == manager
-        environment:
-            HOST: eqix
-            OPENBMP_CONNECT: collector-eqix:5000
-        depends_on:
-            - collector-eqix
-        volumes:
-            - relay_eqix_data:/var/lib/rocksdb
-        entrypoint: >
-            bash -c "sleep $$((30 * 120)) && python manage.py relay"
-    
-    relay-flix:
-        image: bgpdata/bgpdata:0.1.11
-        restart: no
-        stop_signal: SIGTERM                    # Wind down relay safely before stopping
-        stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
-        deploy:
-            restart_policy:
-                condition: none
-            placement:
-                constraints:
-                    - node.role == manager
-        environment:
-            HOST: flix
-            OPENBMP_CONNECT: collector-flix:5000
-        depends_on:
-            - collector-flix
-        volumes:
-            - relay_flix_data:/var/lib/rocksdb
-        entrypoint: >
-            bash -c "sleep $$((31 * 120)) && python manage.py relay"
-    
-    relay-fortaleza:
-        image: bgpdata/bgpdata:0.1.11
-        restart: no
-        stop_signal: SIGTERM                    # Wind down relay safely before stopping
-        stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
-        deploy:
-            restart_policy:
-                condition: none
-            placement:
-                constraints:
-                    - node.role == manager
-        environment:
-            HOST: fortaleza
-            OPENBMP_CONNECT: collector-fortaleza:5000
-        depends_on:
-            - collector-fortaleza
-        volumes:
-            - relay_fortaleza_data:/var/lib/rocksdb
-        entrypoint: >
-            bash -c "sleep $$((32 * 120)) && python manage.py relay"
-    
-    relay-gorex:
-        image: bgpdata/bgpdata:0.1.11
-        restart: no
-        stop_signal: SIGTERM                    # Wind down relay safely before stopping
-        stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
-        deploy:
-            restart_policy:
-                condition: none
-            placement:
-                constraints:
-                    - node.role == manager
-        environment:
-            HOST: gorex
-            OPENBMP_CONNECT: collector-gorex:5000
-        depends_on:
-            - collector-gorex
-        volumes:
-            - relay_gorex_data:/var/lib/rocksdb
-        entrypoint: >
-            bash -c "sleep $$((33 * 120)) && python manage.py relay"
-    
-    relay-isc:
-        image: bgpdata/bgpdata:0.1.11
-        restart: no
-        stop_signal: SIGTERM                    # Wind down relay safely before stopping
-        stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
-        deploy:
-            restart_policy:
-                condition: none
-            placement:
-                constraints:
-                    - node.role == manager
-        environment:
-            HOST: isc
-            OPENBMP_CONNECT: collector-isc:5000
-        depends_on:
-            - collector-isc
-        volumes:
-            - relay_isc_data:/var/lib/rocksdb
-        entrypoint: >
-            bash -c "sleep $$((34 * 120)) && python manage.py relay"
-    
-    relay-kixp:
-        image: bgpdata/bgpdata:0.1.11
-        restart: no
-        stop_signal: SIGTERM                    # Wind down relay safely before stopping
-        stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
-        deploy:
-            restart_policy:
-                condition: none
-            placement:
-                constraints:
-                    - node.role == manager
-        environment:
-            HOST: kixp
-            OPENBMP_CONNECT: collector-kixp:5000
-        depends_on:
-            - collector-kixp
-        volumes:
-            - relay_kixp_data:/var/lib/rocksdb
-        entrypoint: >
-            bash -c "sleep $$((35 * 120)) && python manage.py relay"
-    
-    relay-linx:
-        image: bgpdata/bgpdata:0.1.11
-        restart: no
-        stop_signal: SIGTERM                    # Wind down relay safely before stopping
-        stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
-        deploy:
-            restart_policy:
-                condition: none
-            placement:
-                constraints:
-                    - node.role == manager
-        environment:
-            HOST: linx
-            OPENBMP_CONNECT: collector-linx:5000
-        depends_on:
-            - collector-linx
-        volumes:
-            - relay_linx_data:/var/lib/rocksdb
-        entrypoint: >
-            bash -c "sleep $$((36 * 120)) && python manage.py relay"
-    
-    relay-napafrica:
-        image: bgpdata/bgpdata:0.1.11
-        restart: no
-        stop_signal: SIGTERM                    # Wind down relay safely before stopping
-        stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
-        deploy:
-            restart_policy:
-                condition: none
-            placement:
-                constraints:
-                    - node.role == manager
-        environment:
-            HOST: napafrica
-            OPENBMP_CONNECT: collector-napafrica:5000
-        depends_on:
-            - collector-napafrica
-        volumes:
-            - relay_napafrica_data:/var/lib/rocksdb
-        entrypoint: >
-            bash -c "sleep $$((37 * 120)) && python manage.py relay"
-    
-    relay-ny:
-        image: bgpdata/bgpdata:0.1.11
-        restart: no
-        stop_signal: SIGTERM                    # Wind down relay safely before stopping
-        stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
-        deploy:
-            restart_policy:
-                condition: none
-            placement:
-                constraints:
-                    - node.role == manager
-        environment:
-            HOST: ny
-            OPENBMP_CONNECT: collector-ny:5000
-        depends_on:
-            - collector-ny
-        volumes:
-            - relay_ny_data:/var/lib/rocksdb
-        entrypoint: >
-            bash -c "sleep $$((38 * 120)) && python manage.py relay"
-    
-    relay-perth:
-        image: bgpdata/bgpdata:0.1.11
-        restart: no
-        stop_signal: SIGTERM                    # Wind down relay safely before stopping
-        stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
-        deploy:
-            restart_policy:
-                condition: none
-            placement:
-                constraints:
-                    - node.role == manager
-        environment:
-            HOST: perth
-            OPENBMP_CONNECT: collector-perth:5000
-        depends_on:
-            - collector-perth
-        volumes:
-            - relay_perth_data:/var/lib/rocksdb
-        entrypoint: >
-            bash -c "sleep $$((39 * 120)) && python manage.py relay"
-    
-    relay-rio:
-        image: bgpdata/bgpdata:0.1.11
-        restart: no
-        stop_signal: SIGTERM                    # Wind down relay safely before stopping
-        stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
-        deploy:
-            restart_policy:
-                condition: none
-            placement:
-                constraints:
-                    - node.role == manager
-        environment:
-            HOST: rio
-            OPENBMP_CONNECT: collector-rio:5000
-        depends_on:
-            - collector-rio
-        volumes:
-            - relay_rio_data:/var/lib/rocksdb
-        entrypoint: >
-            bash -c "sleep $$((40 * 120)) && python manage.py relay"
-    
-    relay-route-views2-saopaulo:
-        image: bgpdata/bgpdata:0.1.11
-        restart: no
-        stop_signal: SIGTERM                    # Wind down relay safely before stopping
-        stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
-        deploy:
-            restart_policy:
-                condition: none
-            placement:
-                constraints:
-                    - node.role == manager
-        environment:
-            HOST: route-views2.saopaulo
-            OPENBMP_CONNECT: collector-route-views2-saopaulo:5000
-        depends_on:
-            - collector-route-views2-saopaulo
-        volumes:
-            - relay_route_views2_saopaulo_data:/var/lib/rocksdb
-        entrypoint: >
-            bash -c "sleep $$((41 * 120)) && python manage.py relay"
-    
     relay-route-views3:
-        image: bgpdata/bgpdata:0.1.11
+        image: bgpdata/bgpdata:0.1.12
         restart: no
         stop_signal: SIGTERM                    # Wind down relay safely before stopping
         stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
@@ -962,10 +584,10 @@ services:
         volumes:
             - relay_route_views3_data:/var/lib/rocksdb
         entrypoint: >
-            bash -c "sleep $$((42 * 120)) && python manage.py relay"
+            bash -c "sleep $$((24 * 120)) && python manage.py relay"
     
     relay-route-views4:
-        image: bgpdata/bgpdata:0.1.11
+        image: bgpdata/bgpdata:0.1.12
         restart: no
         stop_signal: SIGTERM                    # Wind down relay safely before stopping
         stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
@@ -983,10 +605,10 @@ services:
         volumes:
             - relay_route_views4_data:/var/lib/rocksdb
         entrypoint: >
-            bash -c "sleep $$((43 * 120)) && python manage.py relay"
+            bash -c "sleep $$((25 * 120)) && python manage.py relay"
     
     relay-route-views5:
-        image: bgpdata/bgpdata:0.1.11
+        image: bgpdata/bgpdata:0.1.12
         restart: no
         stop_signal: SIGTERM                    # Wind down relay safely before stopping
         stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
@@ -1004,10 +626,10 @@ services:
         volumes:
             - relay_route_views5_data:/var/lib/rocksdb
         entrypoint: >
-            bash -c "sleep $$((44 * 120)) && python manage.py relay"
+            bash -c "sleep $$((26 * 120)) && python manage.py relay"
     
     relay-route-views6:
-        image: bgpdata/bgpdata:0.1.11
+        image: bgpdata/bgpdata:0.1.12
         restart: no
         stop_signal: SIGTERM                    # Wind down relay safely before stopping
         stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
@@ -1025,10 +647,10 @@ services:
         volumes:
             - relay_route_views6_data:/var/lib/rocksdb
         entrypoint: >
-            bash -c "sleep $$((45 * 120)) && python manage.py relay"
+            bash -c "sleep $$((27 * 120)) && python manage.py relay"
     
     relay-route-views7:
-        image: bgpdata/bgpdata:0.1.11
+        image: bgpdata/bgpdata:0.1.12
         restart: no
         stop_signal: SIGTERM                    # Wind down relay safely before stopping
         stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
@@ -1046,10 +668,10 @@ services:
         volumes:
             - relay_route_views7_data:/var/lib/rocksdb
         entrypoint: >
-            bash -c "sleep $$((46 * 120)) && python manage.py relay"
+            bash -c "sleep $$((28 * 120)) && python manage.py relay"
     
-    relay-sfmix:
-        image: bgpdata/bgpdata:0.1.11
+    relay-route-views8:
+        image: bgpdata/bgpdata:0.1.12
         restart: no
         stop_signal: SIGTERM                    # Wind down relay safely before stopping
         stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
@@ -1060,17 +682,395 @@ services:
                 constraints:
                     - node.role == manager
         environment:
-            HOST: sfmix
-            OPENBMP_CONNECT: collector-sfmix:5000
+            HOST: route-views8
+            OPENBMP_CONNECT: collector-route-views8:5000
         depends_on:
-            - collector-sfmix
+            - collector-route-views8
         volumes:
-            - relay_sfmix_data:/var/lib/rocksdb
+            - relay_route_views8_data:/var/lib/rocksdb
+        entrypoint: >
+            bash -c "sleep $$((29 * 120)) && python manage.py relay"
+    
+    relay-amsix:
+        image: bgpdata/bgpdata:0.1.12
+        restart: no
+        stop_signal: SIGTERM                    # Wind down relay safely before stopping
+        stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
+        deploy:
+            restart_policy:
+                condition: none
+            placement:
+                constraints:
+                    - node.role == manager
+        environment:
+            HOST: amsix
+            OPENBMP_CONNECT: collector-amsix:5000
+        depends_on:
+            - collector-amsix
+        volumes:
+            - relay_amsix_data:/var/lib/rocksdb
+        entrypoint: >
+            bash -c "sleep $$((30 * 120)) && python manage.py relay"
+    
+    relay-amsix-ams:
+        image: bgpdata/bgpdata:0.1.12
+        restart: no
+        stop_signal: SIGTERM                    # Wind down relay safely before stopping
+        stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
+        deploy:
+            restart_policy:
+                condition: none
+            placement:
+                constraints:
+                    - node.role == manager
+        environment:
+            HOST: amsix.ams
+            OPENBMP_CONNECT: collector-amsix-ams:5000
+        depends_on:
+            - collector-amsix-ams
+        volumes:
+            - relay_amsix_ams_data:/var/lib/rocksdb
+        entrypoint: >
+            bash -c "sleep $$((31 * 120)) && python manage.py relay"
+    
+    relay-cix-atl:
+        image: bgpdata/bgpdata:0.1.12
+        restart: no
+        stop_signal: SIGTERM                    # Wind down relay safely before stopping
+        stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
+        deploy:
+            restart_policy:
+                condition: none
+            placement:
+                constraints:
+                    - node.role == manager
+        environment:
+            HOST: cix.atl
+            OPENBMP_CONNECT: collector-cix-atl:5000
+        depends_on:
+            - collector-cix-atl
+        volumes:
+            - relay_cix_atl_data:/var/lib/rocksdb
+        entrypoint: >
+            bash -c "sleep $$((32 * 120)) && python manage.py relay"
+    
+    relay-bdix:
+        image: bgpdata/bgpdata:0.1.12
+        restart: no
+        stop_signal: SIGTERM                    # Wind down relay safely before stopping
+        stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
+        deploy:
+            restart_policy:
+                condition: none
+            placement:
+                constraints:
+                    - node.role == manager
+        environment:
+            HOST: bdix
+            OPENBMP_CONNECT: collector-bdix:5000
+        depends_on:
+            - collector-bdix
+        volumes:
+            - relay_bdix_data:/var/lib/rocksdb
+        entrypoint: >
+            bash -c "sleep $$((33 * 120)) && python manage.py relay"
+    
+    relay-bknix:
+        image: bgpdata/bgpdata:0.1.12
+        restart: no
+        stop_signal: SIGTERM                    # Wind down relay safely before stopping
+        stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
+        deploy:
+            restart_policy:
+                condition: none
+            placement:
+                constraints:
+                    - node.role == manager
+        environment:
+            HOST: bknix
+            OPENBMP_CONNECT: collector-bknix:5000
+        depends_on:
+            - collector-bknix
+        volumes:
+            - relay_bknix_data:/var/lib/rocksdb
+        entrypoint: >
+            bash -c "sleep $$((34 * 120)) && python manage.py relay"
+    
+    relay-chicago:
+        image: bgpdata/bgpdata:0.1.12
+        restart: no
+        stop_signal: SIGTERM                    # Wind down relay safely before stopping
+        stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
+        deploy:
+            restart_policy:
+                condition: none
+            placement:
+                constraints:
+                    - node.role == manager
+        environment:
+            HOST: chicago
+            OPENBMP_CONNECT: collector-chicago:5000
+        depends_on:
+            - collector-chicago
+        volumes:
+            - relay_chicago_data:/var/lib/rocksdb
+        entrypoint: >
+            bash -c "sleep $$((35 * 120)) && python manage.py relay"
+    
+    relay-chile:
+        image: bgpdata/bgpdata:0.1.12
+        restart: no
+        stop_signal: SIGTERM                    # Wind down relay safely before stopping
+        stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
+        deploy:
+            restart_policy:
+                condition: none
+            placement:
+                constraints:
+                    - node.role == manager
+        environment:
+            HOST: chile
+            OPENBMP_CONNECT: collector-chile:5000
+        depends_on:
+            - collector-chile
+        volumes:
+            - relay_chile_data:/var/lib/rocksdb
+        entrypoint: >
+            bash -c "sleep $$((36 * 120)) && python manage.py relay"
+    
+    relay-eqix:
+        image: bgpdata/bgpdata:0.1.12
+        restart: no
+        stop_signal: SIGTERM                    # Wind down relay safely before stopping
+        stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
+        deploy:
+            restart_policy:
+                condition: none
+            placement:
+                constraints:
+                    - node.role == manager
+        environment:
+            HOST: eqix
+            OPENBMP_CONNECT: collector-eqix:5000
+        depends_on:
+            - collector-eqix
+        volumes:
+            - relay_eqix_data:/var/lib/rocksdb
+        entrypoint: >
+            bash -c "sleep $$((37 * 120)) && python manage.py relay"
+    
+    relay-flix:
+        image: bgpdata/bgpdata:0.1.12
+        restart: no
+        stop_signal: SIGTERM                    # Wind down relay safely before stopping
+        stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
+        deploy:
+            restart_policy:
+                condition: none
+            placement:
+                constraints:
+                    - node.role == manager
+        environment:
+            HOST: flix
+            OPENBMP_CONNECT: collector-flix:5000
+        depends_on:
+            - collector-flix
+        volumes:
+            - relay_flix_data:/var/lib/rocksdb
+        entrypoint: >
+            bash -c "sleep $$((38 * 120)) && python manage.py relay"
+    
+    relay-gixa:
+        image: bgpdata/bgpdata:0.1.12
+        restart: no
+        stop_signal: SIGTERM                    # Wind down relay safely before stopping
+        stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
+        deploy:
+            restart_policy:
+                condition: none
+            placement:
+                constraints:
+                    - node.role == manager
+        environment:
+            HOST: gixa
+            OPENBMP_CONNECT: collector-gixa:5000
+        depends_on:
+            - collector-gixa
+        volumes:
+            - relay_gixa_data:/var/lib/rocksdb
+        entrypoint: >
+            bash -c "sleep $$((39 * 120)) && python manage.py relay"
+    
+    relay-gorex:
+        image: bgpdata/bgpdata:0.1.12
+        restart: no
+        stop_signal: SIGTERM                    # Wind down relay safely before stopping
+        stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
+        deploy:
+            restart_policy:
+                condition: none
+            placement:
+                constraints:
+                    - node.role == manager
+        environment:
+            HOST: gorex
+            OPENBMP_CONNECT: collector-gorex:5000
+        depends_on:
+            - collector-gorex
+        volumes:
+            - relay_gorex_data:/var/lib/rocksdb
+        entrypoint: >
+            bash -c "sleep $$((40 * 120)) && python manage.py relay"
+    
+    relay-interlan-otp:
+        image: bgpdata/bgpdata:0.1.12
+        restart: no
+        stop_signal: SIGTERM                    # Wind down relay safely before stopping
+        stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
+        deploy:
+            restart_policy:
+                condition: none
+            placement:
+                constraints:
+                    - node.role == manager
+        environment:
+            HOST: interlan.otp
+            OPENBMP_CONNECT: collector-interlan-otp:5000
+        depends_on:
+            - collector-interlan-otp
+        volumes:
+            - relay_interlan_otp_data:/var/lib/rocksdb
+        entrypoint: >
+            bash -c "sleep $$((41 * 120)) && python manage.py relay"
+    
+    relay-iraq-ixp-bgw:
+        image: bgpdata/bgpdata:0.1.12
+        restart: no
+        stop_signal: SIGTERM                    # Wind down relay safely before stopping
+        stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
+        deploy:
+            restart_policy:
+                condition: none
+            placement:
+                constraints:
+                    - node.role == manager
+        environment:
+            HOST: iraq-ixp.bgw
+            OPENBMP_CONNECT: collector-iraq-ixp-bgw:5000
+        depends_on:
+            - collector-iraq-ixp-bgw
+        volumes:
+            - relay_iraq_ixp_bgw_data:/var/lib/rocksdb
+        entrypoint: >
+            bash -c "sleep $$((42 * 120)) && python manage.py relay"
+    
+    relay-isc:
+        image: bgpdata/bgpdata:0.1.12
+        restart: no
+        stop_signal: SIGTERM                    # Wind down relay safely before stopping
+        stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
+        deploy:
+            restart_policy:
+                condition: none
+            placement:
+                constraints:
+                    - node.role == manager
+        environment:
+            HOST: isc
+            OPENBMP_CONNECT: collector-isc:5000
+        depends_on:
+            - collector-isc
+        volumes:
+            - relay_isc_data:/var/lib/rocksdb
+        entrypoint: >
+            bash -c "sleep $$((43 * 120)) && python manage.py relay"
+    
+    relay-kinx-icn:
+        image: bgpdata/bgpdata:0.1.12
+        restart: no
+        stop_signal: SIGTERM                    # Wind down relay safely before stopping
+        stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
+        deploy:
+            restart_policy:
+                condition: none
+            placement:
+                constraints:
+                    - node.role == manager
+        environment:
+            HOST: kinx.icn
+            OPENBMP_CONNECT: collector-kinx-icn:5000
+        depends_on:
+            - collector-kinx-icn
+        volumes:
+            - relay_kinx_icn_data:/var/lib/rocksdb
+        entrypoint: >
+            bash -c "sleep $$((44 * 120)) && python manage.py relay"
+    
+    relay-namex-fco:
+        image: bgpdata/bgpdata:0.1.12
+        restart: no
+        stop_signal: SIGTERM                    # Wind down relay safely before stopping
+        stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
+        deploy:
+            restart_policy:
+                condition: none
+            placement:
+                constraints:
+                    - node.role == manager
+        environment:
+            HOST: namex.fco
+            OPENBMP_CONNECT: collector-namex-fco:5000
+        depends_on:
+            - collector-namex-fco
+        volumes:
+            - relay_namex_fco_data:/var/lib/rocksdb
+        entrypoint: >
+            bash -c "sleep $$((45 * 120)) && python manage.py relay"
+    
+    relay-kixp:
+        image: bgpdata/bgpdata:0.1.12
+        restart: no
+        stop_signal: SIGTERM                    # Wind down relay safely before stopping
+        stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
+        deploy:
+            restart_policy:
+                condition: none
+            placement:
+                constraints:
+                    - node.role == manager
+        environment:
+            HOST: kixp
+            OPENBMP_CONNECT: collector-kixp:5000
+        depends_on:
+            - collector-kixp
+        volumes:
+            - relay_kixp_data:/var/lib/rocksdb
+        entrypoint: >
+            bash -c "sleep $$((46 * 120)) && python manage.py relay"
+    
+    relay-jinx:
+        image: bgpdata/bgpdata:0.1.12
+        restart: no
+        stop_signal: SIGTERM                    # Wind down relay safely before stopping
+        stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
+        deploy:
+            restart_policy:
+                condition: none
+            placement:
+                constraints:
+                    - node.role == manager
+        environment:
+            HOST: jinx
+            OPENBMP_CONNECT: collector-jinx:5000
+        depends_on:
+            - collector-jinx
+        volumes:
+            - relay_jinx_data:/var/lib/rocksdb
         entrypoint: >
             bash -c "sleep $$((47 * 120)) && python manage.py relay"
     
-    relay-sg:
-        image: bgpdata/bgpdata:0.1.11
+    relay-linx:
+        image: bgpdata/bgpdata:0.1.12
         restart: no
         stop_signal: SIGTERM                    # Wind down relay safely before stopping
         stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
@@ -1081,17 +1081,17 @@ services:
                 constraints:
                     - node.role == manager
         environment:
-            HOST: sg
-            OPENBMP_CONNECT: collector-sg:5000
+            HOST: linx
+            OPENBMP_CONNECT: collector-linx:5000
         depends_on:
-            - collector-sg
+            - collector-linx
         volumes:
-            - relay_sg_data:/var/lib/rocksdb
+            - relay_linx_data:/var/lib/rocksdb
         entrypoint: >
             bash -c "sleep $$((48 * 120)) && python manage.py relay"
     
-    relay-soxrs:
-        image: bgpdata/bgpdata:0.1.11
+    relay-mwix:
+        image: bgpdata/bgpdata:0.1.12
         restart: no
         stop_signal: SIGTERM                    # Wind down relay safely before stopping
         stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
@@ -1102,17 +1102,17 @@ services:
                 constraints:
                     - node.role == manager
         environment:
-            HOST: soxrs
-            OPENBMP_CONNECT: collector-soxrs:5000
+            HOST: mwix
+            OPENBMP_CONNECT: collector-mwix:5000
         depends_on:
-            - collector-soxrs
+            - collector-mwix
         volumes:
-            - relay_soxrs_data:/var/lib/rocksdb
+            - relay_mwix_data:/var/lib/rocksdb
         entrypoint: >
             bash -c "sleep $$((49 * 120)) && python manage.py relay"
     
-    relay-sydney:
-        image: bgpdata/bgpdata:0.1.11
+    relay-napafrica:
+        image: bgpdata/bgpdata:0.1.12
         restart: no
         stop_signal: SIGTERM                    # Wind down relay safely before stopping
         stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
@@ -1123,17 +1123,122 @@ services:
                 constraints:
                     - node.role == manager
         environment:
-            HOST: sydney
-            OPENBMP_CONNECT: collector-sydney:5000
+            HOST: napafrica
+            OPENBMP_CONNECT: collector-napafrica:5000
         depends_on:
-            - collector-sydney
+            - collector-napafrica
         volumes:
-            - relay_sydney_data:/var/lib/rocksdb
+            - relay_napafrica_data:/var/lib/rocksdb
         entrypoint: >
             bash -c "sleep $$((50 * 120)) && python manage.py relay"
     
+    relay-nwax:
+        image: bgpdata/bgpdata:0.1.12
+        restart: no
+        stop_signal: SIGTERM                    # Wind down relay safely before stopping
+        stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
+        deploy:
+            restart_policy:
+                condition: none
+            placement:
+                constraints:
+                    - node.role == manager
+        environment:
+            HOST: nwax
+            OPENBMP_CONNECT: collector-nwax:5000
+        depends_on:
+            - collector-nwax
+        volumes:
+            - relay_nwax_data:/var/lib/rocksdb
+        entrypoint: >
+            bash -c "sleep $$((51 * 120)) && python manage.py relay"
+    
+    relay-pacwave-lax:
+        image: bgpdata/bgpdata:0.1.12
+        restart: no
+        stop_signal: SIGTERM                    # Wind down relay safely before stopping
+        stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
+        deploy:
+            restart_policy:
+                condition: none
+            placement:
+                constraints:
+                    - node.role == manager
+        environment:
+            HOST: pacwave.lax
+            OPENBMP_CONNECT: collector-pacwave-lax:5000
+        depends_on:
+            - collector-pacwave-lax
+        volumes:
+            - relay_pacwave_lax_data:/var/lib/rocksdb
+        entrypoint: >
+            bash -c "sleep $$((52 * 120)) && python manage.py relay"
+    
+    relay-pit-scl:
+        image: bgpdata/bgpdata:0.1.12
+        restart: no
+        stop_signal: SIGTERM                    # Wind down relay safely before stopping
+        stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
+        deploy:
+            restart_policy:
+                condition: none
+            placement:
+                constraints:
+                    - node.role == manager
+        environment:
+            HOST: pit.scl
+            OPENBMP_CONNECT: collector-pit-scl:5000
+        depends_on:
+            - collector-pit-scl
+        volumes:
+            - relay_pit_scl_data:/var/lib/rocksdb
+        entrypoint: >
+            bash -c "sleep $$((53 * 120)) && python manage.py relay"
+    
+    relay-pitmx-qro:
+        image: bgpdata/bgpdata:0.1.12
+        restart: no
+        stop_signal: SIGTERM                    # Wind down relay safely before stopping
+        stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
+        deploy:
+            restart_policy:
+                condition: none
+            placement:
+                constraints:
+                    - node.role == manager
+        environment:
+            HOST: pitmx.qro
+            OPENBMP_CONNECT: collector-pitmx-qro:5000
+        depends_on:
+            - collector-pitmx-qro
+        volumes:
+            - relay_pitmx_qro_data:/var/lib/rocksdb
+        entrypoint: >
+            bash -c "sleep $$((54 * 120)) && python manage.py relay"
+    
+    relay-phiox:
+        image: bgpdata/bgpdata:0.1.12
+        restart: no
+        stop_signal: SIGTERM                    # Wind down relay safely before stopping
+        stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
+        deploy:
+            restart_policy:
+                condition: none
+            placement:
+                constraints:
+                    - node.role == manager
+        environment:
+            HOST: phiox
+            OPENBMP_CONNECT: collector-phiox:5000
+        depends_on:
+            - collector-phiox
+        volumes:
+            - relay_phiox_data:/var/lib/rocksdb
+        entrypoint: >
+            bash -c "sleep $$((55 * 120)) && python manage.py relay"
+    
     relay-telxatl:
-        image: bgpdata/bgpdata:0.1.11
+        image: bgpdata/bgpdata:0.1.12
         restart: no
         stop_signal: SIGTERM                    # Wind down relay safely before stopping
         stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
@@ -1151,31 +1256,10 @@ services:
         volumes:
             - relay_telxatl_data:/var/lib/rocksdb
         entrypoint: >
-            bash -c "sleep $$((51 * 120)) && python manage.py relay"
-    
-    relay-uaeix:
-        image: bgpdata/bgpdata:0.1.11
-        restart: no
-        stop_signal: SIGTERM                    # Wind down relay safely before stopping
-        stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
-        deploy:
-            restart_policy:
-                condition: none
-            placement:
-                constraints:
-                    - node.role == manager
-        environment:
-            HOST: uaeix
-            OPENBMP_CONNECT: collector-uaeix:5000
-        depends_on:
-            - collector-uaeix
-        volumes:
-            - relay_uaeix_data:/var/lib/rocksdb
-        entrypoint: >
-            bash -c "sleep $$((52 * 120)) && python manage.py relay"
+            bash -c "sleep $$((56 * 120)) && python manage.py relay"
     
     relay-wide:
-        image: bgpdata/bgpdata:0.1.11
+        image: bgpdata/bgpdata:0.1.12
         restart: no
         stop_signal: SIGTERM                    # Wind down relay safely before stopping
         stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
@@ -1193,7 +1277,280 @@ services:
         volumes:
             - relay_wide_data:/var/lib/rocksdb
         entrypoint: >
-            bash -c "sleep $$((53 * 120)) && python manage.py relay"
+            bash -c "sleep $$((57 * 120)) && python manage.py relay"
+    
+    relay-sydney:
+        image: bgpdata/bgpdata:0.1.12
+        restart: no
+        stop_signal: SIGTERM                    # Wind down relay safely before stopping
+        stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
+        deploy:
+            restart_policy:
+                condition: none
+            placement:
+                constraints:
+                    - node.role == manager
+        environment:
+            HOST: sydney
+            OPENBMP_CONNECT: collector-sydney:5000
+        depends_on:
+            - collector-sydney
+        volumes:
+            - relay_sydney_data:/var/lib/rocksdb
+        entrypoint: >
+            bash -c "sleep $$((58 * 120)) && python manage.py relay"
+    
+    relay-saopaulo:
+        image: bgpdata/bgpdata:0.1.12
+        restart: no
+        stop_signal: SIGTERM                    # Wind down relay safely before stopping
+        stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
+        deploy:
+            restart_policy:
+                condition: none
+            placement:
+                constraints:
+                    - node.role == manager
+        environment:
+            HOST: saopaulo
+            OPENBMP_CONNECT: collector-saopaulo:5000
+        depends_on:
+            - collector-saopaulo
+        volumes:
+            - relay_saopaulo_data:/var/lib/rocksdb
+        entrypoint: >
+            bash -c "sleep $$((59 * 120)) && python manage.py relay"
+    
+    relay-route-views2-saopaulo:
+        image: bgpdata/bgpdata:0.1.12
+        restart: no
+        stop_signal: SIGTERM                    # Wind down relay safely before stopping
+        stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
+        deploy:
+            restart_policy:
+                condition: none
+            placement:
+                constraints:
+                    - node.role == manager
+        environment:
+            HOST: route-views2.saopaulo
+            OPENBMP_CONNECT: collector-route-views2-saopaulo:5000
+        depends_on:
+            - collector-route-views2-saopaulo
+        volumes:
+            - relay_route_views2_saopaulo_data:/var/lib/rocksdb
+        entrypoint: >
+            bash -c "sleep $$((60 * 120)) && python manage.py relay"
+    
+    relay-sg:
+        image: bgpdata/bgpdata:0.1.12
+        restart: no
+        stop_signal: SIGTERM                    # Wind down relay safely before stopping
+        stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
+        deploy:
+            restart_policy:
+                condition: none
+            placement:
+                constraints:
+                    - node.role == manager
+        environment:
+            HOST: sg
+            OPENBMP_CONNECT: collector-sg:5000
+        depends_on:
+            - collector-sg
+        volumes:
+            - relay_sg_data:/var/lib/rocksdb
+        entrypoint: >
+            bash -c "sleep $$((61 * 120)) && python manage.py relay"
+    
+    relay-perth:
+        image: bgpdata/bgpdata:0.1.12
+        restart: no
+        stop_signal: SIGTERM                    # Wind down relay safely before stopping
+        stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
+        deploy:
+            restart_policy:
+                condition: none
+            placement:
+                constraints:
+                    - node.role == manager
+        environment:
+            HOST: perth
+            OPENBMP_CONNECT: collector-perth:5000
+        depends_on:
+            - collector-perth
+        volumes:
+            - relay_perth_data:/var/lib/rocksdb
+        entrypoint: >
+            bash -c "sleep $$((62 * 120)) && python manage.py relay"
+    
+    relay-peru:
+        image: bgpdata/bgpdata:0.1.12
+        restart: no
+        stop_signal: SIGTERM                    # Wind down relay safely before stopping
+        stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
+        deploy:
+            restart_policy:
+                condition: none
+            placement:
+                constraints:
+                    - node.role == manager
+        environment:
+            HOST: peru
+            OPENBMP_CONNECT: collector-peru:5000
+        depends_on:
+            - collector-peru
+        volumes:
+            - relay_peru_data:/var/lib/rocksdb
+        entrypoint: >
+            bash -c "sleep $$((63 * 120)) && python manage.py relay"
+    
+    relay-sfmix:
+        image: bgpdata/bgpdata:0.1.12
+        restart: no
+        stop_signal: SIGTERM                    # Wind down relay safely before stopping
+        stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
+        deploy:
+            restart_policy:
+                condition: none
+            placement:
+                constraints:
+                    - node.role == manager
+        environment:
+            HOST: sfmix
+            OPENBMP_CONNECT: collector-sfmix:5000
+        depends_on:
+            - collector-sfmix
+        volumes:
+            - relay_sfmix_data:/var/lib/rocksdb
+        entrypoint: >
+            bash -c "sleep $$((64 * 120)) && python manage.py relay"
+    
+    relay-siex:
+        image: bgpdata/bgpdata:0.1.12
+        restart: no
+        stop_signal: SIGTERM                    # Wind down relay safely before stopping
+        stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
+        deploy:
+            restart_policy:
+                condition: none
+            placement:
+                constraints:
+                    - node.role == manager
+        environment:
+            HOST: siex
+            OPENBMP_CONNECT: collector-siex:5000
+        depends_on:
+            - collector-siex
+        volumes:
+            - relay_siex_data:/var/lib/rocksdb
+        entrypoint: >
+            bash -c "sleep $$((65 * 120)) && python manage.py relay"
+    
+    relay-soxrs:
+        image: bgpdata/bgpdata:0.1.12
+        restart: no
+        stop_signal: SIGTERM                    # Wind down relay safely before stopping
+        stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
+        deploy:
+            restart_policy:
+                condition: none
+            placement:
+                constraints:
+                    - node.role == manager
+        environment:
+            HOST: soxrs
+            OPENBMP_CONNECT: collector-soxrs:5000
+        depends_on:
+            - collector-soxrs
+        volumes:
+            - relay_soxrs_data:/var/lib/rocksdb
+        entrypoint: >
+            bash -c "sleep $$((66 * 120)) && python manage.py relay"
+    
+    relay-rio:
+        image: bgpdata/bgpdata:0.1.12
+        restart: no
+        stop_signal: SIGTERM                    # Wind down relay safely before stopping
+        stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
+        deploy:
+            restart_policy:
+                condition: none
+            placement:
+                constraints:
+                    - node.role == manager
+        environment:
+            HOST: rio
+            OPENBMP_CONNECT: collector-rio:5000
+        depends_on:
+            - collector-rio
+        volumes:
+            - relay_rio_data:/var/lib/rocksdb
+        entrypoint: >
+            bash -c "sleep $$((67 * 120)) && python manage.py relay"
+    
+    relay-fortaleza:
+        image: bgpdata/bgpdata:0.1.12
+        restart: no
+        stop_signal: SIGTERM                    # Wind down relay safely before stopping
+        stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
+        deploy:
+            restart_policy:
+                condition: none
+            placement:
+                constraints:
+                    - node.role == manager
+        environment:
+            HOST: fortaleza
+            OPENBMP_CONNECT: collector-fortaleza:5000
+        depends_on:
+            - collector-fortaleza
+        volumes:
+            - relay_fortaleza_data:/var/lib/rocksdb
+        entrypoint: >
+            bash -c "sleep $$((68 * 120)) && python manage.py relay"
+    
+    relay-uaeix:
+        image: bgpdata/bgpdata:0.1.12
+        restart: no
+        stop_signal: SIGTERM                    # Wind down relay safely before stopping
+        stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
+        deploy:
+            restart_policy:
+                condition: none
+            placement:
+                constraints:
+                    - node.role == manager
+        environment:
+            HOST: uaeix
+            OPENBMP_CONNECT: collector-uaeix:5000
+        depends_on:
+            - collector-uaeix
+        volumes:
+            - relay_uaeix_data:/var/lib/rocksdb
+        entrypoint: >
+            bash -c "sleep $$((69 * 120)) && python manage.py relay"
+    
+    relay-ny:
+        image: bgpdata/bgpdata:0.1.12
+        restart: no
+        stop_signal: SIGTERM                    # Wind down relay safely before stopping
+        stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
+        deploy:
+            restart_policy:
+                condition: none
+            placement:
+                constraints:
+                    - node.role == manager
+        environment:
+            HOST: ny
+            OPENBMP_CONNECT: collector-ny:5000
+        depends_on:
+            - collector-ny
+        volumes:
+            - relay_ny_data:/var/lib/rocksdb
+        entrypoint: >
+            bash -c "sleep $$((70 * 120)) && python manage.py relay"
     
     collector-rrc00:
         image: openbmp/collector:2.2.3
@@ -1793,475 +2150,7 @@ services:
         environment:
             KAFKA_FQDN: kafka:29092
     
-    collector-amsix-ams:
-        image: openbmp/collector:2.2.3
-        restart: no
-        deploy:
-            restart_policy:
-                condition: none
-            placement:
-                constraints:
-                    - node.role == worker
-        healthcheck:
-            test: ["CMD-SHELL", "cat", "< /dev/null >", "/dev/tcp/localhost/5000"]
-            interval: 30s
-            timeout: 10s
-            retries: 3
-        depends_on:
-            - postgres
-            - kafka
-        sysctls:
-            - net.ipv4.tcp_keepalive_intvl=30
-            - net.ipv4.tcp_keepalive_probes=5
-            - net.ipv4.tcp_keepalive_time=180
-        volumes:
-            - openbmp_data:/config
-        environment:
-            KAFKA_FQDN: kafka:29092
-    
-    collector-amsix:
-        image: openbmp/collector:2.2.3
-        restart: no
-        deploy:
-            restart_policy:
-                condition: none
-            placement:
-                constraints:
-                    - node.role == worker
-        healthcheck:
-            test: ["CMD-SHELL", "cat", "< /dev/null >", "/dev/tcp/localhost/5000"]
-            interval: 30s
-            timeout: 10s
-            retries: 3
-        depends_on:
-            - postgres
-            - kafka
-        sysctls:
-            - net.ipv4.tcp_keepalive_intvl=30
-            - net.ipv4.tcp_keepalive_probes=5
-            - net.ipv4.tcp_keepalive_time=180
-        volumes:
-            - openbmp_data:/config
-        environment:
-            KAFKA_FQDN: kafka:29092
-    
-    collector-bknix:
-        image: openbmp/collector:2.2.3
-        restart: no
-        deploy:
-            restart_policy:
-                condition: none
-            placement:
-                constraints:
-                    - node.role == worker
-        healthcheck:
-            test: ["CMD-SHELL", "cat", "< /dev/null >", "/dev/tcp/localhost/5000"]
-            interval: 30s
-            timeout: 10s
-            retries: 3
-        depends_on:
-            - postgres
-            - kafka
-        sysctls:
-            - net.ipv4.tcp_keepalive_intvl=30
-            - net.ipv4.tcp_keepalive_probes=5
-            - net.ipv4.tcp_keepalive_time=180
-        volumes:
-            - openbmp_data:/config
-        environment:
-            KAFKA_FQDN: kafka:29092
-    
-    collector-chicago:
-        image: openbmp/collector:2.2.3
-        restart: no
-        deploy:
-            restart_policy:
-                condition: none
-            placement:
-                constraints:
-                    - node.role == worker
-        healthcheck:
-            test: ["CMD-SHELL", "cat", "< /dev/null >", "/dev/tcp/localhost/5000"]
-            interval: 30s
-            timeout: 10s
-            retries: 3
-        depends_on:
-            - postgres
-            - kafka
-        sysctls:
-            - net.ipv4.tcp_keepalive_intvl=30
-            - net.ipv4.tcp_keepalive_probes=5
-            - net.ipv4.tcp_keepalive_time=180
-        volumes:
-            - openbmp_data:/config
-        environment:
-            KAFKA_FQDN: kafka:29092
-    
-    collector-chile:
-        image: openbmp/collector:2.2.3
-        restart: no
-        deploy:
-            restart_policy:
-                condition: none
-            placement:
-                constraints:
-                    - node.role == worker
-        healthcheck:
-            test: ["CMD-SHELL", "cat", "< /dev/null >", "/dev/tcp/localhost/5000"]
-            interval: 30s
-            timeout: 10s
-            retries: 3
-        depends_on:
-            - postgres
-            - kafka
-        sysctls:
-            - net.ipv4.tcp_keepalive_intvl=30
-            - net.ipv4.tcp_keepalive_probes=5
-            - net.ipv4.tcp_keepalive_time=180
-        volumes:
-            - openbmp_data:/config
-        environment:
-            KAFKA_FQDN: kafka:29092
-    
-    collector-cix-atl:
-        image: openbmp/collector:2.2.3
-        restart: no
-        deploy:
-            restart_policy:
-                condition: none
-            placement:
-                constraints:
-                    - node.role == worker
-        healthcheck:
-            test: ["CMD-SHELL", "cat", "< /dev/null >", "/dev/tcp/localhost/5000"]
-            interval: 30s
-            timeout: 10s
-            retries: 3
-        depends_on:
-            - postgres
-            - kafka
-        sysctls:
-            - net.ipv4.tcp_keepalive_intvl=30
-            - net.ipv4.tcp_keepalive_probes=5
-            - net.ipv4.tcp_keepalive_time=180
-        volumes:
-            - openbmp_data:/config
-        environment:
-            KAFKA_FQDN: kafka:29092
-    
-    collector-decix-jhb:
-        image: openbmp/collector:2.2.3
-        restart: no
-        deploy:
-            restart_policy:
-                condition: none
-            placement:
-                constraints:
-                    - node.role == worker
-        healthcheck:
-            test: ["CMD-SHELL", "cat", "< /dev/null >", "/dev/tcp/localhost/5000"]
-            interval: 30s
-            timeout: 10s
-            retries: 3
-        depends_on:
-            - postgres
-            - kafka
-        sysctls:
-            - net.ipv4.tcp_keepalive_intvl=30
-            - net.ipv4.tcp_keepalive_probes=5
-            - net.ipv4.tcp_keepalive_time=180
-        volumes:
-            - openbmp_data:/config
-        environment:
-            KAFKA_FQDN: kafka:29092
-    
-    collector-eqix:
-        image: openbmp/collector:2.2.3
-        restart: no
-        deploy:
-            restart_policy:
-                condition: none
-            placement:
-                constraints:
-                    - node.role == worker
-        healthcheck:
-            test: ["CMD-SHELL", "cat", "< /dev/null >", "/dev/tcp/localhost/5000"]
-            interval: 30s
-            timeout: 10s
-            retries: 3
-        depends_on:
-            - postgres
-            - kafka
-        sysctls:
-            - net.ipv4.tcp_keepalive_intvl=30
-            - net.ipv4.tcp_keepalive_probes=5
-            - net.ipv4.tcp_keepalive_time=180
-        volumes:
-            - openbmp_data:/config
-        environment:
-            KAFKA_FQDN: kafka:29092
-    
-    collector-flix:
-        image: openbmp/collector:2.2.3
-        restart: no
-        deploy:
-            restart_policy:
-                condition: none
-            placement:
-                constraints:
-                    - node.role == worker
-        healthcheck:
-            test: ["CMD-SHELL", "cat", "< /dev/null >", "/dev/tcp/localhost/5000"]
-            interval: 30s
-            timeout: 10s
-            retries: 3
-        depends_on:
-            - postgres
-            - kafka
-        sysctls:
-            - net.ipv4.tcp_keepalive_intvl=30
-            - net.ipv4.tcp_keepalive_probes=5
-            - net.ipv4.tcp_keepalive_time=180
-        volumes:
-            - openbmp_data:/config
-        environment:
-            KAFKA_FQDN: kafka:29092
-    
-    collector-fortaleza:
-        image: openbmp/collector:2.2.3
-        restart: no
-        deploy:
-            restart_policy:
-                condition: none
-            placement:
-                constraints:
-                    - node.role == worker
-        healthcheck:
-            test: ["CMD-SHELL", "cat", "< /dev/null >", "/dev/tcp/localhost/5000"]
-            interval: 30s
-            timeout: 10s
-            retries: 3
-        depends_on:
-            - postgres
-            - kafka
-        sysctls:
-            - net.ipv4.tcp_keepalive_intvl=30
-            - net.ipv4.tcp_keepalive_probes=5
-            - net.ipv4.tcp_keepalive_time=180
-        volumes:
-            - openbmp_data:/config
-        environment:
-            KAFKA_FQDN: kafka:29092
-    
-    collector-gorex:
-        image: openbmp/collector:2.2.3
-        restart: no
-        deploy:
-            restart_policy:
-                condition: none
-            placement:
-                constraints:
-                    - node.role == worker
-        healthcheck:
-            test: ["CMD-SHELL", "cat", "< /dev/null >", "/dev/tcp/localhost/5000"]
-            interval: 30s
-            timeout: 10s
-            retries: 3
-        depends_on:
-            - postgres
-            - kafka
-        sysctls:
-            - net.ipv4.tcp_keepalive_intvl=30
-            - net.ipv4.tcp_keepalive_probes=5
-            - net.ipv4.tcp_keepalive_time=180
-        volumes:
-            - openbmp_data:/config
-        environment:
-            KAFKA_FQDN: kafka:29092
-    
-    collector-isc:
-        image: openbmp/collector:2.2.3
-        restart: no
-        deploy:
-            restart_policy:
-                condition: none
-            placement:
-                constraints:
-                    - node.role == worker
-        healthcheck:
-            test: ["CMD-SHELL", "cat", "< /dev/null >", "/dev/tcp/localhost/5000"]
-            interval: 30s
-            timeout: 10s
-            retries: 3
-        depends_on:
-            - postgres
-            - kafka
-        sysctls:
-            - net.ipv4.tcp_keepalive_intvl=30
-            - net.ipv4.tcp_keepalive_probes=5
-            - net.ipv4.tcp_keepalive_time=180
-        volumes:
-            - openbmp_data:/config
-        environment:
-            KAFKA_FQDN: kafka:29092
-    
-    collector-kixp:
-        image: openbmp/collector:2.2.3
-        restart: no
-        deploy:
-            restart_policy:
-                condition: none
-            placement:
-                constraints:
-                    - node.role == worker
-        healthcheck:
-            test: ["CMD-SHELL", "cat", "< /dev/null >", "/dev/tcp/localhost/5000"]
-            interval: 30s
-            timeout: 10s
-            retries: 3
-        depends_on:
-            - postgres
-            - kafka
-        sysctls:
-            - net.ipv4.tcp_keepalive_intvl=30
-            - net.ipv4.tcp_keepalive_probes=5
-            - net.ipv4.tcp_keepalive_time=180
-        volumes:
-            - openbmp_data:/config
-        environment:
-            KAFKA_FQDN: kafka:29092
-    
-    collector-linx:
-        image: openbmp/collector:2.2.3
-        restart: no
-        deploy:
-            restart_policy:
-                condition: none
-            placement:
-                constraints:
-                    - node.role == worker
-        healthcheck:
-            test: ["CMD-SHELL", "cat", "< /dev/null >", "/dev/tcp/localhost/5000"]
-            interval: 30s
-            timeout: 10s
-            retries: 3
-        depends_on:
-            - postgres
-            - kafka
-        sysctls:
-            - net.ipv4.tcp_keepalive_intvl=30
-            - net.ipv4.tcp_keepalive_probes=5
-            - net.ipv4.tcp_keepalive_time=180
-        volumes:
-            - openbmp_data:/config
-        environment:
-            KAFKA_FQDN: kafka:29092
-    
-    collector-napafrica:
-        image: openbmp/collector:2.2.3
-        restart: no
-        deploy:
-            restart_policy:
-                condition: none
-            placement:
-                constraints:
-                    - node.role == worker
-        healthcheck:
-            test: ["CMD-SHELL", "cat", "< /dev/null >", "/dev/tcp/localhost/5000"]
-            interval: 30s
-            timeout: 10s
-            retries: 3
-        depends_on:
-            - postgres
-            - kafka
-        sysctls:
-            - net.ipv4.tcp_keepalive_intvl=30
-            - net.ipv4.tcp_keepalive_probes=5
-            - net.ipv4.tcp_keepalive_time=180
-        volumes:
-            - openbmp_data:/config
-        environment:
-            KAFKA_FQDN: kafka:29092
-    
-    collector-ny:
-        image: openbmp/collector:2.2.3
-        restart: no
-        deploy:
-            restart_policy:
-                condition: none
-            placement:
-                constraints:
-                    - node.role == worker
-        healthcheck:
-            test: ["CMD-SHELL", "cat", "< /dev/null >", "/dev/tcp/localhost/5000"]
-            interval: 30s
-            timeout: 10s
-            retries: 3
-        depends_on:
-            - postgres
-            - kafka
-        sysctls:
-            - net.ipv4.tcp_keepalive_intvl=30
-            - net.ipv4.tcp_keepalive_probes=5
-            - net.ipv4.tcp_keepalive_time=180
-        volumes:
-            - openbmp_data:/config
-        environment:
-            KAFKA_FQDN: kafka:29092
-    
-    collector-perth:
-        image: openbmp/collector:2.2.3
-        restart: no
-        deploy:
-            restart_policy:
-                condition: none
-            placement:
-                constraints:
-                    - node.role == worker
-        healthcheck:
-            test: ["CMD-SHELL", "cat", "< /dev/null >", "/dev/tcp/localhost/5000"]
-            interval: 30s
-            timeout: 10s
-            retries: 3
-        depends_on:
-            - postgres
-            - kafka
-        sysctls:
-            - net.ipv4.tcp_keepalive_intvl=30
-            - net.ipv4.tcp_keepalive_probes=5
-            - net.ipv4.tcp_keepalive_time=180
-        volumes:
-            - openbmp_data:/config
-        environment:
-            KAFKA_FQDN: kafka:29092
-    
-    collector-rio:
-        image: openbmp/collector:2.2.3
-        restart: no
-        deploy:
-            restart_policy:
-                condition: none
-            placement:
-                constraints:
-                    - node.role == worker
-        healthcheck:
-            test: ["CMD-SHELL", "cat", "< /dev/null >", "/dev/tcp/localhost/5000"]
-            interval: 30s
-            timeout: 10s
-            retries: 3
-        depends_on:
-            - postgres
-            - kafka
-        sysctls:
-            - net.ipv4.tcp_keepalive_intvl=30
-            - net.ipv4.tcp_keepalive_probes=5
-            - net.ipv4.tcp_keepalive_time=180
-        volumes:
-            - openbmp_data:/config
-        environment:
-            KAFKA_FQDN: kafka:29092
-    
-    collector-route-views2-saopaulo:
+    collector-route-views2:
         image: openbmp/collector:2.2.3
         restart: no
         deploy:
@@ -2417,7 +2306,7 @@ services:
         environment:
             KAFKA_FQDN: kafka:29092
     
-    collector-sfmix:
+    collector-route-views8:
         image: openbmp/collector:2.2.3
         restart: no
         deploy:
@@ -2443,7 +2332,7 @@ services:
         environment:
             KAFKA_FQDN: kafka:29092
     
-    collector-sg:
+    collector-amsix:
         image: openbmp/collector:2.2.3
         restart: no
         deploy:
@@ -2469,7 +2358,7 @@ services:
         environment:
             KAFKA_FQDN: kafka:29092
     
-    collector-soxrs:
+    collector-amsix-ams:
         image: openbmp/collector:2.2.3
         restart: no
         deploy:
@@ -2495,7 +2384,605 @@ services:
         environment:
             KAFKA_FQDN: kafka:29092
     
-    collector-sydney:
+    collector-cix-atl:
+        image: openbmp/collector:2.2.3
+        restart: no
+        deploy:
+            restart_policy:
+                condition: none
+            placement:
+                constraints:
+                    - node.role == worker
+        healthcheck:
+            test: ["CMD-SHELL", "cat", "< /dev/null >", "/dev/tcp/localhost/5000"]
+            interval: 30s
+            timeout: 10s
+            retries: 3
+        depends_on:
+            - postgres
+            - kafka
+        sysctls:
+            - net.ipv4.tcp_keepalive_intvl=30
+            - net.ipv4.tcp_keepalive_probes=5
+            - net.ipv4.tcp_keepalive_time=180
+        volumes:
+            - openbmp_data:/config
+        environment:
+            KAFKA_FQDN: kafka:29092
+    
+    collector-bdix:
+        image: openbmp/collector:2.2.3
+        restart: no
+        deploy:
+            restart_policy:
+                condition: none
+            placement:
+                constraints:
+                    - node.role == worker
+        healthcheck:
+            test: ["CMD-SHELL", "cat", "< /dev/null >", "/dev/tcp/localhost/5000"]
+            interval: 30s
+            timeout: 10s
+            retries: 3
+        depends_on:
+            - postgres
+            - kafka
+        sysctls:
+            - net.ipv4.tcp_keepalive_intvl=30
+            - net.ipv4.tcp_keepalive_probes=5
+            - net.ipv4.tcp_keepalive_time=180
+        volumes:
+            - openbmp_data:/config
+        environment:
+            KAFKA_FQDN: kafka:29092
+    
+    collector-bknix:
+        image: openbmp/collector:2.2.3
+        restart: no
+        deploy:
+            restart_policy:
+                condition: none
+            placement:
+                constraints:
+                    - node.role == worker
+        healthcheck:
+            test: ["CMD-SHELL", "cat", "< /dev/null >", "/dev/tcp/localhost/5000"]
+            interval: 30s
+            timeout: 10s
+            retries: 3
+        depends_on:
+            - postgres
+            - kafka
+        sysctls:
+            - net.ipv4.tcp_keepalive_intvl=30
+            - net.ipv4.tcp_keepalive_probes=5
+            - net.ipv4.tcp_keepalive_time=180
+        volumes:
+            - openbmp_data:/config
+        environment:
+            KAFKA_FQDN: kafka:29092
+    
+    collector-chicago:
+        image: openbmp/collector:2.2.3
+        restart: no
+        deploy:
+            restart_policy:
+                condition: none
+            placement:
+                constraints:
+                    - node.role == worker
+        healthcheck:
+            test: ["CMD-SHELL", "cat", "< /dev/null >", "/dev/tcp/localhost/5000"]
+            interval: 30s
+            timeout: 10s
+            retries: 3
+        depends_on:
+            - postgres
+            - kafka
+        sysctls:
+            - net.ipv4.tcp_keepalive_intvl=30
+            - net.ipv4.tcp_keepalive_probes=5
+            - net.ipv4.tcp_keepalive_time=180
+        volumes:
+            - openbmp_data:/config
+        environment:
+            KAFKA_FQDN: kafka:29092
+    
+    collector-chile:
+        image: openbmp/collector:2.2.3
+        restart: no
+        deploy:
+            restart_policy:
+                condition: none
+            placement:
+                constraints:
+                    - node.role == worker
+        healthcheck:
+            test: ["CMD-SHELL", "cat", "< /dev/null >", "/dev/tcp/localhost/5000"]
+            interval: 30s
+            timeout: 10s
+            retries: 3
+        depends_on:
+            - postgres
+            - kafka
+        sysctls:
+            - net.ipv4.tcp_keepalive_intvl=30
+            - net.ipv4.tcp_keepalive_probes=5
+            - net.ipv4.tcp_keepalive_time=180
+        volumes:
+            - openbmp_data:/config
+        environment:
+            KAFKA_FQDN: kafka:29092
+    
+    collector-eqix:
+        image: openbmp/collector:2.2.3
+        restart: no
+        deploy:
+            restart_policy:
+                condition: none
+            placement:
+                constraints:
+                    - node.role == worker
+        healthcheck:
+            test: ["CMD-SHELL", "cat", "< /dev/null >", "/dev/tcp/localhost/5000"]
+            interval: 30s
+            timeout: 10s
+            retries: 3
+        depends_on:
+            - postgres
+            - kafka
+        sysctls:
+            - net.ipv4.tcp_keepalive_intvl=30
+            - net.ipv4.tcp_keepalive_probes=5
+            - net.ipv4.tcp_keepalive_time=180
+        volumes:
+            - openbmp_data:/config
+        environment:
+            KAFKA_FQDN: kafka:29092
+    
+    collector-flix:
+        image: openbmp/collector:2.2.3
+        restart: no
+        deploy:
+            restart_policy:
+                condition: none
+            placement:
+                constraints:
+                    - node.role == worker
+        healthcheck:
+            test: ["CMD-SHELL", "cat", "< /dev/null >", "/dev/tcp/localhost/5000"]
+            interval: 30s
+            timeout: 10s
+            retries: 3
+        depends_on:
+            - postgres
+            - kafka
+        sysctls:
+            - net.ipv4.tcp_keepalive_intvl=30
+            - net.ipv4.tcp_keepalive_probes=5
+            - net.ipv4.tcp_keepalive_time=180
+        volumes:
+            - openbmp_data:/config
+        environment:
+            KAFKA_FQDN: kafka:29092
+    
+    collector-gixa:
+        image: openbmp/collector:2.2.3
+        restart: no
+        deploy:
+            restart_policy:
+                condition: none
+            placement:
+                constraints:
+                    - node.role == worker
+        healthcheck:
+            test: ["CMD-SHELL", "cat", "< /dev/null >", "/dev/tcp/localhost/5000"]
+            interval: 30s
+            timeout: 10s
+            retries: 3
+        depends_on:
+            - postgres
+            - kafka
+        sysctls:
+            - net.ipv4.tcp_keepalive_intvl=30
+            - net.ipv4.tcp_keepalive_probes=5
+            - net.ipv4.tcp_keepalive_time=180
+        volumes:
+            - openbmp_data:/config
+        environment:
+            KAFKA_FQDN: kafka:29092
+    
+    collector-gorex:
+        image: openbmp/collector:2.2.3
+        restart: no
+        deploy:
+            restart_policy:
+                condition: none
+            placement:
+                constraints:
+                    - node.role == worker
+        healthcheck:
+            test: ["CMD-SHELL", "cat", "< /dev/null >", "/dev/tcp/localhost/5000"]
+            interval: 30s
+            timeout: 10s
+            retries: 3
+        depends_on:
+            - postgres
+            - kafka
+        sysctls:
+            - net.ipv4.tcp_keepalive_intvl=30
+            - net.ipv4.tcp_keepalive_probes=5
+            - net.ipv4.tcp_keepalive_time=180
+        volumes:
+            - openbmp_data:/config
+        environment:
+            KAFKA_FQDN: kafka:29092
+    
+    collector-interlan-otp:
+        image: openbmp/collector:2.2.3
+        restart: no
+        deploy:
+            restart_policy:
+                condition: none
+            placement:
+                constraints:
+                    - node.role == worker
+        healthcheck:
+            test: ["CMD-SHELL", "cat", "< /dev/null >", "/dev/tcp/localhost/5000"]
+            interval: 30s
+            timeout: 10s
+            retries: 3
+        depends_on:
+            - postgres
+            - kafka
+        sysctls:
+            - net.ipv4.tcp_keepalive_intvl=30
+            - net.ipv4.tcp_keepalive_probes=5
+            - net.ipv4.tcp_keepalive_time=180
+        volumes:
+            - openbmp_data:/config
+        environment:
+            KAFKA_FQDN: kafka:29092
+    
+    collector-iraq-ixp-bgw:
+        image: openbmp/collector:2.2.3
+        restart: no
+        deploy:
+            restart_policy:
+                condition: none
+            placement:
+                constraints:
+                    - node.role == worker
+        healthcheck:
+            test: ["CMD-SHELL", "cat", "< /dev/null >", "/dev/tcp/localhost/5000"]
+            interval: 30s
+            timeout: 10s
+            retries: 3
+        depends_on:
+            - postgres
+            - kafka
+        sysctls:
+            - net.ipv4.tcp_keepalive_intvl=30
+            - net.ipv4.tcp_keepalive_probes=5
+            - net.ipv4.tcp_keepalive_time=180
+        volumes:
+            - openbmp_data:/config
+        environment:
+            KAFKA_FQDN: kafka:29092
+    
+    collector-isc:
+        image: openbmp/collector:2.2.3
+        restart: no
+        deploy:
+            restart_policy:
+                condition: none
+            placement:
+                constraints:
+                    - node.role == worker
+        healthcheck:
+            test: ["CMD-SHELL", "cat", "< /dev/null >", "/dev/tcp/localhost/5000"]
+            interval: 30s
+            timeout: 10s
+            retries: 3
+        depends_on:
+            - postgres
+            - kafka
+        sysctls:
+            - net.ipv4.tcp_keepalive_intvl=30
+            - net.ipv4.tcp_keepalive_probes=5
+            - net.ipv4.tcp_keepalive_time=180
+        volumes:
+            - openbmp_data:/config
+        environment:
+            KAFKA_FQDN: kafka:29092
+    
+    collector-kinx-icn:
+        image: openbmp/collector:2.2.3
+        restart: no
+        deploy:
+            restart_policy:
+                condition: none
+            placement:
+                constraints:
+                    - node.role == worker
+        healthcheck:
+            test: ["CMD-SHELL", "cat", "< /dev/null >", "/dev/tcp/localhost/5000"]
+            interval: 30s
+            timeout: 10s
+            retries: 3
+        depends_on:
+            - postgres
+            - kafka
+        sysctls:
+            - net.ipv4.tcp_keepalive_intvl=30
+            - net.ipv4.tcp_keepalive_probes=5
+            - net.ipv4.tcp_keepalive_time=180
+        volumes:
+            - openbmp_data:/config
+        environment:
+            KAFKA_FQDN: kafka:29092
+    
+    collector-namex-fco:
+        image: openbmp/collector:2.2.3
+        restart: no
+        deploy:
+            restart_policy:
+                condition: none
+            placement:
+                constraints:
+                    - node.role == worker
+        healthcheck:
+            test: ["CMD-SHELL", "cat", "< /dev/null >", "/dev/tcp/localhost/5000"]
+            interval: 30s
+            timeout: 10s
+            retries: 3
+        depends_on:
+            - postgres
+            - kafka
+        sysctls:
+            - net.ipv4.tcp_keepalive_intvl=30
+            - net.ipv4.tcp_keepalive_probes=5
+            - net.ipv4.tcp_keepalive_time=180
+        volumes:
+            - openbmp_data:/config
+        environment:
+            KAFKA_FQDN: kafka:29092
+    
+    collector-kixp:
+        image: openbmp/collector:2.2.3
+        restart: no
+        deploy:
+            restart_policy:
+                condition: none
+            placement:
+                constraints:
+                    - node.role == worker
+        healthcheck:
+            test: ["CMD-SHELL", "cat", "< /dev/null >", "/dev/tcp/localhost/5000"]
+            interval: 30s
+            timeout: 10s
+            retries: 3
+        depends_on:
+            - postgres
+            - kafka
+        sysctls:
+            - net.ipv4.tcp_keepalive_intvl=30
+            - net.ipv4.tcp_keepalive_probes=5
+            - net.ipv4.tcp_keepalive_time=180
+        volumes:
+            - openbmp_data:/config
+        environment:
+            KAFKA_FQDN: kafka:29092
+    
+    collector-jinx:
+        image: openbmp/collector:2.2.3
+        restart: no
+        deploy:
+            restart_policy:
+                condition: none
+            placement:
+                constraints:
+                    - node.role == worker
+        healthcheck:
+            test: ["CMD-SHELL", "cat", "< /dev/null >", "/dev/tcp/localhost/5000"]
+            interval: 30s
+            timeout: 10s
+            retries: 3
+        depends_on:
+            - postgres
+            - kafka
+        sysctls:
+            - net.ipv4.tcp_keepalive_intvl=30
+            - net.ipv4.tcp_keepalive_probes=5
+            - net.ipv4.tcp_keepalive_time=180
+        volumes:
+            - openbmp_data:/config
+        environment:
+            KAFKA_FQDN: kafka:29092
+    
+    collector-linx:
+        image: openbmp/collector:2.2.3
+        restart: no
+        deploy:
+            restart_policy:
+                condition: none
+            placement:
+                constraints:
+                    - node.role == worker
+        healthcheck:
+            test: ["CMD-SHELL", "cat", "< /dev/null >", "/dev/tcp/localhost/5000"]
+            interval: 30s
+            timeout: 10s
+            retries: 3
+        depends_on:
+            - postgres
+            - kafka
+        sysctls:
+            - net.ipv4.tcp_keepalive_intvl=30
+            - net.ipv4.tcp_keepalive_probes=5
+            - net.ipv4.tcp_keepalive_time=180
+        volumes:
+            - openbmp_data:/config
+        environment:
+            KAFKA_FQDN: kafka:29092
+    
+    collector-mwix:
+        image: openbmp/collector:2.2.3
+        restart: no
+        deploy:
+            restart_policy:
+                condition: none
+            placement:
+                constraints:
+                    - node.role == worker
+        healthcheck:
+            test: ["CMD-SHELL", "cat", "< /dev/null >", "/dev/tcp/localhost/5000"]
+            interval: 30s
+            timeout: 10s
+            retries: 3
+        depends_on:
+            - postgres
+            - kafka
+        sysctls:
+            - net.ipv4.tcp_keepalive_intvl=30
+            - net.ipv4.tcp_keepalive_probes=5
+            - net.ipv4.tcp_keepalive_time=180
+        volumes:
+            - openbmp_data:/config
+        environment:
+            KAFKA_FQDN: kafka:29092
+    
+    collector-napafrica:
+        image: openbmp/collector:2.2.3
+        restart: no
+        deploy:
+            restart_policy:
+                condition: none
+            placement:
+                constraints:
+                    - node.role == worker
+        healthcheck:
+            test: ["CMD-SHELL", "cat", "< /dev/null >", "/dev/tcp/localhost/5000"]
+            interval: 30s
+            timeout: 10s
+            retries: 3
+        depends_on:
+            - postgres
+            - kafka
+        sysctls:
+            - net.ipv4.tcp_keepalive_intvl=30
+            - net.ipv4.tcp_keepalive_probes=5
+            - net.ipv4.tcp_keepalive_time=180
+        volumes:
+            - openbmp_data:/config
+        environment:
+            KAFKA_FQDN: kafka:29092
+    
+    collector-nwax:
+        image: openbmp/collector:2.2.3
+        restart: no
+        deploy:
+            restart_policy:
+                condition: none
+            placement:
+                constraints:
+                    - node.role == worker
+        healthcheck:
+            test: ["CMD-SHELL", "cat", "< /dev/null >", "/dev/tcp/localhost/5000"]
+            interval: 30s
+            timeout: 10s
+            retries: 3
+        depends_on:
+            - postgres
+            - kafka
+        sysctls:
+            - net.ipv4.tcp_keepalive_intvl=30
+            - net.ipv4.tcp_keepalive_probes=5
+            - net.ipv4.tcp_keepalive_time=180
+        volumes:
+            - openbmp_data:/config
+        environment:
+            KAFKA_FQDN: kafka:29092
+    
+    collector-pacwave-lax:
+        image: openbmp/collector:2.2.3
+        restart: no
+        deploy:
+            restart_policy:
+                condition: none
+            placement:
+                constraints:
+                    - node.role == worker
+        healthcheck:
+            test: ["CMD-SHELL", "cat", "< /dev/null >", "/dev/tcp/localhost/5000"]
+            interval: 30s
+            timeout: 10s
+            retries: 3
+        depends_on:
+            - postgres
+            - kafka
+        sysctls:
+            - net.ipv4.tcp_keepalive_intvl=30
+            - net.ipv4.tcp_keepalive_probes=5
+            - net.ipv4.tcp_keepalive_time=180
+        volumes:
+            - openbmp_data:/config
+        environment:
+            KAFKA_FQDN: kafka:29092
+    
+    collector-pit-scl:
+        image: openbmp/collector:2.2.3
+        restart: no
+        deploy:
+            restart_policy:
+                condition: none
+            placement:
+                constraints:
+                    - node.role == worker
+        healthcheck:
+            test: ["CMD-SHELL", "cat", "< /dev/null >", "/dev/tcp/localhost/5000"]
+            interval: 30s
+            timeout: 10s
+            retries: 3
+        depends_on:
+            - postgres
+            - kafka
+        sysctls:
+            - net.ipv4.tcp_keepalive_intvl=30
+            - net.ipv4.tcp_keepalive_probes=5
+            - net.ipv4.tcp_keepalive_time=180
+        volumes:
+            - openbmp_data:/config
+        environment:
+            KAFKA_FQDN: kafka:29092
+    
+    collector-pitmx-qro:
+        image: openbmp/collector:2.2.3
+        restart: no
+        deploy:
+            restart_policy:
+                condition: none
+            placement:
+                constraints:
+                    - node.role == worker
+        healthcheck:
+            test: ["CMD-SHELL", "cat", "< /dev/null >", "/dev/tcp/localhost/5000"]
+            interval: 30s
+            timeout: 10s
+            retries: 3
+        depends_on:
+            - postgres
+            - kafka
+        sysctls:
+            - net.ipv4.tcp_keepalive_intvl=30
+            - net.ipv4.tcp_keepalive_probes=5
+            - net.ipv4.tcp_keepalive_time=180
+        volumes:
+            - openbmp_data:/config
+        environment:
+            KAFKA_FQDN: kafka:29092
+    
+    collector-phiox:
         image: openbmp/collector:2.2.3
         restart: no
         deploy:
@@ -2547,6 +3034,318 @@ services:
         environment:
             KAFKA_FQDN: kafka:29092
     
+    collector-wide:
+        image: openbmp/collector:2.2.3
+        restart: no
+        deploy:
+            restart_policy:
+                condition: none
+            placement:
+                constraints:
+                    - node.role == worker
+        healthcheck:
+            test: ["CMD-SHELL", "cat", "< /dev/null >", "/dev/tcp/localhost/5000"]
+            interval: 30s
+            timeout: 10s
+            retries: 3
+        depends_on:
+            - postgres
+            - kafka
+        sysctls:
+            - net.ipv4.tcp_keepalive_intvl=30
+            - net.ipv4.tcp_keepalive_probes=5
+            - net.ipv4.tcp_keepalive_time=180
+        volumes:
+            - openbmp_data:/config
+        environment:
+            KAFKA_FQDN: kafka:29092
+    
+    collector-sydney:
+        image: openbmp/collector:2.2.3
+        restart: no
+        deploy:
+            restart_policy:
+                condition: none
+            placement:
+                constraints:
+                    - node.role == worker
+        healthcheck:
+            test: ["CMD-SHELL", "cat", "< /dev/null >", "/dev/tcp/localhost/5000"]
+            interval: 30s
+            timeout: 10s
+            retries: 3
+        depends_on:
+            - postgres
+            - kafka
+        sysctls:
+            - net.ipv4.tcp_keepalive_intvl=30
+            - net.ipv4.tcp_keepalive_probes=5
+            - net.ipv4.tcp_keepalive_time=180
+        volumes:
+            - openbmp_data:/config
+        environment:
+            KAFKA_FQDN: kafka:29092
+    
+    collector-saopaulo:
+        image: openbmp/collector:2.2.3
+        restart: no
+        deploy:
+            restart_policy:
+                condition: none
+            placement:
+                constraints:
+                    - node.role == worker
+        healthcheck:
+            test: ["CMD-SHELL", "cat", "< /dev/null >", "/dev/tcp/localhost/5000"]
+            interval: 30s
+            timeout: 10s
+            retries: 3
+        depends_on:
+            - postgres
+            - kafka
+        sysctls:
+            - net.ipv4.tcp_keepalive_intvl=30
+            - net.ipv4.tcp_keepalive_probes=5
+            - net.ipv4.tcp_keepalive_time=180
+        volumes:
+            - openbmp_data:/config
+        environment:
+            KAFKA_FQDN: kafka:29092
+    
+    collector-route-views2-saopaulo:
+        image: openbmp/collector:2.2.3
+        restart: no
+        deploy:
+            restart_policy:
+                condition: none
+            placement:
+                constraints:
+                    - node.role == worker
+        healthcheck:
+            test: ["CMD-SHELL", "cat", "< /dev/null >", "/dev/tcp/localhost/5000"]
+            interval: 30s
+            timeout: 10s
+            retries: 3
+        depends_on:
+            - postgres
+            - kafka
+        sysctls:
+            - net.ipv4.tcp_keepalive_intvl=30
+            - net.ipv4.tcp_keepalive_probes=5
+            - net.ipv4.tcp_keepalive_time=180
+        volumes:
+            - openbmp_data:/config
+        environment:
+            KAFKA_FQDN: kafka:29092
+    
+    collector-sg:
+        image: openbmp/collector:2.2.3
+        restart: no
+        deploy:
+            restart_policy:
+                condition: none
+            placement:
+                constraints:
+                    - node.role == worker
+        healthcheck:
+            test: ["CMD-SHELL", "cat", "< /dev/null >", "/dev/tcp/localhost/5000"]
+            interval: 30s
+            timeout: 10s
+            retries: 3
+        depends_on:
+            - postgres
+            - kafka
+        sysctls:
+            - net.ipv4.tcp_keepalive_intvl=30
+            - net.ipv4.tcp_keepalive_probes=5
+            - net.ipv4.tcp_keepalive_time=180
+        volumes:
+            - openbmp_data:/config
+        environment:
+            KAFKA_FQDN: kafka:29092
+    
+    collector-perth:
+        image: openbmp/collector:2.2.3
+        restart: no
+        deploy:
+            restart_policy:
+                condition: none
+            placement:
+                constraints:
+                    - node.role == worker
+        healthcheck:
+            test: ["CMD-SHELL", "cat", "< /dev/null >", "/dev/tcp/localhost/5000"]
+            interval: 30s
+            timeout: 10s
+            retries: 3
+        depends_on:
+            - postgres
+            - kafka
+        sysctls:
+            - net.ipv4.tcp_keepalive_intvl=30
+            - net.ipv4.tcp_keepalive_probes=5
+            - net.ipv4.tcp_keepalive_time=180
+        volumes:
+            - openbmp_data:/config
+        environment:
+            KAFKA_FQDN: kafka:29092
+    
+    collector-peru:
+        image: openbmp/collector:2.2.3
+        restart: no
+        deploy:
+            restart_policy:
+                condition: none
+            placement:
+                constraints:
+                    - node.role == worker
+        healthcheck:
+            test: ["CMD-SHELL", "cat", "< /dev/null >", "/dev/tcp/localhost/5000"]
+            interval: 30s
+            timeout: 10s
+            retries: 3
+        depends_on:
+            - postgres
+            - kafka
+        sysctls:
+            - net.ipv4.tcp_keepalive_intvl=30
+            - net.ipv4.tcp_keepalive_probes=5
+            - net.ipv4.tcp_keepalive_time=180
+        volumes:
+            - openbmp_data:/config
+        environment:
+            KAFKA_FQDN: kafka:29092
+    
+    collector-sfmix:
+        image: openbmp/collector:2.2.3
+        restart: no
+        deploy:
+            restart_policy:
+                condition: none
+            placement:
+                constraints:
+                    - node.role == worker
+        healthcheck:
+            test: ["CMD-SHELL", "cat", "< /dev/null >", "/dev/tcp/localhost/5000"]
+            interval: 30s
+            timeout: 10s
+            retries: 3
+        depends_on:
+            - postgres
+            - kafka
+        sysctls:
+            - net.ipv4.tcp_keepalive_intvl=30
+            - net.ipv4.tcp_keepalive_probes=5
+            - net.ipv4.tcp_keepalive_time=180
+        volumes:
+            - openbmp_data:/config
+        environment:
+            KAFKA_FQDN: kafka:29092
+    
+    collector-siex:
+        image: openbmp/collector:2.2.3
+        restart: no
+        deploy:
+            restart_policy:
+                condition: none
+            placement:
+                constraints:
+                    - node.role == worker
+        healthcheck:
+            test: ["CMD-SHELL", "cat", "< /dev/null >", "/dev/tcp/localhost/5000"]
+            interval: 30s
+            timeout: 10s
+            retries: 3
+        depends_on:
+            - postgres
+            - kafka
+        sysctls:
+            - net.ipv4.tcp_keepalive_intvl=30
+            - net.ipv4.tcp_keepalive_probes=5
+            - net.ipv4.tcp_keepalive_time=180
+        volumes:
+            - openbmp_data:/config
+        environment:
+            KAFKA_FQDN: kafka:29092
+    
+    collector-soxrs:
+        image: openbmp/collector:2.2.3
+        restart: no
+        deploy:
+            restart_policy:
+                condition: none
+            placement:
+                constraints:
+                    - node.role == worker
+        healthcheck:
+            test: ["CMD-SHELL", "cat", "< /dev/null >", "/dev/tcp/localhost/5000"]
+            interval: 30s
+            timeout: 10s
+            retries: 3
+        depends_on:
+            - postgres
+            - kafka
+        sysctls:
+            - net.ipv4.tcp_keepalive_intvl=30
+            - net.ipv4.tcp_keepalive_probes=5
+            - net.ipv4.tcp_keepalive_time=180
+        volumes:
+            - openbmp_data:/config
+        environment:
+            KAFKA_FQDN: kafka:29092
+    
+    collector-rio:
+        image: openbmp/collector:2.2.3
+        restart: no
+        deploy:
+            restart_policy:
+                condition: none
+            placement:
+                constraints:
+                    - node.role == worker
+        healthcheck:
+            test: ["CMD-SHELL", "cat", "< /dev/null >", "/dev/tcp/localhost/5000"]
+            interval: 30s
+            timeout: 10s
+            retries: 3
+        depends_on:
+            - postgres
+            - kafka
+        sysctls:
+            - net.ipv4.tcp_keepalive_intvl=30
+            - net.ipv4.tcp_keepalive_probes=5
+            - net.ipv4.tcp_keepalive_time=180
+        volumes:
+            - openbmp_data:/config
+        environment:
+            KAFKA_FQDN: kafka:29092
+    
+    collector-fortaleza:
+        image: openbmp/collector:2.2.3
+        restart: no
+        deploy:
+            restart_policy:
+                condition: none
+            placement:
+                constraints:
+                    - node.role == worker
+        healthcheck:
+            test: ["CMD-SHELL", "cat", "< /dev/null >", "/dev/tcp/localhost/5000"]
+            interval: 30s
+            timeout: 10s
+            retries: 3
+        depends_on:
+            - postgres
+            - kafka
+        sysctls:
+            - net.ipv4.tcp_keepalive_intvl=30
+            - net.ipv4.tcp_keepalive_probes=5
+            - net.ipv4.tcp_keepalive_time=180
+        volumes:
+            - openbmp_data:/config
+        environment:
+            KAFKA_FQDN: kafka:29092
+    
     collector-uaeix:
         image: openbmp/collector:2.2.3
         restart: no
@@ -2573,7 +3372,7 @@ services:
         environment:
             KAFKA_FQDN: kafka:29092
     
-    collector-wide:
+    collector-ny:
         image: openbmp/collector:2.2.3
         restart: no
         deploy:
@@ -2774,37 +3573,54 @@ volumes:
     relay_rrc24_data:
     relay_rrc25_data:
     relay_rrc26_data:
-    relay_amsix_ams_data:
-    relay_amsix_data:
-    relay_bknix_data:
-    relay_chicago_data:
-    relay_chile_data:
-    relay_cix_atl_data:
-    relay_decix_jhb_data:
-    relay_eqix_data:
-    relay_flix_data:
-    relay_fortaleza_data:
-    relay_gorex_data:
-    relay_isc_data:
-    relay_kixp_data:
-    relay_linx_data:
-    relay_napafrica_data:
-    relay_ny_data:
-    relay_perth_data:
-    relay_rio_data:
-    relay_route_views2_saopaulo_data:
+    relay_route_views2_data:
     relay_route_views3_data:
     relay_route_views4_data:
     relay_route_views5_data:
     relay_route_views6_data:
     relay_route_views7_data:
-    relay_sfmix_data:
-    relay_sg_data:
-    relay_soxrs_data:
-    relay_sydney_data:
+    relay_route_views8_data:
+    relay_amsix_data:
+    relay_amsix_ams_data:
+    relay_cix_atl_data:
+    relay_bdix_data:
+    relay_bknix_data:
+    relay_chicago_data:
+    relay_chile_data:
+    relay_eqix_data:
+    relay_flix_data:
+    relay_gixa_data:
+    relay_gorex_data:
+    relay_interlan_otp_data:
+    relay_iraq_ixp_bgw_data:
+    relay_isc_data:
+    relay_kinx_icn_data:
+    relay_namex_fco_data:
+    relay_kixp_data:
+    relay_jinx_data:
+    relay_linx_data:
+    relay_mwix_data:
+    relay_napafrica_data:
+    relay_nwax_data:
+    relay_pacwave_lax_data:
+    relay_pit_scl_data:
+    relay_pitmx_qro_data:
+    relay_phiox_data:
     relay_telxatl_data:
-    relay_uaeix_data:
     relay_wide_data:
+    relay_sydney_data:
+    relay_saopaulo_data:
+    relay_route_views2_saopaulo_data:
+    relay_sg_data:
+    relay_perth_data:
+    relay_peru_data:
+    relay_sfmix_data:
+    relay_siex_data:
+    relay_soxrs_data:
+    relay_rio_data:
+    relay_fortaleza_data:
+    relay_uaeix_data:
+    relay_ny_data:
     postgres_data:
     timescale_data:
     openbmp_data:
