@@ -31,7 +31,7 @@ services:
             POSTGRES_DB: openbmp
         
     web:
-        image: bgpdata/bgpdata:0.1.16
+        image: bgpdata/bgpdata:0.1.17
         restart: unless-stopped
         deploy:
             restart_policy:
@@ -62,7 +62,7 @@ services:
         entrypoint: >
             /bin/sh -c "python manage.py migrate && python manage.py run --host 0.0.0.0"
     relay-rrc00:
-        image: bgpdata/bgpdata:0.1.16
+        image: bgpdata/bgpdata:0.1.17
         restart: "no"
         stop_signal: SIGTERM                    # Wind down relay safely before stopping
         stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
@@ -83,7 +83,7 @@ services:
             bash -c "sleep $$((0 * 120)) && python manage.py relay"
     
     relay-rrc01:
-        image: bgpdata/bgpdata:0.1.16
+        image: bgpdata/bgpdata:0.1.17
         restart: "no"
         stop_signal: SIGTERM                    # Wind down relay safely before stopping
         stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
@@ -104,7 +104,7 @@ services:
             bash -c "sleep $$((1 * 120)) && python manage.py relay"
     
     relay-rrc03:
-        image: bgpdata/bgpdata:0.1.16
+        image: bgpdata/bgpdata:0.1.17
         restart: "no"
         stop_signal: SIGTERM                    # Wind down relay safely before stopping
         stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
@@ -125,7 +125,7 @@ services:
             bash -c "sleep $$((2 * 120)) && python manage.py relay"
     
     relay-rrc04:
-        image: bgpdata/bgpdata:0.1.16
+        image: bgpdata/bgpdata:0.1.17
         restart: "no"
         stop_signal: SIGTERM                    # Wind down relay safely before stopping
         stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
@@ -146,7 +146,7 @@ services:
             bash -c "sleep $$((3 * 120)) && python manage.py relay"
     
     relay-rrc05:
-        image: bgpdata/bgpdata:0.1.16
+        image: bgpdata/bgpdata:0.1.17
         restart: "no"
         stop_signal: SIGTERM                    # Wind down relay safely before stopping
         stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
@@ -167,7 +167,7 @@ services:
             bash -c "sleep $$((4 * 120)) && python manage.py relay"
     
     relay-rrc06:
-        image: bgpdata/bgpdata:0.1.16
+        image: bgpdata/bgpdata:0.1.17
         restart: "no"
         stop_signal: SIGTERM                    # Wind down relay safely before stopping
         stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
@@ -188,7 +188,7 @@ services:
             bash -c "sleep $$((5 * 120)) && python manage.py relay"
     
     relay-rrc07:
-        image: bgpdata/bgpdata:0.1.16
+        image: bgpdata/bgpdata:0.1.17
         restart: "no"
         stop_signal: SIGTERM                    # Wind down relay safely before stopping
         stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
@@ -209,7 +209,7 @@ services:
             bash -c "sleep $$((6 * 120)) && python manage.py relay"
     
     relay-rrc10:
-        image: bgpdata/bgpdata:0.1.16
+        image: bgpdata/bgpdata:0.1.17
         restart: "no"
         stop_signal: SIGTERM                    # Wind down relay safely before stopping
         stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
@@ -230,7 +230,7 @@ services:
             bash -c "sleep $$((7 * 120)) && python manage.py relay"
     
     relay-rrc11:
-        image: bgpdata/bgpdata:0.1.16
+        image: bgpdata/bgpdata:0.1.17
         restart: "no"
         stop_signal: SIGTERM                    # Wind down relay safely before stopping
         stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
@@ -251,7 +251,7 @@ services:
             bash -c "sleep $$((8 * 120)) && python manage.py relay"
     
     relay-rrc12:
-        image: bgpdata/bgpdata:0.1.16
+        image: bgpdata/bgpdata:0.1.17
         restart: "no"
         stop_signal: SIGTERM                    # Wind down relay safely before stopping
         stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
@@ -272,7 +272,7 @@ services:
             bash -c "sleep $$((9 * 120)) && python manage.py relay"
     
     relay-rrc13:
-        image: bgpdata/bgpdata:0.1.16
+        image: bgpdata/bgpdata:0.1.17
         restart: "no"
         stop_signal: SIGTERM                    # Wind down relay safely before stopping
         stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
@@ -293,7 +293,7 @@ services:
             bash -c "sleep $$((10 * 120)) && python manage.py relay"
     
     relay-rrc14:
-        image: bgpdata/bgpdata:0.1.16
+        image: bgpdata/bgpdata:0.1.17
         restart: "no"
         stop_signal: SIGTERM                    # Wind down relay safely before stopping
         stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
@@ -314,7 +314,7 @@ services:
             bash -c "sleep $$((11 * 120)) && python manage.py relay"
     
     relay-rrc15:
-        image: bgpdata/bgpdata:0.1.16
+        image: bgpdata/bgpdata:0.1.17
         restart: "no"
         stop_signal: SIGTERM                    # Wind down relay safely before stopping
         stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
@@ -335,7 +335,7 @@ services:
             bash -c "sleep $$((12 * 120)) && python manage.py relay"
     
     relay-rrc16:
-        image: bgpdata/bgpdata:0.1.16
+        image: bgpdata/bgpdata:0.1.17
         restart: "no"
         stop_signal: SIGTERM                    # Wind down relay safely before stopping
         stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
@@ -356,7 +356,7 @@ services:
             bash -c "sleep $$((13 * 120)) && python manage.py relay"
     
     relay-rrc18:
-        image: bgpdata/bgpdata:0.1.16
+        image: bgpdata/bgpdata:0.1.17
         restart: "no"
         stop_signal: SIGTERM                    # Wind down relay safely before stopping
         stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
@@ -377,7 +377,7 @@ services:
             bash -c "sleep $$((14 * 120)) && python manage.py relay"
     
     relay-rrc19:
-        image: bgpdata/bgpdata:0.1.16
+        image: bgpdata/bgpdata:0.1.17
         restart: "no"
         stop_signal: SIGTERM                    # Wind down relay safely before stopping
         stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
@@ -398,7 +398,7 @@ services:
             bash -c "sleep $$((15 * 120)) && python manage.py relay"
     
     relay-rrc20:
-        image: bgpdata/bgpdata:0.1.16
+        image: bgpdata/bgpdata:0.1.17
         restart: "no"
         stop_signal: SIGTERM                    # Wind down relay safely before stopping
         stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
@@ -419,7 +419,7 @@ services:
             bash -c "sleep $$((16 * 120)) && python manage.py relay"
     
     relay-rrc21:
-        image: bgpdata/bgpdata:0.1.16
+        image: bgpdata/bgpdata:0.1.17
         restart: "no"
         stop_signal: SIGTERM                    # Wind down relay safely before stopping
         stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
@@ -440,7 +440,7 @@ services:
             bash -c "sleep $$((17 * 120)) && python manage.py relay"
     
     relay-rrc22:
-        image: bgpdata/bgpdata:0.1.16
+        image: bgpdata/bgpdata:0.1.17
         restart: "no"
         stop_signal: SIGTERM                    # Wind down relay safely before stopping
         stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
@@ -461,7 +461,7 @@ services:
             bash -c "sleep $$((18 * 120)) && python manage.py relay"
     
     relay-rrc23:
-        image: bgpdata/bgpdata:0.1.16
+        image: bgpdata/bgpdata:0.1.17
         restart: "no"
         stop_signal: SIGTERM                    # Wind down relay safely before stopping
         stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
@@ -482,7 +482,7 @@ services:
             bash -c "sleep $$((19 * 120)) && python manage.py relay"
     
     relay-rrc24:
-        image: bgpdata/bgpdata:0.1.16
+        image: bgpdata/bgpdata:0.1.17
         restart: "no"
         stop_signal: SIGTERM                    # Wind down relay safely before stopping
         stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
@@ -503,7 +503,7 @@ services:
             bash -c "sleep $$((20 * 120)) && python manage.py relay"
     
     relay-rrc25:
-        image: bgpdata/bgpdata:0.1.16
+        image: bgpdata/bgpdata:0.1.17
         restart: "no"
         stop_signal: SIGTERM                    # Wind down relay safely before stopping
         stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
@@ -524,7 +524,7 @@ services:
             bash -c "sleep $$((21 * 120)) && python manage.py relay"
     
     relay-rrc26:
-        image: bgpdata/bgpdata:0.1.16
+        image: bgpdata/bgpdata:0.1.17
         restart: "no"
         stop_signal: SIGTERM                    # Wind down relay safely before stopping
         stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
@@ -545,7 +545,7 @@ services:
             bash -c "sleep $$((22 * 120)) && python manage.py relay"
     
     relay-route-views2:
-        image: bgpdata/bgpdata:0.1.16
+        image: bgpdata/bgpdata:0.1.17
         restart: "no"
         stop_signal: SIGTERM                    # Wind down relay safely before stopping
         stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
@@ -566,7 +566,7 @@ services:
             bash -c "sleep $$((23 * 120)) && python manage.py relay"
     
     relay-route-views3:
-        image: bgpdata/bgpdata:0.1.16
+        image: bgpdata/bgpdata:0.1.17
         restart: "no"
         stop_signal: SIGTERM                    # Wind down relay safely before stopping
         stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
@@ -587,7 +587,7 @@ services:
             bash -c "sleep $$((24 * 120)) && python manage.py relay"
     
     relay-route-views4:
-        image: bgpdata/bgpdata:0.1.16
+        image: bgpdata/bgpdata:0.1.17
         restart: "no"
         stop_signal: SIGTERM                    # Wind down relay safely before stopping
         stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
@@ -608,7 +608,7 @@ services:
             bash -c "sleep $$((25 * 120)) && python manage.py relay"
     
     relay-route-views5:
-        image: bgpdata/bgpdata:0.1.16
+        image: bgpdata/bgpdata:0.1.17
         restart: "no"
         stop_signal: SIGTERM                    # Wind down relay safely before stopping
         stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
@@ -629,7 +629,7 @@ services:
             bash -c "sleep $$((26 * 120)) && python manage.py relay"
     
     relay-route-views6:
-        image: bgpdata/bgpdata:0.1.16
+        image: bgpdata/bgpdata:0.1.17
         restart: "no"
         stop_signal: SIGTERM                    # Wind down relay safely before stopping
         stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
@@ -650,7 +650,7 @@ services:
             bash -c "sleep $$((27 * 120)) && python manage.py relay"
     
     relay-route-views7:
-        image: bgpdata/bgpdata:0.1.16
+        image: bgpdata/bgpdata:0.1.17
         restart: "no"
         stop_signal: SIGTERM                    # Wind down relay safely before stopping
         stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
@@ -671,7 +671,7 @@ services:
             bash -c "sleep $$((28 * 120)) && python manage.py relay"
     
     relay-route-views8:
-        image: bgpdata/bgpdata:0.1.16
+        image: bgpdata/bgpdata:0.1.17
         restart: "no"
         stop_signal: SIGTERM                    # Wind down relay safely before stopping
         stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
@@ -692,7 +692,7 @@ services:
             bash -c "sleep $$((29 * 120)) && python manage.py relay"
     
     relay-amsix:
-        image: bgpdata/bgpdata:0.1.16
+        image: bgpdata/bgpdata:0.1.17
         restart: "no"
         stop_signal: SIGTERM                    # Wind down relay safely before stopping
         stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
@@ -713,7 +713,7 @@ services:
             bash -c "sleep $$((30 * 120)) && python manage.py relay"
     
     relay-amsix-ams:
-        image: bgpdata/bgpdata:0.1.16
+        image: bgpdata/bgpdata:0.1.17
         restart: "no"
         stop_signal: SIGTERM                    # Wind down relay safely before stopping
         stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
@@ -734,7 +734,7 @@ services:
             bash -c "sleep $$((31 * 120)) && python manage.py relay"
     
     relay-cix-atl:
-        image: bgpdata/bgpdata:0.1.16
+        image: bgpdata/bgpdata:0.1.17
         restart: "no"
         stop_signal: SIGTERM                    # Wind down relay safely before stopping
         stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
@@ -755,7 +755,7 @@ services:
             bash -c "sleep $$((32 * 120)) && python manage.py relay"
     
     relay-bdix:
-        image: bgpdata/bgpdata:0.1.16
+        image: bgpdata/bgpdata:0.1.17
         restart: "no"
         stop_signal: SIGTERM                    # Wind down relay safely before stopping
         stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
@@ -776,7 +776,7 @@ services:
             bash -c "sleep $$((33 * 120)) && python manage.py relay"
     
     relay-bknix:
-        image: bgpdata/bgpdata:0.1.16
+        image: bgpdata/bgpdata:0.1.17
         restart: "no"
         stop_signal: SIGTERM                    # Wind down relay safely before stopping
         stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
@@ -797,7 +797,7 @@ services:
             bash -c "sleep $$((34 * 120)) && python manage.py relay"
     
     relay-chicago:
-        image: bgpdata/bgpdata:0.1.16
+        image: bgpdata/bgpdata:0.1.17
         restart: "no"
         stop_signal: SIGTERM                    # Wind down relay safely before stopping
         stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
@@ -818,7 +818,7 @@ services:
             bash -c "sleep $$((35 * 120)) && python manage.py relay"
     
     relay-chile:
-        image: bgpdata/bgpdata:0.1.16
+        image: bgpdata/bgpdata:0.1.17
         restart: "no"
         stop_signal: SIGTERM                    # Wind down relay safely before stopping
         stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
@@ -839,7 +839,7 @@ services:
             bash -c "sleep $$((36 * 120)) && python manage.py relay"
     
     relay-eqix:
-        image: bgpdata/bgpdata:0.1.16
+        image: bgpdata/bgpdata:0.1.17
         restart: "no"
         stop_signal: SIGTERM                    # Wind down relay safely before stopping
         stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
@@ -860,7 +860,7 @@ services:
             bash -c "sleep $$((37 * 120)) && python manage.py relay"
     
     relay-flix:
-        image: bgpdata/bgpdata:0.1.16
+        image: bgpdata/bgpdata:0.1.17
         restart: "no"
         stop_signal: SIGTERM                    # Wind down relay safely before stopping
         stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
@@ -881,7 +881,7 @@ services:
             bash -c "sleep $$((38 * 120)) && python manage.py relay"
     
     relay-gixa:
-        image: bgpdata/bgpdata:0.1.16
+        image: bgpdata/bgpdata:0.1.17
         restart: "no"
         stop_signal: SIGTERM                    # Wind down relay safely before stopping
         stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
@@ -902,7 +902,7 @@ services:
             bash -c "sleep $$((39 * 120)) && python manage.py relay"
     
     relay-gorex:
-        image: bgpdata/bgpdata:0.1.16
+        image: bgpdata/bgpdata:0.1.17
         restart: "no"
         stop_signal: SIGTERM                    # Wind down relay safely before stopping
         stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
@@ -923,7 +923,7 @@ services:
             bash -c "sleep $$((40 * 120)) && python manage.py relay"
     
     relay-interlan-otp:
-        image: bgpdata/bgpdata:0.1.16
+        image: bgpdata/bgpdata:0.1.17
         restart: "no"
         stop_signal: SIGTERM                    # Wind down relay safely before stopping
         stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
@@ -944,7 +944,7 @@ services:
             bash -c "sleep $$((41 * 120)) && python manage.py relay"
     
     relay-iraq-ixp-bgw:
-        image: bgpdata/bgpdata:0.1.16
+        image: bgpdata/bgpdata:0.1.17
         restart: "no"
         stop_signal: SIGTERM                    # Wind down relay safely before stopping
         stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
@@ -965,7 +965,7 @@ services:
             bash -c "sleep $$((42 * 120)) && python manage.py relay"
     
     relay-isc:
-        image: bgpdata/bgpdata:0.1.16
+        image: bgpdata/bgpdata:0.1.17
         restart: "no"
         stop_signal: SIGTERM                    # Wind down relay safely before stopping
         stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
@@ -986,7 +986,7 @@ services:
             bash -c "sleep $$((43 * 120)) && python manage.py relay"
     
     relay-kinx-icn:
-        image: bgpdata/bgpdata:0.1.16
+        image: bgpdata/bgpdata:0.1.17
         restart: "no"
         stop_signal: SIGTERM                    # Wind down relay safely before stopping
         stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
@@ -1007,7 +1007,7 @@ services:
             bash -c "sleep $$((44 * 120)) && python manage.py relay"
     
     relay-namex-fco:
-        image: bgpdata/bgpdata:0.1.16
+        image: bgpdata/bgpdata:0.1.17
         restart: "no"
         stop_signal: SIGTERM                    # Wind down relay safely before stopping
         stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
@@ -1028,7 +1028,7 @@ services:
             bash -c "sleep $$((45 * 120)) && python manage.py relay"
     
     relay-kixp:
-        image: bgpdata/bgpdata:0.1.16
+        image: bgpdata/bgpdata:0.1.17
         restart: "no"
         stop_signal: SIGTERM                    # Wind down relay safely before stopping
         stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
@@ -1049,7 +1049,7 @@ services:
             bash -c "sleep $$((46 * 120)) && python manage.py relay"
     
     relay-jinx:
-        image: bgpdata/bgpdata:0.1.16
+        image: bgpdata/bgpdata:0.1.17
         restart: "no"
         stop_signal: SIGTERM                    # Wind down relay safely before stopping
         stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
@@ -1070,7 +1070,7 @@ services:
             bash -c "sleep $$((47 * 120)) && python manage.py relay"
     
     relay-linx:
-        image: bgpdata/bgpdata:0.1.16
+        image: bgpdata/bgpdata:0.1.17
         restart: "no"
         stop_signal: SIGTERM                    # Wind down relay safely before stopping
         stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
@@ -1091,7 +1091,7 @@ services:
             bash -c "sleep $$((48 * 120)) && python manage.py relay"
     
     relay-mwix:
-        image: bgpdata/bgpdata:0.1.16
+        image: bgpdata/bgpdata:0.1.17
         restart: "no"
         stop_signal: SIGTERM                    # Wind down relay safely before stopping
         stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
@@ -1112,7 +1112,7 @@ services:
             bash -c "sleep $$((49 * 120)) && python manage.py relay"
     
     relay-napafrica:
-        image: bgpdata/bgpdata:0.1.16
+        image: bgpdata/bgpdata:0.1.17
         restart: "no"
         stop_signal: SIGTERM                    # Wind down relay safely before stopping
         stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
@@ -1133,7 +1133,7 @@ services:
             bash -c "sleep $$((50 * 120)) && python manage.py relay"
     
     relay-nwax:
-        image: bgpdata/bgpdata:0.1.16
+        image: bgpdata/bgpdata:0.1.17
         restart: "no"
         stop_signal: SIGTERM                    # Wind down relay safely before stopping
         stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
@@ -1154,7 +1154,7 @@ services:
             bash -c "sleep $$((51 * 120)) && python manage.py relay"
     
     relay-pacwave-lax:
-        image: bgpdata/bgpdata:0.1.16
+        image: bgpdata/bgpdata:0.1.17
         restart: "no"
         stop_signal: SIGTERM                    # Wind down relay safely before stopping
         stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
@@ -1175,7 +1175,7 @@ services:
             bash -c "sleep $$((52 * 120)) && python manage.py relay"
     
     relay-pit-scl:
-        image: bgpdata/bgpdata:0.1.16
+        image: bgpdata/bgpdata:0.1.17
         restart: "no"
         stop_signal: SIGTERM                    # Wind down relay safely before stopping
         stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
@@ -1196,7 +1196,7 @@ services:
             bash -c "sleep $$((53 * 120)) && python manage.py relay"
     
     relay-pitmx-qro:
-        image: bgpdata/bgpdata:0.1.16
+        image: bgpdata/bgpdata:0.1.17
         restart: "no"
         stop_signal: SIGTERM                    # Wind down relay safely before stopping
         stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
@@ -1217,7 +1217,7 @@ services:
             bash -c "sleep $$((54 * 120)) && python manage.py relay"
     
     relay-phiox:
-        image: bgpdata/bgpdata:0.1.16
+        image: bgpdata/bgpdata:0.1.17
         restart: "no"
         stop_signal: SIGTERM                    # Wind down relay safely before stopping
         stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
@@ -1238,7 +1238,7 @@ services:
             bash -c "sleep $$((55 * 120)) && python manage.py relay"
     
     relay-telxatl:
-        image: bgpdata/bgpdata:0.1.16
+        image: bgpdata/bgpdata:0.1.17
         restart: "no"
         stop_signal: SIGTERM                    # Wind down relay safely before stopping
         stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
@@ -1259,7 +1259,7 @@ services:
             bash -c "sleep $$((56 * 120)) && python manage.py relay"
     
     relay-wide:
-        image: bgpdata/bgpdata:0.1.16
+        image: bgpdata/bgpdata:0.1.17
         restart: "no"
         stop_signal: SIGTERM                    # Wind down relay safely before stopping
         stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
@@ -1280,7 +1280,7 @@ services:
             bash -c "sleep $$((57 * 120)) && python manage.py relay"
     
     relay-sydney:
-        image: bgpdata/bgpdata:0.1.16
+        image: bgpdata/bgpdata:0.1.17
         restart: "no"
         stop_signal: SIGTERM                    # Wind down relay safely before stopping
         stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
@@ -1301,7 +1301,7 @@ services:
             bash -c "sleep $$((58 * 120)) && python manage.py relay"
     
     relay-saopaulo:
-        image: bgpdata/bgpdata:0.1.16
+        image: bgpdata/bgpdata:0.1.17
         restart: "no"
         stop_signal: SIGTERM                    # Wind down relay safely before stopping
         stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
@@ -1322,7 +1322,7 @@ services:
             bash -c "sleep $$((59 * 120)) && python manage.py relay"
     
     relay-route-views2-saopaulo:
-        image: bgpdata/bgpdata:0.1.16
+        image: bgpdata/bgpdata:0.1.17
         restart: "no"
         stop_signal: SIGTERM                    # Wind down relay safely before stopping
         stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
@@ -1343,7 +1343,7 @@ services:
             bash -c "sleep $$((60 * 120)) && python manage.py relay"
     
     relay-sg:
-        image: bgpdata/bgpdata:0.1.16
+        image: bgpdata/bgpdata:0.1.17
         restart: "no"
         stop_signal: SIGTERM                    # Wind down relay safely before stopping
         stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
@@ -1364,7 +1364,7 @@ services:
             bash -c "sleep $$((61 * 120)) && python manage.py relay"
     
     relay-perth:
-        image: bgpdata/bgpdata:0.1.16
+        image: bgpdata/bgpdata:0.1.17
         restart: "no"
         stop_signal: SIGTERM                    # Wind down relay safely before stopping
         stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
@@ -1385,7 +1385,7 @@ services:
             bash -c "sleep $$((62 * 120)) && python manage.py relay"
     
     relay-peru:
-        image: bgpdata/bgpdata:0.1.16
+        image: bgpdata/bgpdata:0.1.17
         restart: "no"
         stop_signal: SIGTERM                    # Wind down relay safely before stopping
         stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
@@ -1406,7 +1406,7 @@ services:
             bash -c "sleep $$((63 * 120)) && python manage.py relay"
     
     relay-sfmix:
-        image: bgpdata/bgpdata:0.1.16
+        image: bgpdata/bgpdata:0.1.17
         restart: "no"
         stop_signal: SIGTERM                    # Wind down relay safely before stopping
         stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
@@ -1427,7 +1427,7 @@ services:
             bash -c "sleep $$((64 * 120)) && python manage.py relay"
     
     relay-siex:
-        image: bgpdata/bgpdata:0.1.16
+        image: bgpdata/bgpdata:0.1.17
         restart: "no"
         stop_signal: SIGTERM                    # Wind down relay safely before stopping
         stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
@@ -1448,7 +1448,7 @@ services:
             bash -c "sleep $$((65 * 120)) && python manage.py relay"
     
     relay-soxrs:
-        image: bgpdata/bgpdata:0.1.16
+        image: bgpdata/bgpdata:0.1.17
         restart: "no"
         stop_signal: SIGTERM                    # Wind down relay safely before stopping
         stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
@@ -1469,7 +1469,7 @@ services:
             bash -c "sleep $$((66 * 120)) && python manage.py relay"
     
     relay-rio:
-        image: bgpdata/bgpdata:0.1.16
+        image: bgpdata/bgpdata:0.1.17
         restart: "no"
         stop_signal: SIGTERM                    # Wind down relay safely before stopping
         stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
@@ -1490,7 +1490,7 @@ services:
             bash -c "sleep $$((67 * 120)) && python manage.py relay"
     
     relay-fortaleza:
-        image: bgpdata/bgpdata:0.1.16
+        image: bgpdata/bgpdata:0.1.17
         restart: "no"
         stop_signal: SIGTERM                    # Wind down relay safely before stopping
         stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
@@ -1511,7 +1511,7 @@ services:
             bash -c "sleep $$((68 * 120)) && python manage.py relay"
     
     relay-uaeix:
-        image: bgpdata/bgpdata:0.1.16
+        image: bgpdata/bgpdata:0.1.17
         restart: "no"
         stop_signal: SIGTERM                    # Wind down relay safely before stopping
         stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
@@ -1532,7 +1532,7 @@ services:
             bash -c "sleep $$((69 * 120)) && python manage.py relay"
     
     relay-ny:
-        image: bgpdata/bgpdata:0.1.16
+        image: bgpdata/bgpdata:0.1.17
         restart: "no"
         stop_signal: SIGTERM                    # Wind down relay safely before stopping
         stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
@@ -3411,7 +3411,7 @@ services:
                 condition: any
             placement:
                 constraints:
-                    - node.role == worker
+                    - node.role == manager
         depends_on:
             - postgres
             - kafka
