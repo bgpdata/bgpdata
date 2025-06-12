@@ -11,8 +11,7 @@ RUN apt-get update
 RUN apt-get install -y openjdk-17-jdk-headless maven
 RUN mkdir -p /usr/share/man/man1/ \
     && apt-get -y install git gcc g++ libboost-dev cmake libssl-dev libsasl2-dev \
-         curl wget libgss-dev   liblz4-dev libzstd-dev
-    # zlib1g-dev
+         curl wget libgss-dev iblz4-dev libzstd-dev
 
 # Build/install zlib - zlib1g-dev does not work for static builds of librdkafka
 RUN cd /tmp && git clone https://github.com/madler/zlib.git \
@@ -20,6 +19,13 @@ RUN cd /tmp && git clone https://github.com/madler/zlib.git \
     && git checkout v1.2.12 \
     && CFLAGS=-fPIC  ./configure --static \
     && make install
+
+# Install zstd with -fPIC
+RUN cd /tmp && \
+    git clone --branch v1.5.2 https://github.com/facebook/zstd.git && \
+    cd zstd/build/cmake && \
+    cmake -DCMAKE_POSITION_INDEPENDENT_CODE=ON .. && \
+    make && make install
 
 # Build/install librdkafka
 # NOTE: Installed under /usr/local/lib
