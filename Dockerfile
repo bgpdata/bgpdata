@@ -24,7 +24,8 @@ RUN cd /tmp && git clone https://github.com/madler/zlib.git \
 RUN cd /tmp && \
     git clone --branch v1.5.2 https://github.com/facebook/zstd.git && \
     cd zstd && \
-    make CFLAGS="-fPIC" && make prefix=/usr/local install
+    make CFLAGS="-fPIC" && make prefix=/usr/local install && \
+    rm -f /usr/lib/x86_64-linux-gnu/libzstd.a
 
 # Build/install librdkafka
 # NOTE: Installed under /usr/local/lib
