@@ -79,7 +79,7 @@ services:
             - postgres
         volumes:
             {%- if not production %}
-            - .:/app
+            - ./web:/app
             {%- endif %}
             - web_data:/var/log/migrations
         entrypoint: >
@@ -112,7 +112,7 @@ services:
             - collector-{{ host | replace(".", "-") }}
         volumes:
             {%- if not production %}
-            - .:/app
+            - ./relay:/app
             {%- endif %}
             - relay_{{ host | replace(".", "_") | replace("-", "_") }}_data:/var/lib/rocksdb
         entrypoint: >
@@ -209,7 +209,10 @@ services:
         {%- if production %}
         image: bgpdata/whois:latest
         {%- else %}
-        build: ./whois
+        build:
+            context: ./whois
+            args:
+                GITHUB_TOKEN: ${GITHUB_TOKEN}
         {%- endif %}
         restart: unless-stopped
         deploy:
@@ -318,8 +321,8 @@ services:
         ports:
             - "3000:3000"
         volumes:
-            - ./grafana:/var/lib/grafana
-            - ./grafana/provisioning/:/etc/grafana/provisioning/
+            - ./web/grafana:/var/lib/grafana
+            - ./web/grafana/provisioning/:/etc/grafana/provisioning/
         environment:
             GF_SECURITY_ADMIN_PASSWORD: bgpdata
             GF_AUTH_ANONYMOUS_ENABLED: true

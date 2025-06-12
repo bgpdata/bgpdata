@@ -31,15 +31,7 @@ git clone --recurse-submodules git@github.com:bgpdata/bgpdata.git
 cd bgpdata
 ```
 
-2. Define a `.env` file:
-```
-FLASK_HOST=https://bgp-data.net
-POSTMARK_API_KEY=your-postmark-api-key
-CLOUDFLARE_TUNNEL_TOKEN=your-cloudflare-tunnel-token
-SECRET_KEY=your-flask-secret-key
-```
-
-3. Start the service:
+2. Start the project:
 ```sh
 jinja2 docker-compose.jinja values.yaml | docker compose -f - up
 ```
