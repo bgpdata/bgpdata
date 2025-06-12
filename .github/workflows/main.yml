@@ -64,10 +64,10 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
-      - name: Checkout gh-pages branch
+      - name: Checkout deploy branch
         run: |
-          git fetch --no-tags --filter=blob:none origin gh-pages
-          git checkout gh-pages || git checkout --orphan gh-pages
+          git fetch --no-tags --filter=blob:none origin deploy
+          git checkout deploy || git checkout --orphan deploy
 
       - name: Download Artifact
         uses: actions/download-artifact@v4
@@ -79,4 +79,4 @@ jobs:
         run: |
           git add docker-compose.yml
           git commit -m "Deploy latest docker-compose.yml to GitHub Pages"
-          git push origin gh-pages || echo "No changes to push"
+          git push origin deploy || echo "No changes to push"
