@@ -37,13 +37,13 @@ RUN cd /tmp && git clone https://github.com/edenhill/librdkafka.git \
     && make install
 
 # Build/install yaml-cpp
-RUN cd /tmp && git clone https://github.com/jbeder/yaml-cpp.git \
-    && cd yaml-cpp \
-    && git checkout yaml-cpp-0.7.0 \
-    && mkdir build && cd build \
-    && cmake -DYAML_BUILD_SHARED_LIB=OFF .. \
-    && make && make install \
-    && cd /tmp
+RUN cd /tmp && \
+    git clone https://github.com/jbeder/yaml-cpp.git && \
+    cd yaml-cpp && \
+    git checkout yaml-cpp-0.7.0 && \
+    mkdir build && cd build && \
+    cmake -DYAML_BUILD_SHARED_LIBS=OFF -DYAML_CPP_BUILD_TESTS=OFF .. && \
+    make && make install
 
 # Clean up
 RUN rm -rf /tmp/* && apt-get clean
