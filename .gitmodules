@@ -1,0 +1,18 @@
+[submodule "web"]
+	path = web
+	url = git@github.com:bgpdata/web.git
+[submodule "postgres"]
+	path = postgres
+	url = git@github.com:bgpdata/postgres.git
+[submodule "relay"]
+	path = relay
+	url = git@github.com:bgpdata/relay.git
+[submodule "aggregator"]
+	path = aggregator
+	url = git@github.com:bgpdata/aggregator.git
+[submodule "collector"]
+	path = collector
+	url = git@github.com:bgpdata/collector.git
+[submodule "whois"]
+	path = whois
+	url = git@github.com:bgpdata/whois.git

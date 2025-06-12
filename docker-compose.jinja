@@ -1,0 +1,360 @@
+version: '3'
+services:
+    postgres:
+        {%- if production %}
+        image: bgpdata/postgres:latest
+        {%- else %}
+        build: ./postgres
+        {%- endif %}
+        restart: unless-stopped
+        deploy:
+            restart_policy:
+                condition: any
+            placement:
+                constraints:
+                    - node.role == worker
+        healthcheck:
+            test: ["CMD-SHELL", "pg_isready -U bgpdata"]
+            interval: 30s
+            timeout: 10s
+            retries: 5
+        privileged: true
+        shm_size: 1536m
+        {%- if not production %}
+        ports:
+            - "5432:5432"
+        {%- endif %}
+        sysctls:
+            - net.ipv4.tcp_keepalive_intvl=30
+            - net.ipv4.tcp_keepalive_probes=5
+            - net.ipv4.tcp_keepalive_time=180
+        volumes:
+            - postgres_data:/var/lib/postgresql/data
+            - timescale_data:/var/lib/postgresql/ts
+        command: >
+            -c max_wal_size=10GB
+        environment:
+            POSTGRES_PASSWORD: bgpdata
+            POSTGRES_USER: bgpdata
+            POSTGRES_DB: bgpdata
+        
+    web:
+        {%- if production %}
+        image: bgpdata/web:latest
+        {%- else %}
+        build: ./web
+        {%- endif %}
+        restart: unless-stopped
+        {%- if not production %}
+        ports:
+            - "8080:8080"
+        {%- endif %}
+        deploy:
+            restart_policy:
+                condition: any
+            placement:
+                constraints:
+                    - node.role == manager
+        healthcheck:
+            test: ["CMD", "curl", "-f", "http://localhost:8080"]
+            interval: 30s
+            timeout: 10s
+            retries: 3
+            start_period: 40s
+        environment:
+            SECRET_KEY: ${SECRET_KEY}
+            POSTGRES_HOST: postgres
+            POSTGRES_PORT: 5432
+            POSTGRES_DB: bgpdata
+            POSTGRES_USER: bgpdata
+            POSTGRES_PASSWORD: bgpdata
+            POSTMARK_API_KEY: ${POSTMARK_API_KEY}
+            FLASK_HOST: http://localhost:8080
+            {%- if production %}
+            ENVIRONMENT: production
+            {%- else %}
+            ENVIRONMENT: development
+            {%- endif %}
+        depends_on:
+            - postgres
+        volumes:
+            {%- if not production %}
+            - .:/app
+            {%- endif %}
+            - web_data:/var/log/migrations
+        entrypoint: >
+            {%- if production %}
+            /bin/sh -c "python manage.py migrate && python manage.py run --host 0.0.0.0"
+            {%- else %}
+            /bin/sh -c "python manage.py migrate && python manage.py run --host 0.0.0.0 --reload"
+            {%- endif %}
+
+    {%- for host in ris + routeviews %}
+    relay-{{ host | replace(".", "-") }}:
+        {%- if production %}
+        image: bgpdata/relay:latest
+        {%- else %}
+        build: ./relay
+        {%- endif %}
+        restart: "no"
+        stop_signal: SIGTERM                    # Wind down relay safely before stopping
+        stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
+        deploy:
+            restart_policy:
+                condition: none
+            placement:
+                constraints:
+                    - node.role == worker
+        environment:
+            HOST: {{ host }}
+            COLLECTOR_CONNECT: collector-{{ host | replace(".", "-") }}:5000
+        depends_on:
+            - collector-{{ host | replace(".", "-") }}
+        volumes:
+            {%- if not production %}
+            - .:/app
+            {%- endif %}
+            - relay_{{ host | replace(".", "_") | replace("-", "_") }}_data:/var/lib/rocksdb
+        entrypoint: >
+            bash -c "sleep $$(({{ loop.index0 + 1 }} * {{ delay }})) && python main.py"
+    {% endfor %}
+    
+    {%- for host in ris + routeviews %}
+    collector-{{ host | replace(".", "-") }}:
+        {%- if production %}
+        image: bgpdata/collector:latest
+        {%- else %}
+        build: ./collector
+        {%- endif %}
+        restart: "no"
+        deploy:
+            restart_policy:
+                condition: none
+            placement:
+                constraints:
+                    - node.role == worker
+        healthcheck:
+            test: ["CMD-SHELL", "cat", "< /dev/null >", "/dev/tcp/localhost/5000"]
+            interval: 30s
+            timeout: 10s
+            retries: 3
+        depends_on:
+            - postgres
+            - kafka
+        sysctls:
+            - net.ipv4.tcp_keepalive_intvl=30
+            - net.ipv4.tcp_keepalive_probes=5
+            - net.ipv4.tcp_keepalive_time=180
+        volumes:
+            - aggregator_data:/config
+        environment:
+            KAFKA_FQDN: kafka:29092
+    {% endfor %}
+
+    aggregator:
+        {%- if production %}
+        image: bgpdata/aggregator:latest
+        {%- else %}
+        build: ./aggregator
+        {%- endif %}
+        restart: unless-stopped
+        sysctls:
+            - net.ipv4.tcp_keepalive_intvl=30
+            - net.ipv4.tcp_keepalive_probes=5
+            - net.ipv4.tcp_keepalive_time=180
+        deploy:
+            restart_policy:
+                condition: any
+            placement:
+                constraints:
+                    - node.role == manager
+        depends_on:
+            - postgres
+            - kafka
+        volumes:
+            - aggregator_data:/config
+        environment:
+            MEM: 3                                           # Set memory to at least 2GB but ideally 4GB
+            KAFKA_FQDN: kafka:29092
+            RPKI_URL: https://rpki.cloudflare.com/rpki.json  # define the URL to retrieve json endoed RPKI data
+            RPKI_PASS: None
+            RPKI_USER: None
+            ENABLE_RPKI: 1                                   # 1 enables, 0 disables RPKI sync
+            ENABLE_IRR: 1                                    # 1 enables, 0 disables IRR sync
+            ENABLE_DBIP: 1                                   # 1 enables, 0 disables DBIP import
+            POSTGRES_REPORT_WINDOW: '8 minute'               # default POSTGRESS window to select when building
+                                                             #   summary tables. For deployments that absorb large
+                                                             #   bursts increase the value, ex 60 minute
+            POSTGRES_HOST: postgres
+            POSTGRES_PORT: 5432
+            POSTGRES_DB: bgpdata
+            POSTGRES_USER: bgpdata
+            POSTGRES_PASSWORD: bgpdata
+            POSTGRES_DROP_peer_event_log: '1 month'
+            POSTGRES_DROP_stat_reports: '1 day'
+            POSTGRES_DROP_ip_rib_log: '1 day'
+            POSTGRES_DROP_alerts: '1 day'
+            POSTGRES_DROP_ls_nodes_log: '2 days'
+            POSTGRES_DROP_ls_links_log: '2 days'
+            POSTGRES_DROP_ls_prefixes_log: '2 days'
+            POSTGRES_DROP_stats_chg_byprefix: '1 day'
+            POSTGRES_DROP_stats_chg_byasn: '1 day'
+            POSTGRES_DROP_stats_chg_bypeer: '1 day'
+            POSTGRES_DROP_stats_ip_origins: '1 day'
+            POSTGRES_DROP_stats_peer_rib: '1 day'
+            POSTGRES_DROP_stats_peer_update_counts: '1 day'
+
+
+    whois:
+        {%- if production %}
+        image: bgpdata/whois:latest
+        {%- else %}
+        build: ./whois
+        {%- endif %}
+        restart: unless-stopped
+        deploy:
+            restart_policy:
+                condition: any
+            placement:
+                constraints:
+                    - node.role == manager
+        healthcheck:
+            test: ["CMD-SHELL", "cat", "< /dev/null >", "/dev/tcp/localhost/43"]
+            interval: 30s
+            timeout: 10s
+            retries: 3
+        sysctls:
+            - net.ipv4.tcp_keepalive_intvl=30
+            - net.ipv4.tcp_keepalive_probes=5
+            - net.ipv4.tcp_keepalive_time=180
+        volumes:
+            - aggregator_data:/config
+        depends_on:
+            - postgres
+        ports:
+            - "43:43"
+        environment:
+            POSTGRES_PASSWORD: bgpdata
+            POSTGRES_USER: bgpdata
+            POSTGRES_DB: bgpdata
+            POSTGRES_HOST: postgres
+            POSTGRES_PORT: 5432
+
+    zookeeper:
+        image: confluentinc/cp-zookeeper:7.7.1
+        restart: unless-stopped
+        deploy:
+            restart_policy:
+                condition: any
+            placement:
+                constraints:
+                    - node.role == manager
+        healthcheck:
+            test: ["CMD-SHELL", "nc -z localhost 2181 || exit -1"]
+            interval: 30s
+            timeout: 10s
+            retries: 5
+        volumes:
+            - zookeeper_data:/var/lib/zookeeper
+        environment:
+            ZOOKEEPER_CLIENT_PORT: 2181
+            ZOOKEEPER_TICK_TIME: 2000
+
+    kafka:
+        image: confluentinc/cp-kafka:7.7.1
+        restart: unless-stopped
+        deploy:
+            restart_policy:
+                condition: any
+            placement:
+                constraints:
+                    - node.role == worker
+        depends_on:
+            - zookeeper
+        volumes:
+            - kafka_data:/var/lib/kafka/data
+        environment:
+            KAFKA_BROKER_ID: 1
+            KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+            KAFKA_LISTENERS: PLAINTEXT://0.0.0.0:29092
+            # Change/add listeners based on your FQDN that the host and other containers can access.  You can use
+            #    an IP address as well. By default, only within the compose/containers can Kafka be accesssed
+            #    using port 29092. Outside access can be enabled, but you should use an FQDN listener.
+            KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:29092
+            KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT
+            KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
+            KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+            KAFKA_NUM_PARTITIONS: 8
+            KAFKA_LOG_RETENTION_MINUTES: 90
+            KAFKA_LOG_ROLL_MS: 3600000
+            KAFKA_LOG_SEGMENT_BYTES: 1073741824
+            KAFKA_MESSAGE_MAX_BYTES: 100000000
+            KAFKA_LOG_CLEANER_THREADS: 2
+            KAFKA_JMX_PORT: 9999
+            KAFKA_JMX_OPTS: >-
+                -Dcom.sun.management.jmxremote=true
+                -Dcom.sun.management.jmxremote.local.only=false
+                -Dcom.sun.management.jmxremote.ssl=false
+                -Dcom.sun.management.jmxremote.authenticate=false
+                -Djava.rmi.server.hostname=kafka
+                -Dcom.sun.management.jmxremote.rmi.port=9999
+
+    {%- if not production %}
+    grafana:
+        image: grafana/grafana:9.1.7
+        restart: unless-stopped
+        deploy:
+            restart_policy:
+                condition: any
+            placement:
+                constraints:
+                    - node.role == manager
+        healthcheck:
+            test: ["CMD", "wget", "--spider", "http://localhost:3000"]
+            interval: 30s
+            timeout: 10s
+            retries: 3
+        user: root
+        ports:
+            - "3000:3000"
+        volumes:
+            - ./grafana:/var/lib/grafana
+            - ./grafana/provisioning/:/etc/grafana/provisioning/
+        environment:
+            GF_SECURITY_ADMIN_PASSWORD: bgpdata
+            GF_AUTH_ANONYMOUS_ENABLED: true
+            GF_USERS_HOME_PAGE: d/obmp-home/obmp-home
+            GF_INSTALL_PLUGINS: agenty-flowcharting-panel,grafana-piechart-panel,grafana-worldmap-panel,grafana-simple-json-datasource,vonage-status-panel
+    {%- endif %}
+
+    {%- if production %}
+    cloudflared:
+        image: cloudflare/cloudflared:latest
+        restart: unless-stopped
+        deploy:
+            placement:
+                constraints:
+                    - node.role == manager
+        healthcheck:
+            test: ["CMD", "cloudflared", "--version"]
+            interval: 30s
+            timeout: 10s
+            retries: 3
+            start_period: 10s
+        depends_on:
+            - web
+        entrypoint: |
+            cloudflared tunnel run --token ${CLOUDFLARE_TUNNEL_TOKEN}
+    {%- endif %}
+
+# Define volumes
+volumes:
+    {%- for host in ris + routeviews %}
+    relay_{{ host | replace(".", "_") | replace("-", "_") }}_data:
+    {%- endfor %}
+    postgres_data:
+    timescale_data:
+    aggregator_data:
+    zookeeper_data:
+    kafka_data:
+    web_data:
