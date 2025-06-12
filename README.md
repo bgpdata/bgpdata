@@ -1,4 +1,4 @@
-<img title="BGPDATA" src="static/images/logo.svg" height="64" align="left" />
+<img title="BGPDATA" src="logo.svg" height="64" align="left" />
 
 <br />
 <br />
