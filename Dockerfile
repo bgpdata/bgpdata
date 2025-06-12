@@ -20,12 +20,11 @@ RUN cd /tmp && git clone https://github.com/madler/zlib.git \
     && CFLAGS=-fPIC  ./configure --static \
     && make install
 
-# Install zstd with -fPIC
+# Install zstd v1.5.2 with -fPIC manually
 RUN cd /tmp && \
     git clone --branch v1.5.2 https://github.com/facebook/zstd.git && \
-    cd zstd/build/cmake && \
-    cmake -DCMAKE_POSITION_INDEPENDENT_CODE=ON .. && \
-    make && make install
+    cd zstd && \
+    make CFLAGS="-fPIC" && make install
 
 # Build/install librdkafka
 # NOTE: Installed under /usr/local/lib
