@@ -12,7 +12,7 @@ BGPDATA helps researchers and network operators gain insights into their network
 ## Data Flow
 We collect both historical and live BGP data from [Route Views](https://www.routeviews.org/) and [RIPE NCC RIS](https://ris.ripe.net/) collectors to provide comprehensive insights. 
 
-<img title="Questions? Contact us." src="static/images/dataflow.png" height="450" />
+<img src="dataflow.png" height="450" />
 
 ## Prerequisites
 
