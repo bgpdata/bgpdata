@@ -9,9 +9,7 @@
 
 BGPDATA helps researchers and network operators gain insights into their networks by providing a scalable and reliable way to analyze and inspect historical and live global BGP data from [Route Views](https://www.routeviews.org/) and [RIPE NCC RIS](https://ris.ripe.net/), as well as from direct peers who graciously choose to contribute additional data to the system.
 
-Our tool is an open-source initiative dedicated to advancing real-time BGP analysis through community-driven development. By leveraging community-operated infrastructure, we aim to accelerate research and innovation in network analysis.
-
-Our mission is to accelerate research and innovation by empowering researchers to rapidly deploy and validate their experiments with the global Internet community. Unlike proprietary solutions, BGPDATA is non-profit and committed to limitless open collaboration, driving the broader Internet community's advancement forward.
+Our tool is an open-source initiative dedicated to advancing real-time BGP analysis through community-driven development. By leveraging community-operated infrastructure, we aim to accelerate research and innovation in network analysis by empowering researchers to rapidly deploy and validate their experiments with the global Internet community. Unlike proprietary solutions, BGPDATA is non-profit and committed to limitless open collaboration, driving the broader Internet community's advancement forward.
 
 You can actively contribute to BGPDATA's operation by joining the underlying distributed computing cluster [SUPERCLUSTR](https://superclustr.net). This collaborative platform enables BGPDATA and other projects to benefit the Internet research community through shared resources and expertise.
 
