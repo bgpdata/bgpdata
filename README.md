@@ -55,7 +55,7 @@ We welcome contributions from researchers and developers! If you need help imple
 
 Feel free to reach out to us at [help@bgp-data.net](mailto:help@bgp-data.net) - we're committed to making the onboarding process as smooth as possible and helping you implement your ideas effectively.
 
-### Production Deployment
+## Production Deployment
 
 For production deployment, we use Docker Swarm, but any other orchestration tool may be used.
 The recommended system requirements are a Manager and Worker Node with each 60 GB of RAM, 60 GB Swap and 48 vCPU cores.
