@@ -42,10 +42,10 @@ jinja2 docker-compose.jinja values.yaml | docker compose -f - up
 
 > **Note:** This will start collecting from all RouteViews and RIS Collectors. You can further specify to collect from only a specific subset of collector hosts by modifying the `values.yaml` file`.
 
-4. Open:
-http://localhost:8080 (Web)
-http://localhost:3000 (Grafana)
-http://localhost:43   (WHOIS)
+4. Open:<br>
+http://localhost:8080 (Web)<br>
+http://localhost:3000 (Grafana)<br>
+and try `whois -h localhost AS3582` (WHOIS)
 
 ## Contributing
 
