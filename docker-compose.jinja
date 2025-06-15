@@ -69,10 +69,11 @@ services:
             POSTGRES_USER: bgpdata
             POSTGRES_PASSWORD: bgpdata
             POSTMARK_API_KEY: ${POSTMARK_API_KEY}
-            FLASK_HOST: http://localhost:8080
             {%- if production %}
+            FLASK_HOST: https://bgp-data.net
             ENVIRONMENT: production
             {%- else %}
+            FLASK_HOST: http://localhost:8080
             ENVIRONMENT: development
             {%- endif %}
         depends_on:
@@ -81,12 +82,11 @@ services:
             {%- if not production %}
             - ./web:/app
             {%- endif %}
-            - web_data:/var/log/migrations
         entrypoint: >
             {%- if production %}
-            /bin/sh -c "python manage.py migrate && python manage.py run --host 0.0.0.0"
+            /bin/sh -c "python manage.py run --host 0.0.0.0"
             {%- else %}
-            /bin/sh -c "python manage.py migrate && python manage.py run --host 0.0.0.0 --reload"
+            /bin/sh -c "python manage.py run --host 0.0.0.0 --reload"
             {%- endif %}
 
     {%- for host in ris + routeviews %}
@@ -209,10 +209,7 @@ services:
         {%- if production %}
         image: bgpdata/whois:latest
         {%- else %}
-        build:
-            context: ./whois
-            args:
-                GITHUB_TOKEN: ${GITHUB_TOKEN}
+        build: ./whois
         {%- endif %}
         restart: unless-stopped
         deploy:
@@ -360,4 +357,3 @@ volumes:
     aggregator_data:
     zookeeper_data:
     kafka_data:
-    web_data:

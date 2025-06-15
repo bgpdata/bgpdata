@@ -7,7 +7,13 @@
 
 [https://bgp-data.net](https://bgp-data.net/?ref=github) — A BGP Data Aggregation Service.
 
-BGPDATA helps researchers and network operators gain insights into their networks by providing a scalable and reliable way to analyze and inspect historical and live BGP data from [Route Views](https://www.routeviews.org/) and [RIPE NCC RIS](https://ris.ripe.net/).
+BGPDATA helps researchers and network operators gain insights into their networks by providing a scalable and reliable way to analyze and inspect historical and live global BGP data from [Route Views](https://www.routeviews.org/) and [RIPE NCC RIS](https://ris.ripe.net/), as well as from direct peers who graciously choose to contribute additional data to the system.
+
+Our tool is an open-source initiative dedicated to advancing real-time BGP analysis through community-driven development. By leveraging community-operated infrastructure, we aim to accelerate research and innovation in network analysis.
+
+Our mission is to accelerate research and innovation by empowering researchers to rapidly deploy and validate their experiments with the global Internet community. Unlike proprietary solutions, BGPDATA is non-profit and committed to limitless open collaboration, driving the broader Internet community's advancement forward.
+
+You can actively contribute to BGPDATA's operation by joining the underlying distributed computing cluster [SUPERCLUSTR](https://superclustr.net). This collaborative platform enables BGPDATA and other projects to benefit the Internet research community through shared resources and expertise.
 
 ## Data Flow
 We collect both historical and live BGP data from [Route Views](https://www.routeviews.org/) and [RIPE NCC RIS](https://ris.ripe.net/) collectors to provide comprehensive insights. 
@@ -41,16 +47,28 @@ jinja2 docker-compose.jinja values.yaml | docker compose -f - up
 4. Open:
 http://localhost:8080 (Web)
 http://localhost:3000 (Grafana)
+http://localhost:43   (WHOIS)
+
+## Contributing
+
+We welcome contributions from researchers and developers! If you need help implementing your ideas or getting started with the project, our team is here to assist you. Whether you're looking to contribute code, suggest improvements, or integrate BGPDATA into your research, we're happy to help you get up and running.
+
+Feel free to reach out to us at [help@bgp-data.net](mailto:help@bgp-data.net) - we're committed to making the onboarding process as smooth as possible and helping you implement your ideas effectively.
 
 ### Production Deployment
 
 For production deployment, we use Docker Swarm, but any other orchestration tool may be used.
-The recommended system requirements are a minimum of 32 GB of RAM and 48 vCPU cores.
+The recommended system requirements are a Manager and Worker Node with each 60 GB of RAM, 60 GB Swap and 48 vCPU cores.
+Initial system provisioning may require up to 3 hours to complete, contingent upon your specific configuration parameters.
+Once initialization is complete, resource utilization will stabilize at optimal operational levels.
+
 
 ```sh
 # Create an .env file as above, then:
 curl -fsSL https://downloads.bgp-data.net/docker-compose.yml | docker stack deploy -c - bgpdata
 ```
+
+Contact us at [help@bgp-data.net](mailto:help@bgp-data.net) if you need any help.
 
 # ACKs
 
