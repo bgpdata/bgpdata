@@ -56,7 +56,7 @@ Feel free to reach out to us at [help@bgp-data.net](mailto:help@bgp-data.net) - 
 ## Production Deployment
 
 For production deployment, we use Docker Swarm, but any other orchestration tool may be used.
-The recommended system requirements are a Manager and Worker Node with each 60 GB of RAM, 60 GB Swap and 48 vCPU cores.
+The recommended system requirements are a Manager and Worker Node with each 60 GB of RAM, 60 GB Swap, 1 TB Datacenter SSD Storage and 48 vCPU cores.
 Initial system provisioning may require up to 3 hours to complete, contingent upon your specific configuration parameters.
 Once initialization is complete, resource utilization will stabilize at optimal levels.
 
