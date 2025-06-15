@@ -1,80 +1,82 @@
 production: false
 delay: 120 # Seconds
 # RIS Route Collectors
-# https://ris.ripe.net/docs/route-collectors/
+# https://www.ripe.net/analyse/internet-measurements/routing-information-service-ris/
+# More information: https://ris.ripe.net/docs/route-collectors/
 ris:
   - rrc00 # Amsterdam, RIPE NCC, global
-#  - rrc01 # London, LINX/LONAP, regional
-#  - rrc03 # Amsterdam, AMS-IX/NL-IX, regional
-#  - rrc04 # Geneva, CERN, regional
-#  - rrc05 # Vienna, VIX, regional
-#  - rrc06 # Otemachi, RIPE NCC, regional
-#  - rrc07 # Stockholm, Netnod, regional
-#  - rrc10 # Milan, MIX, regional
-#  - rrc11 # New York, Telehouse/GTT, regional
-#  - rrc12 # Frankfurt, DE-CIX, regional
-#  - rrc13 # Moscow, MSK-IX, regional
-#  - rrc14 # Palo Alto, Equinix, regional
-#  - rrc15 # Sao Paulo, IX.br, regional
-#  - rrc16 # Miami, RIPE NCC, regional
-#  - rrc18 # Barcelona, CATNIX, regional
-#  - rrc19 # Johannesburg, Network Platforms, regional
-#  - rrc20 # Zurich, SWISS-IX, regional
-#  - rrc21 # Paris, France-IX, regional
-#  - rrc22 # Bucharest, InterLAN, regional
-#  - rrc23 # Singapore, Equinix, regional
-#  - rrc24 # Montevideo, LACNIC, global
-#  - rrc25 # Amsterdam, RIPE NCC, global
-#  - rrc26 # Dubai, Datamena/UAE-IX, regional
+  - rrc01 # London, LINX/LONAP, regional
+  - rrc03 # Amsterdam, AMS-IX/NL-IX, regional
+  - rrc04 # Geneva, CERN, regional
+  - rrc05 # Vienna, VIX, regional
+  - rrc06 # Otemachi, RIPE NCC, regional
+  - rrc07 # Stockholm, Netnod, regional
+  - rrc10 # Milan, MIX, regional
+  - rrc11 # New York, Telehouse/GTT, regional
+  - rrc12 # Frankfurt, DE-CIX, regional
+  - rrc13 # Moscow, MSK-IX, regional
+  - rrc14 # Palo Alto, Equinix, regional
+  - rrc15 # Sao Paulo, IX.br, regional
+  - rrc16 # Miami, RIPE NCC, regional
+  - rrc18 # Barcelona, CATNIX, regional
+  - rrc19 # Johannesburg, Network Platforms, regional
+  - rrc20 # Zurich, SWISS-IX, regional
+  - rrc21 # Paris, France-IX, regional
+  - rrc22 # Bucharest, InterLAN, regional
+  - rrc23 # Singapore, Equinix, regional
+  - rrc24 # Montevideo, LACNIC, global
+  - rrc25 # Amsterdam, RIPE NCC, global
+  - rrc26 # Dubai, Datamena/UAE-IX, regional
 
 # RouteViews Collectors
 # https://www.routeviews.org/
+# More information: https://docs.google.com/spreadsheets/d/1drJVKeqzF-8cKZQUCYnkh5uyIPM6dqs1qBc07PofjTI/edit?usp=sharing
 routeviews:
   - route-views2
-#  - route-views3
-#  - route-views4
-#  - route-views5
-#  - route-views6
-#  - route-views7
-#  - route-views8
-#  - amsix
-#  - amsix.ams
-#  - cix.atl
-#  - bdix
-#  - bknix
-#  - chicago
-#  - chile
-#  - eqix
-#  - flix
-#  - gixa
-#  - gorex
-#  - interlan.otp
-#  - iraq-ixp.bgw
-#  - isc
-#  - kinx.icn
-#  - namex.fco
-#  - kixp
-##  - jinx (Deprecated)
-#  - linx
-#  - mwix
-#  - napafrica
-#  - nwax
-#  - pacwave.lax
-#  - pit.scl
-#  - pitmx.qro
-#  - phoix
-#  - telxatl
-#  - wide
-#  - sydney
-##  - saopaulo (Deprecated)
-#  - route-views2.saopaulo
-#  - sg
-#  - perth
-#  - peru
-#  - sfmix
-##  - siex (Deprecated)
-#  - soxrs
-#  - rio
-#  - fortaleza
-#  - uaeix
-#  - ny
+  - route-views3
+  - route-views4
+  - route-views5
+  - route-views6
+  - route-views7
+  - route-views8
+  - amsix
+  - amsix.ams
+  - cix.atl
+  - bdix
+  - bknix
+  - chicago
+  - chile
+  - eqix
+  - flix
+  - gixa
+  - gorex
+  - interlan.otp
+  - iraq-ixp.bgw
+  - isc
+  - kinx.icn
+  - namex.fco
+  - kixp
+#  - jinx (Deprecated)
+  - linx
+  - mwix
+  - napafrica
+  - nwax
+  - pacwave.lax
+  - pit.scl
+  - pitmx.qro
+  - phoix
+  - telxatl
+  - wide
+  - sydney
+#  - saopaulo (Deprecated)
+  - route-views2.saopaulo
+  - sg
+  - perth
+  - peru
+  - sfmix
+#  - siex (Deprecated)
+  - soxrs
+  - rio
+  - fortaleza
+  - uaeix
+  - ny
