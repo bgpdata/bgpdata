@@ -63,6 +63,8 @@ services:
             start_period: 40s
         environment:
             SECRET_KEY: ${SECRET_KEY}
+            KAFKA_FQDN: kafka:29092
+            KAFKA_JMX_FQDN: kafka:9999
             POSTGRES_HOST: postgres
             POSTGRES_PORT: 5432
             POSTGRES_DB: bgpdata
@@ -117,6 +119,9 @@ services:
             - relay_{{ host | replace(".", "_") | replace("-", "_") }}_data:/var/lib/rocksdb
         entrypoint: >
             bash -c "sleep $$(({{ loop.index0 + 1 }} * {{ delay }})) && python main.py"
+    {%- if not production and loop.first %}
+    {% break %}
+    {%- endif %}
     {% endfor %}
     
     {%- for host in ris + routeviews %}
@@ -149,6 +154,9 @@ services:
             - aggregator_data:/config
         environment:
             KAFKA_FQDN: kafka:29092
+    {%- if not production and loop.first %}
+    {% break %}
+    {%- endif %}
     {% endfor %}
 
     aggregator:
@@ -283,6 +291,8 @@ services:
             KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:29092
             KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT
             KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
+            KAFKA_CREATE_TOPICS: "bgpdata.parsed.notification:1:1"
+            KAFKA_AUTO_CREATE_TOPICS_ENABLE: "true"
             KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
             KAFKA_NUM_PARTITIONS: 8
             KAFKA_LOG_RETENTION_MINUTES: 90
