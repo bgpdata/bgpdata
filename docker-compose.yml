@@ -47,6 +47,8 @@ services:
             start_period: 40s
         environment:
             SECRET_KEY: ${SECRET_KEY}
+            KAFKA_FQDN: kafka:29092
+            KAFKA_JMX_FQDN: kafka:9999
             POSTGRES_HOST: postgres
             POSTGRES_PORT: 5432
             POSTGRES_DB: bgpdata
@@ -3381,6 +3383,8 @@ services:
             KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:29092
             KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT
             KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
+            KAFKA_CREATE_TOPICS: "bgpdata.parsed.notification:1:1"
+            KAFKA_AUTO_CREATE_TOPICS_ENABLE: "true"
             KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
             KAFKA_NUM_PARTITIONS: 8
             KAFKA_LOG_RETENTION_MINUTES: 90
