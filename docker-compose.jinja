@@ -80,10 +80,10 @@ services:
             {%- endif %}
         depends_on:
             - postgres
+        {%- if not production %}
         volumes:
-            {%- if not production %}
             - ./web:/app
-            {%- endif %}
+        {%- endif %}
         entrypoint: >
             {%- if production %}
             /bin/sh -c "python manage.py run --host 0.0.0.0"
