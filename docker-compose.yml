@@ -59,7 +59,6 @@ services:
             ENVIRONMENT: production
         depends_on:
             - postgres
-        volumes:
         entrypoint: >
             /bin/sh -c "python manage.py run --host 0.0.0.0"
     relay-rrc00:
