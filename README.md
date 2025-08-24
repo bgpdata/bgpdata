@@ -7,7 +7,7 @@
 
 [https://bgp-data.net](https://bgp-data.net/?ref=github) — A BGP (Border Gateway Protocol) Data Aggregation Service.
 
-BGPDATA provides researchers with real-time and historical visibility into the Internet’s global Routing Fabric. Through collecting and analyzing Border Gateway Protocol (BGP) messages from 68 (as of Aug 24 2025) [Route Views](https://www.routeviews.org/) and [RIPE NCC RIS](https://ris.ripe.net/) Collectors strategically placed around the world, offering a comprehensive view of global routing dynamics. In practice, BGPDATA delivers a real-time, searchable map of how networks across the globe interconnect to form the Internet.
+BGPDATA provides researchers with real-time and historical visibility into the Internet by collecting and analyzing Border Gateway Protocol (BGP) messages from 68 (as of Aug 24 2025) [Route Views](https://www.routeviews.org/) and [RIPE NCC RIS](https://ris.ripe.net/) Collectors strategically placed around the world. In practice, BGPDATA delivers a real-time, searchable map of how networks across the globe interconnect to form the Internet.
 
 ## Data Flow
 We collect both historical and live BGP data from [Route Views](https://www.routeviews.org/) and [RIPE NCC RIS](https://ris.ripe.net/) collectors to provide comprehensive insights. 
