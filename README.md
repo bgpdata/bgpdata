@@ -10,7 +10,6 @@
 BGPDATA provides researchers with real-time and historical visibility into the Internet by collecting and analyzing Border Gateway Protocol (BGP) messages from 68 (as of Aug 24 2025) [Route Views](https://www.routeviews.org/) and [RIPE NCC RIS](https://ris.ripe.net/) Collectors strategically placed around the world. In practice, is delivers a real-time, searchable map of how all networks across the globe route traffic and interconnect to form the Internet.
 
 ## Data Flow
-We collect both historical and live BGP data from [Route Views](https://www.routeviews.org/) and [RIPE NCC RIS](https://ris.ripe.net/) collectors to provide comprehensive insights. 
 
 <img src="dataflow.png" height="450" />
 
