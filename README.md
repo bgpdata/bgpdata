@@ -15,7 +15,7 @@ BGPDATA provides researchers with real-time and historical visibility into the I
 
 ## Quick Demo
 
-Shown below is an exemplary lookup of AS714, Apple Inc.
+Shown below is an example lookup of AS714, Apple Inc.
 <br><br>
 <img src="preview.png" height="350" />
 
