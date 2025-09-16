@@ -13,6 +13,12 @@ BGPDATA provides researchers with real-time and historical visibility into the I
 
 <img src="dataflow.png" height="450" />
 
+## Quick Demo
+
+Shown below is an exemplary lookup of AS714, Apple Inc.
+<br><br>
+<img src="preview.png" height="350" />
+
 ## Prerequisites
 
 Before you begin, ensure you have the following installed on your system:
@@ -44,13 +50,13 @@ and try `whois -h localhost AS3582` (WHOIS)
 
 ## Contributing
 
-We welcome contributions from researchers and developers! If you need help implementing your ideas or getting started with the project, our team is here to assist you. Whether you're looking to contribute code, suggest improvements, or integrate BGPDATA into your research, we're happy to help you get up and running.
+We welcome contributions from researchers and developers. If you need help implementing your ideas or getting started with the project, we're happy to help you get up and running.
 
-Feel free to reach out to us at [help@bgp-data.net](mailto:help@bgp-data.net) - we're committed to making the onboarding process as smooth as possible and helping you implement your ideas effectively.
+Feel free to reach out to us at [help@bgp-data.net](mailto:help@bgp-data.net).
 
 ## Production Deployment
 
-For production deployment, we use Docker Swarm, but any other orchestration tool may be used.
+For production deployment, we use [Clearly](https://clearly.run), but any other orchestration tool may be used.
 The recommended system requirements are a Manager and Worker Node with each 60 GB of RAM, 60 GB Swap, 1 TB Datacenter SSD Storage and 48 vCPU cores.
 Initial system provisioning may require up to 3 hours to complete, contingent upon your specific configuration parameters.
 Once initialization is complete, resource utilization will stabilize at optimal levels.
