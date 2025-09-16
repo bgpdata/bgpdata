@@ -64,7 +64,7 @@ Once initialization is complete, resource utilization will stabilize at optimal 
 
 ```sh
 # Customize the .env file, then:
-curl -fsSL https://downloads.bgp-data.net/docker-compose.yml | docker stack deploy -c - bgpdata
+curl -fsSL https://downloads.bgp-data.net/docker-compose.yml | clearly deploy -c - bgpdata
 ```
 
 Contact us at [help@bgp-data.net](mailto:help@bgp-data.net) if you need any help.
