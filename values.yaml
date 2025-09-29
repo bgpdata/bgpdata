@@ -5,76 +5,11 @@ delay: 120 # Seconds
 # @Link: https://www.ripe.net/analyse/internet-measurements/routing-information-service-ris/
 # @Collectors: https://ris.ripe.net/docs/route-collectors/
 ris:
-  - rrc00 # Amsterdam, RIPE NCC, global
-  - rrc01 # London, LINX/LONAP, regional
-  - rrc03 # Amsterdam, AMS-IX/NL-IX, regional
-  - rrc04 # Geneva, CERN, regional
-  - rrc05 # Vienna, VIX, regional
-  - rrc06 # Otemachi, RIPE NCC, regional
-  - rrc07 # Stockholm, Netnod, regional
-  - rrc10 # Milan, MIX, regional
-  - rrc11 # New York, Telehouse/GTT, regional
-  - rrc12 # Frankfurt, DE-CIX, regional
-  - rrc13 # Moscow, MSK-IX, regional
-  - rrc14 # Palo Alto, Equinix, regional
-  - rrc15 # Sao Paulo, IX.br, regional
-  - rrc16 # Miami, RIPE NCC, regional
-  - rrc18 # Barcelona, CATNIX, regional
-  - rrc19 # Johannesburg, Network Platforms, regional
-  - rrc20 # Zurich, SWISS-IX, regional
-  - rrc21 # Paris, France-IX, regional
-  - rrc22 # Bucharest, InterLAN, regional
-  - rrc23 # Singapore, Equinix, regional
-  - rrc24 # Montevideo, LACNIC, global
-  - rrc25 # Amsterdam, RIPE NCC, global
-  - rrc26 # Dubai, Datamena/UAE-IX, regional
+- fuck
 
 # RouteViews Collectors
 # @Link: https://www.routeviews.org/
 # @Collectors: https://docs.google.com/spreadsheets/d/1drJVKeqzF-8cKZQUCYnkh5uyIPM6dqs1qBc07PofjTI
 routeviews:
-  - route-views2 # Multi-hop 2, University of Oregon, global
-  - route-views3 # Multi-hop 3, University of Oregon, global
-  - route-views4 # Multi-hop 4, University of Oregon, global
-  - route-views5 # Multi-hop 5, University of Oregon, global
-  - route-views6 # Multi-hop 6, University of Oregon, global
-  - route-views7 # Multi-hop 7, University of Oregon, global
-  - route-views8 # Multi-hop 8, University of Oregon, global
   - amsix # Amsterdam, AMS-IX, regional
-  - amsix.ams # Amsterdam, AMS-IX, regional
-  - cix.atl # Atlanta, CIX-ATL, regional
-  - bdix # Dhaka, BDIX, regional
-  - bknix # Bangkok, BKNIX, regional
-  - chicago # Chicago, Equinix CH1, regional
-  - chile # Santiago, NIC.cl, regional
-  - eqix # Ashburn, Equinix Ashburn, regional
-  - flix # Miami, FL-IX, regional
-  - gixa # Accra, GIXA, regional
-  - gorex # Guam, GOREX, regional
-  - interlan.otp # Bucharest, InterLAN-IX, regional
-  - iraq-ixp.bgw # Baghdad, IRAQ-IXP, regional
-  - isc # Palo Alto, PAIX, regional
-  - kinx.icn # Seoul, KINX, regional
   - namex.fco # Rome, NAMEX Rome, regional
-  - kixp # Nairobi, KIXP, regional
-  - linx # London, LINX, regional
-  - mwix # Indianapolis, FD-IX, regional
-  - napafrica # Johannesburg, NAPAfrica, regional
-  - nwax # Portland, NWAX, regional
-  - pacwave.lax # Los Angeles, Pacific Wave, regional
-  - pit.scl # Santiago, PIT Chile Santiago, regional
-  - pitmx.qro # Querétaro, PIT Chile MX, regional
-  - phoix # Quezon City, PhOpenIX, regional
-  - telxatl # Atlanta, Digital Realty, regional
-  - wide # Tokyo, DIX-IE, regional
-  - sydney # Sydney, Equinix SYD1, regional
-  - route-views2.saopaulo # São Paulo, IX.br (PTT.br) São Paulo, regional
-  - sg # Singapore, Equinix Singapore, regional
-  - perth # Perth, WA-IX, regional
-  - peru # Lima, Peru IX, regional
-  - sfmix # San Francisco, SFMIX, regional
-  - soxrs # Belgrade, SOX Serbia, regional
-  - rio # Rio de Janeiro, IX.br (PTT.br) Rio de Janeiro, regional
-  - fortaleza # Fortaleza, IX.br (PTT.br) Fortaleza, regional
-  - uaeix # Dubai, UAE-IX, regional
-  - ny # New York, DE-CIX New York, regional

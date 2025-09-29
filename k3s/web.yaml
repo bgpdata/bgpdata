@@ -1,0 +1,75 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web
+  namespace: bgpdata
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: web
+  template:
+    metadata:
+      labels:
+        app: web
+    spec:
+      containers:
+      - name: web
+        image: bgpdata/web:latest
+        ports:
+        - containerPort: 8080
+        env:
+        - name: SECRET_KEY
+          value: "diWNv3UsVz9v7T72WdzzqdYNqikcjARVtdbaBiK*hntNej"
+        - name: KAFKA_FQDN
+          value: "kafka:29092"
+        - name: KAFKA_JMX_FQDN
+          value: "kafka:9999"
+        - name: POSTGRES_HOST
+          value: "postgres"
+        - name: POSTGRES_PORT
+          value: "5432"
+        - name: POSTGRES_DB
+          value: "bgpdata"
+        - name: POSTGRES_USER
+          value: "bgpdata"
+        - name: POSTGRES_PASSWORD
+          value: "bgpdata"
+        - name: POSTMARK_API_KEY
+          value: "your-postmark-api-key-here"
+        - name: FLASK_HOST
+          value: "http://localhost:8080"
+        - name: ENVIRONMENT
+          value: "development"
+        resources:
+          requests:
+            memory: "512Mi"
+            cpu: "200m"
+          limits:
+            memory: "1Gi"
+            cpu: "500m"
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 8080
+          initialDelaySeconds: 40
+          periodSeconds: 30
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 8080
+          initialDelaySeconds: 10
+          periodSeconds: 10
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: web
+  namespace: bgpdata
+spec:
+  selector:
+    app: web
+  ports:
+  - port: 8080
+    targetPort: 8080
+  type: ClusterIP

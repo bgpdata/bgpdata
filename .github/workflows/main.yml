@@ -14,24 +14,11 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Generate Docker Compose file
-        run: |
-          pip install jinja2-cli[yaml]
-          jinja2 docker-compose.jinja values.yaml -D production=true > docker-compose.yml
-
       - name: Login to Docker Hub
         uses: docker/login-action@v3
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
-
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v3
-        with:
-          install: true
-
-      - name: Create Docker Buildx builder
-        run: docker buildx create --use --name mybuilder
 
       - name: Build and push base image
         uses: docker/build-push-action@v5
@@ -40,43 +27,25 @@ jobs:
           push: true
           tags: |
             ${{ secrets.DOCKERHUB_USERNAME }}/base:latest
-          platforms: linux/amd64
-
-      - name: Upload Artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: docker-compose.yml
-          path: docker-compose.yml
 
   deploy:
     name: Deploy
     needs: build
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
 
     steps:
-      - name: Checkout Repository
+      - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Set up Git user
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-
-      - name: Checkout deploy branch
-        run: |
-          git fetch --no-tags --filter=blob:none origin deploy
-          git checkout deploy || git checkout --orphan deploy
-
-      - name: Download Artifact
-        uses: actions/download-artifact@v4
+      - name: Setup Tailscale
+        uses: tailscale/github-action@v2
         with:
-          name: docker-compose.yml
-          path: .
+          oauth-client-id: ${{ secrets.TAILSCALE_OAUTH_CLIENT_ID }}
+          oauth-secret: ${{ secrets.TAILSCALE_OAUTH_SECRET }}
 
-      - name: Commit and Push Changes
+      - name: Deploy to K3s
+        # This is a workaround to deploy the YAML files to the K3s cluster.
+        # We open a ssh tunnel to the K3s cluster and deploy the YAML files to it.
         run: |
-          git add docker-compose.yml
-          git commit -m "Deploy latest docker-compose.yml to GitHub Pages"
-          git push origin deploy || echo "No changes to push"
+          YAML_CONTENT="$(for file in k3s/*.yaml; do [ -f "$file" ] && { printf '%s\n' "---"; cat "$file"; }; done)"          
+          echo "$YAML_CONTENT" | ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "kubectl apply -f -"

@@ -1,18 +1,9 @@
 version: '3'
+
 services:
     postgres:
-        {%- if production %}
-        image: bgpdata/postgres:latest
-        {%- else %}
         build: ./postgres
-        {%- endif %}
         restart: unless-stopped
-        deploy:
-            restart_policy:
-                condition: any
-            placement:
-                constraints:
-                    - node.role == worker
         healthcheck:
             test: ["CMD-SHELL", "pg_isready -U bgpdata"]
             interval: 30s
@@ -20,10 +11,8 @@ services:
             retries: 5
         privileged: true
         shm_size: 1536m
-        {%- if not production %}
         ports:
             - "5432:5432"
-        {%- endif %}
         sysctls:
             - net.ipv4.tcp_keepalive_intvl=30
             - net.ipv4.tcp_keepalive_probes=5
@@ -39,22 +28,10 @@ services:
             POSTGRES_DB: bgpdata
         
     web:
-        {%- if production %}
-        image: bgpdata/web:latest
-        {%- else %}
         build: ./web
-        {%- endif %}
         restart: unless-stopped
-        {%- if not production %}
         ports:
             - "8080:8080"
-        {%- endif %}
-        deploy:
-            restart_policy:
-                condition: any
-            placement:
-                constraints:
-                    - node.role == manager
         healthcheck:
             test: ["CMD", "curl", "-f", "http://localhost:8080"]
             interval: 30s
@@ -71,73 +48,50 @@ services:
             POSTGRES_USER: bgpdata
             POSTGRES_PASSWORD: bgpdata
             POSTMARK_API_KEY: ${POSTMARK_API_KEY}
-            {%- if production %}
-            FLASK_HOST: https://bgp-data.net
-            ENVIRONMENT: production
-            {%- else %}
             FLASK_HOST: http://localhost:8080
             ENVIRONMENT: development
-            {%- endif %}
         depends_on:
             - postgres
-        {%- if not production %}
         volumes:
             - ./web:/app
-        {%- endif %}
         entrypoint: >
-            {%- if production %}
-            /bin/sh -c "python manage.py run --host 0.0.0.0"
-            {%- else %}
             /bin/sh -c "python manage.py run --host 0.0.0.0 --reload"
-            {%- endif %}
 
-    {%- for host in ris + routeviews %}
-    relay-{{ host | replace(".", "-") }}:
-        {%- if production %}
-        image: bgpdata/relay:latest
-        {%- else %}
+    relay-rrc00:
         build: ./relay
-        {%- endif %}
-        restart: "no"
-        stop_signal: SIGTERM                    # Wind down relay safely before stopping
-        stop_grace_period: 20s                  # Wait for 20 seconds before forcefully stopping
-        deploy:
-            restart_policy:
-                condition: none
-            placement:
-                constraints:
-                    - node.role == worker
+        restart: unless-stopped
+        stop_signal: SIGTERM   # Wind down relay safely before stopping
+        stop_grace_period: 20s # Wait for 20 seconds before forcefully stopping
         environment:
-            HOST: {{ host }}
-            COLLECTOR_CONNECT: collector-{{ host | replace(".", "-") }}:5000
+            RELAY_TYPE: ris
+            RELAY_NAME: rrc00
+            RELAY_INDEX: https://data.ris.ripe.net/rrc00
+            COLLECTOR_CONNECT: collector-rrc00:5000
         depends_on:
-            - collector-{{ host | replace(".", "-") }}
+            - collector-rrc00
         volumes:
-            {%- if not production %}
             - ./relay:/app
-            {%- endif %}
-            - relay_{{ host | replace(".", "_") | replace("-", "_") }}_data:/var/lib/rocksdb
-        entrypoint: >
-            bash -c "sleep $$(({{ loop.index0 + 1 }} * {{ delay }})) && python main.py"
-    {%- if not production and loop.first %}
-    {% break %}
-    {%- endif %}
-    {% endfor %}
+            - relay_data:/var/lib/relay
+
+    relay-route-views2:
+        build: ./relay
+        restart: unless-stopped
+        stop_signal: SIGTERM   # Wind down relay safely before stopping
+        stop_grace_period: 20s # Wait for 20 seconds before forcefully stopping
+        environment:
+            RELAY_TYPE: routeviews
+            RELAY_NAME: route-views2
+            RELAY_INDEX: https://archive.routeviews.org/bgpdata
+            COLLECTOR_CONNECT: collector-route-views2:5000
+        depends_on:
+            - collector-route-views2
+        volumes:
+            - ./relay:/app
+            - relay_data:/var/lib/relay
     
-    {%- for host in ris + routeviews %}
-    collector-{{ host | replace(".", "-") }}:
-        {%- if production %}
-        image: bgpdata/collector:latest
-        {%- else %}
+    collector-rrc00:
         build: ./collector
-        {%- endif %}
-        restart: "no"
-        deploy:
-            restart_policy:
-                condition: none
-            placement:
-                constraints:
-                    - node.role == worker
+        restart: unless-stopped
         healthcheck:
             test: ["CMD-SHELL", "cat", "< /dev/null >", "/dev/tcp/localhost/5000"]
             interval: 30s
@@ -154,28 +108,34 @@ services:
             - aggregator_data:/config
         environment:
             KAFKA_FQDN: kafka:29092
-    {%- if not production and loop.first %}
-    {% break %}
-    {%- endif %}
-    {% endfor %}
+
+    collector-route-views2:
+        build: ./collector
+        restart: unless-stopped
+        healthcheck:
+            test: ["CMD-SHELL", "cat", "< /dev/null >", "/dev/tcp/localhost/5000"]
+            interval: 30s
+            timeout: 10s
+            retries: 3
+        depends_on:
+            - postgres
+            - kafka
+        sysctls:
+            - net.ipv4.tcp_keepalive_intvl=30
+            - net.ipv4.tcp_keepalive_probes=5
+            - net.ipv4.tcp_keepalive_time=180
+        volumes:
+            - aggregator_data:/config
+        environment:
+            KAFKA_FQDN: kafka:29092
 
     aggregator:
-        {%- if production %}
-        image: bgpdata/aggregator:latest
-        {%- else %}
         build: ./aggregator
-        {%- endif %}
         restart: unless-stopped
         sysctls:
             - net.ipv4.tcp_keepalive_intvl=30
             - net.ipv4.tcp_keepalive_probes=5
             - net.ipv4.tcp_keepalive_time=180
-        deploy:
-            restart_policy:
-                condition: any
-            placement:
-                constraints:
-                    - node.role == manager
         depends_on:
             - postgres
             - kafka
@@ -212,20 +172,9 @@ services:
             POSTGRES_DROP_stats_peer_rib: '1 day'
             POSTGRES_DROP_stats_peer_update_counts: '1 day'
 
-
     whois:
-        {%- if production %}
-        image: bgpdata/whois:latest
-        {%- else %}
         build: ./whois
-        {%- endif %}
         restart: unless-stopped
-        deploy:
-            restart_policy:
-                condition: any
-            placement:
-                constraints:
-                    - node.role == manager
         healthcheck:
             test: ["CMD-SHELL", "cat", "< /dev/null >", "/dev/tcp/localhost/43"]
             interval: 30s
@@ -251,12 +200,6 @@ services:
     zookeeper:
         image: confluentinc/cp-zookeeper:7.7.1
         restart: unless-stopped
-        deploy:
-            restart_policy:
-                condition: any
-            placement:
-                constraints:
-                    - node.role == manager
         healthcheck:
             test: ["CMD-SHELL", "nc -z localhost 2181 || exit -1"]
             interval: 30s
@@ -271,12 +214,6 @@ services:
     kafka:
         image: confluentinc/cp-kafka:7.7.1
         restart: unless-stopped
-        deploy:
-            restart_policy:
-                condition: any
-            placement:
-                constraints:
-                    - node.role == worker
         depends_on:
             - zookeeper
         volumes:
@@ -309,16 +246,9 @@ services:
                 -Djava.rmi.server.hostname=kafka
                 -Dcom.sun.management.jmxremote.rmi.port=9999
 
-    {%- if not production %}
     grafana:
         image: grafana/grafana:9.1.7
         restart: unless-stopped
-        deploy:
-            restart_policy:
-                condition: any
-            placement:
-                constraints:
-                    - node.role == manager
         healthcheck:
             test: ["CMD", "wget", "--spider", "http://localhost:3000"]
             interval: 30s
@@ -335,35 +265,11 @@ services:
             GF_AUTH_ANONYMOUS_ENABLED: true
             GF_USERS_HOME_PAGE: d/obmp-home/obmp-home
             GF_INSTALL_PLUGINS: agenty-flowcharting-panel,grafana-piechart-panel,grafana-worldmap-panel,grafana-simple-json-datasource,vonage-status-panel
-    {%- endif %}
-
-    {%- if production %}
-    cloudflared:
-        image: cloudflare/cloudflared:latest
-        restart: unless-stopped
-        deploy:
-            placement:
-                constraints:
-                    - node.role == manager
-        healthcheck:
-            test: ["CMD", "cloudflared", "--version"]
-            interval: 30s
-            timeout: 10s
-            retries: 3
-            start_period: 10s
-        depends_on:
-            - web
-        entrypoint: |
-            cloudflared tunnel run --token ${CLOUDFLARE_TUNNEL_TOKEN}
-    {%- endif %}
 
 # Define volumes
 volumes:
-    {%- for host in ris + routeviews %}
-    relay_{{ host | replace(".", "_") | replace("-", "_") }}_data:
-    {%- endfor %}
+    relay_data:
     postgres_data:
     timescale_data:
     aggregator_data:
     zookeeper_data:
-    kafka_data:

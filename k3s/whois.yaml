@@ -1,0 +1,66 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: whois
+  namespace: bgpdata
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: whois
+  template:
+    metadata:
+      labels:
+        app: whois
+    spec:
+      containers:
+      - name: whois
+        image: bgpdata/whois:latest
+        ports:
+        - containerPort: 43
+        env:
+        - name: POSTGRES_PASSWORD
+          value: "bgpdata"
+        - name: POSTGRES_USER
+          value: "bgpdata"
+        - name: POSTGRES_DB
+          value: "bgpdata"
+        - name: POSTGRES_HOST
+          value: "postgres"
+        - name: POSTGRES_PORT
+          value: "5432"
+        volumeMounts:
+        - name: aggregator-data
+          mountPath: /config
+        resources:
+          requests:
+            memory: "256Mi"
+            cpu: "100m"
+          limits:
+            memory: "512Mi"
+            cpu: "300m"
+        livenessProbe:
+          exec:
+            command:
+            - sh
+            - -c
+            - "cat < /dev/null > /dev/tcp/localhost/43"
+          initialDelaySeconds: 30
+          periodSeconds: 30
+      volumes:
+      - name: aggregator-data
+        persistentVolumeClaim:
+          claimName: aggregator-data
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: whois
+  namespace: bgpdata
+spec:
+  selector:
+    app: whois
+  ports:
+  - port: 43
+    targetPort: 43
+  type: ClusterIP

@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cloudflared
+  namespace: bgpdata
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cloudflared
+  template:
+    metadata:
+      labels:
+        app: cloudflared
+    spec:
+      containers:
+      - name: cloudflared
+        image: cloudflare/cloudflared:latest
+        env:
+        - name: CLOUDFLARE_TUNNEL_TOKEN
+          value: "eyJhIjoiNTNmODUzYmQ0MzM3NmE1YTRhMWRjYWRhMjExZDkzNWUiLCJ0IjoiYzIwODY0Y2ItNzZmMi00MGRlLWE0MTgtMjAyMmJlNGRkY2RhIiwicyI6IlpEWXdNek14T1RVdFpESmhPUzAwTldaaExUaGlOVGN0TmpOalptSTROVFV5TW1SbCJ9"
+        command: ["cloudflared", "tunnel", "run", "--token", "$(CLOUDFLARE_TUNNEL_TOKEN)"]
+        resources:
+          requests:
+            memory: "128Mi"
+            cpu: "50m"
+          limits:
+            memory: "256Mi"
+            cpu: "100m"
+        livenessProbe:
+          exec:
+            command:
+            - cloudflared
+            - --version
+          initialDelaySeconds: 10
+          periodSeconds: 30
