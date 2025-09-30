@@ -1,5 +1,3 @@
-version: '3'
-
 services:
     postgres:
         build: ./postgres
@@ -39,7 +37,7 @@ services:
             retries: 3
             start_period: 40s
         environment:
-            SECRET_KEY: ${SECRET_KEY}
+            SECRET_KEY: your-secret-key-here
             KAFKA_FQDN: kafka:29092
             KAFKA_JMX_FQDN: kafka:9999
             POSTGRES_HOST: postgres
@@ -47,7 +45,7 @@ services:
             POSTGRES_DB: bgpdata
             POSTGRES_USER: bgpdata
             POSTGRES_PASSWORD: bgpdata
-            POSTMARK_API_KEY: ${POSTMARK_API_KEY}
+            POSTMARK_API_KEY: your-postmark-api-key-here
             FLASK_HOST: http://localhost:8080
             ENVIRONMENT: development
         depends_on:
@@ -57,18 +55,18 @@ services:
         entrypoint: >
             /bin/sh -c "python manage.py run --host 0.0.0.0 --reload"
 
-    relay-rrc00:
+    relay-rrc22:
         build: ./relay
         restart: unless-stopped
         stop_signal: SIGTERM   # Wind down relay safely before stopping
         stop_grace_period: 20s # Wait for 20 seconds before forcefully stopping
         environment:
             RELAY_TYPE: ris
-            RELAY_NAME: rrc00
-            RELAY_INDEX: https://data.ris.ripe.net/rrc00
-            COLLECTOR_CONNECT: collector-rrc00:5000
+            RELAY_NAME: rrc22
+            RELAY_INDEX: https://data.ris.ripe.net/rrc22
+            COLLECTOR_CONNECT: collector-rrc22:5000
         depends_on:
-            - collector-rrc00
+            - collector-rrc22
         volumes:
             - ./relay:/app
             - relay_data:/var/lib/relay
@@ -89,7 +87,7 @@ services:
             - ./relay:/app
             - relay_data:/var/lib/relay
     
-    collector-rrc00:
+    collector-rrc22:
         build: ./collector
         restart: unless-stopped
         healthcheck:
@@ -269,6 +267,7 @@ services:
 # Define volumes
 volumes:
     relay_data:
+    kafka_data:
     postgres_data:
     timescale_data:
     aggregator_data:
