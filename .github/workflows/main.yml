@@ -43,9 +43,40 @@ jobs:
           oauth-client-id: ${{ secrets.TAILSCALE_OAUTH_CLIENT_ID }}
           oauth-secret: ${{ secrets.TAILSCALE_OAUTH_SECRET }}
 
-      - name: Deploy to K3s
-        # This is a workaround to deploy the YAML files to the K3s cluster.
-        # We open a ssh tunnel to the K3s cluster and deploy the YAML files to it.
+      - name: Replace secrets placeholders
         run: |
-          YAML_CONTENT="$(for file in k3s/*.yaml; do [ -f "$file" ] && { printf '%s\n' "---"; cat "$file"; }; done)"          
-          echo "$YAML_CONTENT" | ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "kubectl apply -f -"
+          # Create temporary secrets file with actual values
+          sed -e "s/{{CLOUDFLARE_TUNNEL_TOKEN}}/${{ secrets.CLOUDFLARE_TUNNEL_TOKEN }}/g" \
+              -e "s/{{FLASK_SECRET_KEY}}/${{ secrets.FLASK_SECRET_KEY }}/g" \
+              -e "s/{{POSTMARK_API_KEY}}/${{ secrets.POSTMARK_API_KEY }}/g" \
+              -e "s/{{GRAFANA_ADMIN_PASSWORD}}/${{ secrets.GRAFANA_ADMIN_PASSWORD }}/g" \
+              k3s/secrets.yaml > k3s/secrets-deployed.yaml
+
+      - name: Deploy to K3s
+        run: |
+          # Deploy namespace first
+          ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "kubectl apply -f -" < k3s/namespace.yaml
+          
+          # Deploy secrets
+          ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "kubectl apply -f -" < k3s/secrets-deployed.yaml
+          
+          # Deploy PVCs
+          ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "kubectl apply -f -" < k3s/pvc.yaml
+          
+          # Deploy services in order
+          ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "kubectl apply -f -" < k3s/postgres.yaml
+          ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "kubectl apply -f -" < k3s/zookeeper.yaml
+          ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "kubectl apply -f -" < k3s/kafka.yaml
+          ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "kubectl apply -f -" < k3s/aggregator.yaml
+          ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "kubectl apply -f -" < k3s/whois.yaml
+          ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "kubectl apply -f -" < k3s/web.yaml
+          ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "kubectl apply -f -" < k3s/cloudflared.yaml
+          ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "kubectl apply -f -" < k3s/collectors.yaml
+          ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "kubectl apply -f -" < k3s/relays.yaml
+          ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "kubectl apply -f -" < k3s/grafana.yaml
+
+      - name: Verify deployment
+        run: |
+          ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "kubectl get pods -n bgpdata -o wide"
+          ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "kubectl get svc -n bgpdata"
+          ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "kubectl get pvc -n bgpdata"

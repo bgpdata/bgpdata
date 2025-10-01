@@ -6,6 +6,14 @@ metadata:
   namespace: bgpdata
 spec:
   restartPolicy: Always
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+        - matchExpressions:
+          - key: kubernetes.io/hostname
+            operator: In
+            values: ["node01.bgp-data.net"]
   containers:
   # Amsterdam, RIPE NCC, global
   - name: rrc00
@@ -360,6 +368,14 @@ metadata:
   namespace: bgpdata
 spec:
   restartPolicy: Always
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+        - matchExpressions:
+          - key: kubernetes.io/hostname
+            operator: In
+            values: ["node01.bgp-data.net"]
   containers:
   # Multi-hop 2, University of Oregon, global
   - name: route-views2

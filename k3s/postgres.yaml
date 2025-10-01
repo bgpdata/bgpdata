@@ -13,6 +13,14 @@ spec:
       labels:
         app: postgres
     spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: kubernetes.io/hostname
+                operator: In
+                values: ["node01.bgp-data.net"]
       containers:
       - name: postgres
         image: bgpdata/postgres:latest

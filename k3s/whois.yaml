@@ -13,6 +13,14 @@ spec:
       labels:
         app: whois
     spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: kubernetes.io/hostname
+                operator: In
+                values: ["node02.bgp-data.net"]
       containers:
       - name: whois
         image: bgpdata/whois:latest

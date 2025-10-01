@@ -22,13 +22,26 @@ spec:
         - containerPort: 3000
         env:
         - name: GF_SECURITY_ADMIN_PASSWORD
-          value: "bgpdata"
+          valueFrom:
+            secretKeyRef:
+              name: grafana-secret
+              key: admin-password
         - name: GF_AUTH_ANONYMOUS_ENABLED
-          value: "true"
+          value: "false"
+        - name: GF_AUTH_DISABLE_LOGIN_FORM
+          value: "false"
+        - name: GF_AUTH_DISABLE_SIGNOUT_MENU
+          value: "false"
         - name: GF_USERS_HOME_PAGE
           value: "d/obmp-home/obmp-home"
         - name: GF_INSTALL_PLUGINS
           value: "agenty-flowcharting-panel,grafana-piechart-panel,grafana-worldmap-panel,grafana-simple-json-datasource,vonage-status-panel"
+        - name: GF_SECURITY_ALLOW_EMBEDDING
+          value: "false"
+        - name: GF_SECURITY_COOKIE_SECURE
+          value: "true"
+        - name: GF_SECURITY_COOKIE_SAMESITE
+          value: "strict"
         resources:
           requests:
             memory: "256Mi"

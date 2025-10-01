@@ -13,6 +13,14 @@ spec:
       labels:
         app: web
     spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: kubernetes.io/hostname
+                operator: In
+                values: ["node02.bgp-data.net"]
       containers:
       - name: web
         image: bgpdata/web:latest
@@ -20,7 +28,10 @@ spec:
         - containerPort: 8080
         env:
         - name: SECRET_KEY
-          value: "diWNv3UsVz9v7T72WdzzqdYNqikcjARVtdbaBiK*hntNej"
+          valueFrom:
+            secretKeyRef:
+              name: web-secret
+              key: secret-key
         - name: KAFKA_FQDN
           value: "kafka:29092"
         - name: KAFKA_JMX_FQDN
@@ -36,7 +47,10 @@ spec:
         - name: POSTGRES_PASSWORD
           value: "bgpdata"
         - name: POSTMARK_API_KEY
-          value: "your-postmark-api-key-here"
+          valueFrom:
+            secretKeyRef:
+              name: web-secret
+              key: postmark-api-key
         - name: FLASK_HOST
           value: "http://localhost:8080"
         - name: ENVIRONMENT

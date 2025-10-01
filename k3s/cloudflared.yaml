@@ -13,12 +13,23 @@ spec:
       labels:
         app: cloudflared
     spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: kubernetes.io/hostname
+                operator: In
+                values: ["node02.bgp-data.net"]
       containers:
       - name: cloudflared
         image: cloudflare/cloudflared:latest
         env:
         - name: CLOUDFLARE_TUNNEL_TOKEN
-          value: "eyJhIjoiNTNmODUzYmQ0MzM3NmE1YTRhMWRjYWRhMjExZDkzNWUiLCJ0IjoiYzIwODY0Y2ItNzZmMi00MGRlLWE0MTgtMjAyMmJlNGRkY2RhIiwicyI6IlpEWXdNek14T1RVdFpESmhPUzAwTldaaExUaGlOVGN0TmpOalptSTROVFV5TW1SbCJ9"
+          valueFrom:
+            secretKeyRef:
+              name: cloudflared-secret
+              key: tunnel-token
         command: ["cloudflared", "tunnel", "run", "--token", "$(CLOUDFLARE_TUNNEL_TOKEN)"]
         resources:
           requests:

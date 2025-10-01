@@ -13,6 +13,14 @@ spec:
       labels:
         app: zookeeper
     spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: kubernetes.io/hostname
+                operator: In
+                values: ["node02.bgp-data.net"]
       containers:
       - name: zookeeper
         image: confluentinc/cp-zookeeper:7.7.1
