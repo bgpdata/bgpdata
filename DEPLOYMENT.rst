@@ -72,13 +72,32 @@ On the control plane node (ctrl01.bgp-data.net):
 
 .. code-block:: bash
 
-   # Install k3s with node name.
-   curl -sfL https://get.k3s.io | sh -s - --node-name ctrl01.bgp-data.net
+   # Install K3s.
+   curl -sfL https://get.k3s.io | sh -s -
+
+   # Get the Tailscale IP.
+   TAILSCALE_IP=$(tailscale ip -4)
+
+   # Add firewall rules.
+   sudo firewall-cmd --permanent --zone=trusted --add-interface=tailscale0
+   sudo firewall-cmd --permanent --zone=trusted --add-port=6443/tcp
+   sudo firewall-cmd --permanent --zone=trusted --add-port=8472/udp
+   sudo firewall-cmd --permanent --zone=trusted --add-port=10250/tcp
+   sudo firewall-cmd --reload
+
+   # Create config file.
+   sudo mkdir -p /etc/rancher/k3s
+   sudo tee /etc/rancher/k3s/config.yaml >/dev/null <<EOF
+   node-name: ctrl01.bgp-data.net
+   node-ip: ${TAILSCALE_IP}
+   advertise-address: ${TAILSCALE_IP}
+   tls-san:
+     - ctrl01
+     - ctrl01.bgp-data.net
+     - ${TAILSCALE_IP}
+   EOF
    
-   # Start k3s service.
-   sudo systemctl enable --now k3s
-   
-   # Get the token for worker nodes.
+   # Print token for worker nodes.
    sudo cat /var/lib/rancher/k3s/server/node-token
 
 Worker Node Installation
@@ -87,13 +106,26 @@ Worker Node Installation
 On each worker node, install k3s as an agent:
 
 .. code-block:: bash
-   
-   # Install k3s agent.
-   curl -sfL https://get.k3s.io | K3S_URL=https://ctrl01:6443 K3S_TOKEN=<token> \
-        sh -s - --node-name node01.bgp-data.net
-   
-   # Start k3s agent.
-   sudo systemctl enable --now k3s-agent
+
+   # K3s Token.
+   K3S_TOKEN=<token>
+
+   # Get the Tailscale IPs.
+   TAILSCALE_IP=$(tailscale ip -4)
+   TAILSCALE_IP_CTRL=$(getent hosts ctrl01 | awk '{ print $1 }')
+
+   # Add firewall rules.
+   sudo firewall-cmd --permanent --zone=trusted --add-interface=tailscale0
+   sudo firewall-cmd --permanent --zone=trusted --add-port=8472/udp
+   sudo firewall-cmd --permanent --zone=trusted --add-port=10250/tcp
+   sudo firewall-cmd --reload
+
+   # Install K3s Agent.
+   curl -sfL https://get.k3s.io | \
+      K3S_URL="https://${TAILSCALE_IP_CTRL}:6443" \
+      K3S_TOKEN="${K3S_TOKEN}" \
+      INSTALL_K3S_EXEC="agent --node-name node01.bgp-data.net --with-node-id" \
+      sh -
 
 Repeat for node02.bgp-data.net with appropriate node name.
 
