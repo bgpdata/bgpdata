@@ -45,11 +45,15 @@ jobs:
 
       - name: Replace secrets placeholders
         run: |
-          # Create temporary secrets file with actual values
+          # Create Docker config.
+          DOCKER_CONFIG_JSON=$(echo -n '{"auths":{"docker.io":{"username":"'${{ secrets.DOCKERHUB_USERNAME }}'","password":"'${{ secrets.DOCKERHUB_TOKEN }}'","auth":"'$(echo -n '${{ secrets.DOCKERHUB_USERNAME }}:${{ secrets.DOCKERHUB_TOKEN }}' | base64 -w 0)'"}}}' | base64 -w 0)
+          
+          # Create temporary secrets file with actual values.
           sed -e "s/{{CLOUDFLARE_TUNNEL_TOKEN}}/${{ secrets.CLOUDFLARE_TUNNEL_TOKEN }}/g" \
               -e "s/{{FLASK_SECRET_KEY}}/${{ secrets.FLASK_SECRET_KEY }}/g" \
               -e "s/{{POSTMARK_API_KEY}}/${{ secrets.POSTMARK_API_KEY }}/g" \
               -e "s/{{GRAFANA_ADMIN_PASSWORD}}/${{ secrets.GRAFANA_ADMIN_PASSWORD }}/g" \
+              -e "s/{{DOCKER_CONFIG_JSON}}/$DOCKER_CONFIG_JSON/g" \
               k3s/secrets.yaml > k3s/secrets-deployed.yaml
 
       - name: Deploy to K3s

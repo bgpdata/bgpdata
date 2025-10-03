@@ -13,6 +13,8 @@ spec:
       labels:
         app: postgres
     spec:
+      imagePullSecrets:
+      - name: docker-registry-secret
       affinity:
         nodeAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:

@@ -13,6 +13,8 @@ spec:
       labels:
         app: web
     spec:
+      imagePullSecrets:
+      - name: docker-registry-secret
       affinity:
         nodeAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:

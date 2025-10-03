@@ -61,10 +61,9 @@ Verify connectivity:
 
 .. code-block:: bash
 
-   # Test connectivity between nodes.
-   ping ctrl01.bgp-data.net
-   ping node01.bgp-data.net
-   ping node02.bgp-data.net
+   ping ctrl01
+   ping node01
+   ping node02
 
 Control Plane Installation
 -------------------------
@@ -88,15 +87,9 @@ Worker Node Installation
 On each worker node, install k3s as an agent:
 
 .. code-block:: bash
-
-   # Get control plane IP (replace with actual IP).
-   CONTROL_PLANE_IP="100.64.0.1"  # Replace with ctrl01.bgp-data.net IP.
-   
-   # Get token from control plane.
-   K3S_TOKEN="<token-from-control-plane>"
    
    # Install k3s agent.
-   curl -sfL https://get.k3s.io | K3S_URL=https://$CONTROL_PLANE_IP:6443 K3S_TOKEN=$K3S_TOKEN \
+   curl -sfL https://get.k3s.io | K3S_URL=https://ctrl01:6443 K3S_TOKEN=<token> \
         sh -s - --node-name node01.bgp-data.net
    
    # Start k3s agent.
@@ -186,10 +179,10 @@ Access services through Tailscale:
 .. code-block:: bash
 
    # Web interface.
-   curl http://node02.bgp-data.net:8080
+   curl http://node02:8080
    
    # Grafana dashboard.
-   curl http://node02.bgp-data.net:3000
+   curl http://node02:3000
    
    # PostgreSQL (from within cluster).
    kubectl exec -it postgres-<pod-id> -- psql -U bgpdata -d bgpdata

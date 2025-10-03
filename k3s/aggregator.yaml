@@ -13,6 +13,8 @@ spec:
       labels:
         app: aggregator
     spec:
+      imagePullSecrets:
+      - name: docker-registry-secret
       affinity:
         nodeAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:

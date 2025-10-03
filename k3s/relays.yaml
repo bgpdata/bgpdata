@@ -5,6 +5,8 @@ metadata:
   name: relays
   namespace: bgpdata
 spec:
+  imagePullSecrets:
+  - name: docker-registry-secret
   restartPolicy: Always
   affinity:
     nodeAffinity:
@@ -367,6 +369,8 @@ metadata:
   name: relays
   namespace: bgpdata
 spec:
+  imagePullSecrets:
+  - name: docker-registry-secret
   restartPolicy: Always
   affinity:
     nodeAffinity:

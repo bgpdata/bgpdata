@@ -4,6 +4,8 @@ metadata:
   name: collectors
   namespace: bgpdata
 spec:
+  imagePullSecrets:
+  - name: docker-registry-secret
   restartPolicy: Always
   affinity:
     nodeAffinity:
