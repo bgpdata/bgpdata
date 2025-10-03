@@ -161,23 +161,10 @@ Deploy the BGP data collection system:
 
 .. code-block:: bash
 
-   # Create namespace
    kubectl apply -f namespace.yaml
-   
-   # Create persistent volume claims
+   kubectl apply -f secrets.yaml
    kubectl apply -f pvc.yaml
-   
-   # Deploy services
-   kubectl apply -f postgres.yaml
-   kubectl apply -f kafka.yaml
-   kubectl apply -f zookeeper.yaml
-   kubectl apply -f aggregator.yaml
-   kubectl apply -f whois.yaml
-   kubectl apply -f web.yaml
-   kubectl apply -f cloudflared.yaml
-   kubectl apply -f collectors.yaml
-   kubectl apply -f relays.yaml
-   kubectl apply -f grafana.yaml
+   ...
 
 Verify Deployment
 -----------------
