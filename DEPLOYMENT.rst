@@ -50,20 +50,12 @@ Install Tailscale on all nodes:
 
    # Download and install Tailscale.
    curl -fsSL https://tailscale.com/install.sh | sh
-   
+
    # Start Tailscale service.
    sudo systemctl enable --now tailscaled
-   
+
    # Authenticate (run on each node).
-   sudo tailscale up
-
-Verify connectivity:
-
-.. code-block:: bash
-
-   ping ctrl01
-   ping node01
-   ping node02
+   sudo tailscale up --accept-dns=false
 
 Control Plane Installation
 -------------------------
@@ -92,7 +84,6 @@ On the control plane node (ctrl01.bgp-data.net):
    node-ip: ${TAILSCALE_IP}
    advertise-address: ${TAILSCALE_IP}
    tls-san:
-     - ctrl01
      - ctrl01.bgp-data.net
      - ${TAILSCALE_IP}
    EOF
