@@ -56,16 +56,9 @@ jobs:
 
       - name: Deploy to K8s
         run: |
-          # Deploy namespace first
           ssh root@$ctrl01 "kubectl apply -f -" < k8s/namespace.yaml
-          
-          # Deploy secrets
-          ssh root@$ctrl01 "kubectl apply -f -" < k8s/secrets-deployed.yaml
-          
-          # Deploy PVCs
-            ssh root@$ctrl01 "kubectl apply -f -" < k8s/pvc.yaml
-          
-          # Deploy services in order
+          ssh root@$ctrl01 "kubectl apply -f -" < k8s/secrets.yaml
+          ssh root@$ctrl01 "kubectl apply -f -" < k8s/pvc.yaml
           ssh root@$ctrl01 "kubectl apply -f -" < k8s/postgres.yaml
           ssh root@$ctrl01 "kubectl apply -f -" < k8s/zookeeper.yaml
           ssh root@$ctrl01 "kubectl apply -f -" < k8s/kafka.yaml
