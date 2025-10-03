@@ -56,7 +56,7 @@ jobs:
           ssh root@ctrl01 "kubectl apply -f -" < k8s/whois.yaml
           ssh root@ctrl01 "kubectl apply -f -" < k8s/web.yaml
           ssh root@ctrl01 "kubectl apply -f -" < k8s/cloudflared.yaml
-          ssh root@ctrl01 "kubectl apply --force -f -" < k8s/collectors.yaml
+          ssh root@ctrl01 "kubectl apply -f -" < k8s/collectors.yaml
           ssh root@ctrl01 "kubectl apply -f -" < k8s/relays.yaml
           ssh root@ctrl01 "kubectl apply -f -" < k8s/grafana.yaml
 
