@@ -26,6 +26,14 @@ jobs:
           oauth-secret: ${{ secrets.TAILSCALE_OAUTH_SECRET }}
           tags: tag:bgpdata
 
+      - name: Configure SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "Host ctrl01" >> ~/.ssh/config
+          echo "  StrictHostKeyChecking no" >> ~/.ssh/config
+          echo "  UserKnownHostsFile /dev/null" >> ~/.ssh/config
+          chmod 600 ~/.ssh/config
+
       - name: Replace secrets placeholders
         run: |
           DOCKER_CONFIG_JSON=$(echo -n '{"auths":{"docker.io":{"username":"'${{ secrets.DOCKERHUB_USERNAME }}'","password":"'${{ secrets.DOCKERHUB_TOKEN }}'","auth":"'$(echo -n '${{ secrets.DOCKERHUB_USERNAME }}:${{ secrets.DOCKERHUB_TOKEN }}' | base64 -w 0)'"}}}' | base64 -w 0)
