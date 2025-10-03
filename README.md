@@ -47,7 +47,7 @@ The recommended system requirements are a Manager and Worker Node with each 60 G
 
 ```sh
 # 
-kubectl apply -f k3s/
+kubectl apply -f k8s/
 ```
 
 # ACKs

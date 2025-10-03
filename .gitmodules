@@ -16,3 +16,6 @@
 [submodule "whois"]
 	path = whois
 	url = git@github.com:bgpdata/whois.git
+[submodule "k8s"]
+	path = k8s
+	url = git@github.com:bgpdata/k8s.git

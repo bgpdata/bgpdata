@@ -36,6 +36,8 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+        with:
+          submodules: recursive
 
       - name: Setup Tailscale
         uses: tailscale/github-action@v2
@@ -54,30 +56,30 @@ jobs:
               -e "s/{{POSTMARK_API_KEY}}/${{ secrets.POSTMARK_API_KEY }}/g" \
               -e "s/{{GRAFANA_ADMIN_PASSWORD}}/${{ secrets.GRAFANA_ADMIN_PASSWORD }}/g" \
               -e "s/{{DOCKER_CONFIG_JSON}}/$DOCKER_CONFIG_JSON/g" \
-              k3s/secrets.yaml > k3s/secrets-deployed.yaml
+              k8s/secrets.yaml > k8s/secrets-deployed.yaml
 
-      - name: Deploy to K3s
+      - name: Deploy to K8s
         run: |
           # Deploy namespace first
-          ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "kubectl apply -f -" < k3s/namespace.yaml
+          ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "kubectl apply -f -" < k8s/namespace.yaml
           
           # Deploy secrets
-          ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "kubectl apply -f -" < k3s/secrets-deployed.yaml
+          ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "kubectl apply -f -" < k8s/secrets-deployed.yaml
           
           # Deploy PVCs
-          ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "kubectl apply -f -" < k3s/pvc.yaml
+            ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "kubectl apply -f -" < k8s/pvc.yaml
           
           # Deploy services in order
-          ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "kubectl apply -f -" < k3s/postgres.yaml
-          ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "kubectl apply -f -" < k3s/zookeeper.yaml
-          ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "kubectl apply -f -" < k3s/kafka.yaml
-          ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "kubectl apply -f -" < k3s/aggregator.yaml
-          ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "kubectl apply -f -" < k3s/whois.yaml
-          ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "kubectl apply -f -" < k3s/web.yaml
-          ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "kubectl apply -f -" < k3s/cloudflared.yaml
-          ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "kubectl apply -f -" < k3s/collectors.yaml
-          ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "kubectl apply -f -" < k3s/relays.yaml
-          ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "kubectl apply -f -" < k3s/grafana.yaml
+          ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "kubectl apply -f -" < k8s/postgres.yaml
+          ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "kubectl apply -f -" < k8s/zookeeper.yaml
+          ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "kubectl apply -f -" < k8s/kafka.yaml
+          ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "kubectl apply -f -" < k8s/aggregator.yaml
+          ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "kubectl apply -f -" < k8s/whois.yaml
+          ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "kubectl apply -f -" < k8s/web.yaml
+          ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "kubectl apply -f -" < k8s/cloudflared.yaml
+          ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "kubectl apply -f -" < k8s/collectors.yaml
+          ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "kubectl apply -f -" < k8s/relays.yaml
+          ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "kubectl apply -f -" < k8s/grafana.yaml
 
       - name: Verify deployment
         run: |
