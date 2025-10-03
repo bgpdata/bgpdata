@@ -9,8 +9,8 @@ WORKDIR /ws
 # Install the various depends
 RUN apt-get update
 RUN apt-get install -y wget gnupg
-RUN wget -O - https://packages.adoptium.net/artifactory/api/gpg/key/public | apt-key add -
-RUN echo "deb https://packages.adoptium.net/artifactory/deb/ bullseye main" > /etc/apt/sources.list.d/adoptium.list
+RUN wget -O - https://packages.adoptium.net/artifactory/api/gpg/key/public | gpg --dearmor -o /usr/share/keyrings/adoptium-keyring.gpg
+RUN echo "deb [signed-by=/usr/share/keyrings/adoptium-keyring.gpg] https://packages.adoptium.net/artifactory/deb/ bullseye main" > /etc/apt/sources.list.d/adoptium.list
 RUN apt-get update
 RUN apt-get install -y temurin-17-jdk maven
 RUN mkdir -p /usr/share/man/man1/ \
