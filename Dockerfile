@@ -8,7 +8,11 @@ WORKDIR /ws
 
 # Install the various depends
 RUN apt-get update
-RUN apt-get install -y openjdk-17-jdk-headless maven
+RUN apt-get install -y wget gnupg
+RUN wget -O - https://packages.adoptium.net/artifactory/api/gpg/key/public | apt-key add -
+RUN echo "deb https://packages.adoptium.net/artifactory/deb/ bullseye main" > /etc/apt/sources.list.d/adoptium.list
+RUN apt-get update
+RUN apt-get install -y temurin-17-jdk maven
 RUN mkdir -p /usr/share/man/man1/ \
     && apt-get -y install git gcc g++ libboost-dev cmake libssl-dev libsasl2-dev \
          curl wget libgss-dev liblz4-dev libzstd-dev
