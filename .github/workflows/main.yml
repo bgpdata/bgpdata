@@ -38,51 +38,47 @@ jobs:
         uses: actions/checkout@v4
         with:
           submodules: recursive
-
+      
       - name: Setup Tailscale
-        uses: tailscale/github-action@v2
+        uses: tailscale/github-action@v3
         with:
-          oauth-client-id: ${{ secrets.TAILSCALE_OAUTH_CLIENT_ID }}
-          oauth-secret: ${{ secrets.TAILSCALE_OAUTH_SECRET }}
+          authkey: ${{ secrets.TAILSCALE_TOKEN }}
 
       - name: Replace secrets placeholders
         run: |
-          # Create Docker config.
           DOCKER_CONFIG_JSON=$(echo -n '{"auths":{"docker.io":{"username":"'${{ secrets.DOCKERHUB_USERNAME }}'","password":"'${{ secrets.DOCKERHUB_TOKEN }}'","auth":"'$(echo -n '${{ secrets.DOCKERHUB_USERNAME }}:${{ secrets.DOCKERHUB_TOKEN }}' | base64 -w 0)'"}}}' | base64 -w 0)
-          
-          # Create temporary secrets file with actual values.
-          sed -e "s/{{CLOUDFLARE_TUNNEL_TOKEN}}/${{ secrets.CLOUDFLARE_TUNNEL_TOKEN }}/g" \
-              -e "s/{{FLASK_SECRET_KEY}}/${{ secrets.FLASK_SECRET_KEY }}/g" \
-              -e "s/{{POSTMARK_API_KEY}}/${{ secrets.POSTMARK_API_KEY }}/g" \
-              -e "s/{{GRAFANA_ADMIN_PASSWORD}}/${{ secrets.GRAFANA_ADMIN_PASSWORD }}/g" \
-              -e "s/{{DOCKER_CONFIG_JSON}}/$DOCKER_CONFIG_JSON/g" \
-              k8s/secrets.yaml > k8s/secrets-deployed.yaml
+          sed -i -e "s/{{CLOUDFLARE_TUNNEL_TOKEN}}/${{ secrets.CLOUDFLARE_TUNNEL_TOKEN }}/g" \
+                  -e "s/{{FLASK_SECRET_KEY}}/${{ secrets.FLASK_SECRET_KEY }}/g" \
+                  -e "s/{{POSTMARK_API_KEY}}/${{ secrets.POSTMARK_API_KEY }}/g" \
+                  -e "s/{{GRAFANA_ADMIN_PASSWORD}}/${{ secrets.GRAFANA_ADMIN_PASSWORD }}/g" \
+                  -e "s/{{DOCKER_CONFIG_JSON}}/$DOCKER_CONFIG_JSON/g" \
+                  k8s/secrets.yaml
 
       - name: Deploy to K8s
         run: |
           # Deploy namespace first
-          ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "kubectl apply -f -" < k8s/namespace.yaml
+          ssh root@$ctrl01 "kubectl apply -f -" < k8s/namespace.yaml
           
           # Deploy secrets
-          ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "kubectl apply -f -" < k8s/secrets-deployed.yaml
+          ssh root@$ctrl01 "kubectl apply -f -" < k8s/secrets-deployed.yaml
           
           # Deploy PVCs
-            ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "kubectl apply -f -" < k8s/pvc.yaml
+            ssh root@$ctrl01 "kubectl apply -f -" < k8s/pvc.yaml
           
           # Deploy services in order
-          ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "kubectl apply -f -" < k8s/postgres.yaml
-          ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "kubectl apply -f -" < k8s/zookeeper.yaml
-          ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "kubectl apply -f -" < k8s/kafka.yaml
-          ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "kubectl apply -f -" < k8s/aggregator.yaml
-          ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "kubectl apply -f -" < k8s/whois.yaml
-          ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "kubectl apply -f -" < k8s/web.yaml
-          ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "kubectl apply -f -" < k8s/cloudflared.yaml
-          ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "kubectl apply -f -" < k8s/collectors.yaml
-          ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "kubectl apply -f -" < k8s/relays.yaml
-          ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "kubectl apply -f -" < k8s/grafana.yaml
+          ssh root@$ctrl01 "kubectl apply -f -" < k8s/postgres.yaml
+          ssh root@$ctrl01 "kubectl apply -f -" < k8s/zookeeper.yaml
+          ssh root@$ctrl01 "kubectl apply -f -" < k8s/kafka.yaml
+          ssh root@$ctrl01 "kubectl apply -f -" < k8s/aggregator.yaml
+          ssh root@$ctrl01 "kubectl apply -f -" < k8s/whois.yaml
+          ssh root@$ctrl01 "kubectl apply -f -" < k8s/web.yaml
+          ssh root@$ctrl01 "kubectl apply -f -" < k8s/cloudflared.yaml
+          ssh root@$ctrl01 "kubectl apply -f -" < k8s/collectors.yaml
+          ssh root@$ctrl01 "kubectl apply -f -" < k8s/relays.yaml
+          ssh root@$ctrl01 "kubectl apply -f -" < k8s/grafana.yaml
 
       - name: Verify deployment
         run: |
-          ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "kubectl get pods -n bgpdata -o wide"
-          ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "kubectl get svc -n bgpdata"
-          ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "kubectl get pvc -n bgpdata"
+          ssh root@$ctrl01 "kubectl get pods -n bgpdata -o wide"
+          ssh root@$ctrl01 "kubectl get svc -n bgpdata"
+          ssh root@$ctrl01 "kubectl get pvc -n bgpdata"
