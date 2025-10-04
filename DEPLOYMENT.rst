@@ -102,6 +102,16 @@ On each worker node, install k3s as an agent:
       INSTALL_K3S_EXEC="agent --node-name $HOSTNAME --with-node-id" \
       sh -
 
+   # Move K8s Storage to /home.
+   systemctl stop k3s-agent
+   rsync -aHAX --info=progress2 /var/lib/rancher/k3s/storage/ /home
+   rm -rf /var/lib/rancher/k3s/storage
+   mkdir -p /var/lib/rancher/k3s/storage
+   echo "/home  /var/lib/rancher/k3s/storage  none  bind  0 0" >> /etc/fstab
+   mount -a
+   systemctl daemon-reload
+   systemctl start k3s-agent
+
 Repeat for node02.bgp-data.net with appropriate node name.
 
 Cluster Verification
