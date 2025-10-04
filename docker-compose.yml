@@ -65,6 +65,7 @@ services:
             RELAY_NAME: rrc22
             RELAY_INDEX: https://data.ris.ripe.net/rrc22
             COLLECTOR_CONNECT: collector-rrc22:5000
+            ZOOKEEPER_CONNECT: zookeeper:2181
         depends_on:
             - collector-rrc22
         volumes:
@@ -81,6 +82,7 @@ services:
             RELAY_NAME: route-views2
             RELAY_INDEX: https://archive.routeviews.org/bgpdata
             COLLECTOR_CONNECT: collector-route-views2:5000
+            ZOOKEEPER_CONNECT: zookeeper:2181
         depends_on:
             - collector-route-views2
         volumes:
