@@ -104,8 +104,6 @@ services:
             - net.ipv4.tcp_keepalive_intvl=30
             - net.ipv4.tcp_keepalive_probes=5
             - net.ipv4.tcp_keepalive_time=180
-        volumes:
-            - aggregator_data:/config
         environment:
             KAFKA_FQDN: kafka:29092
 
@@ -124,8 +122,6 @@ services:
             - net.ipv4.tcp_keepalive_intvl=30
             - net.ipv4.tcp_keepalive_probes=5
             - net.ipv4.tcp_keepalive_time=180
-        volumes:
-            - aggregator_data:/config
         environment:
             KAFKA_FQDN: kafka:29092
 
@@ -139,8 +135,6 @@ services:
         depends_on:
             - postgres
             - kafka
-        volumes:
-            - aggregator_data:/config
         environment:
             MEM: 3                                           # Set memory to at least 2GB but ideally 4GB
             KAFKA_FQDN: kafka:29092
@@ -184,8 +178,6 @@ services:
             - net.ipv4.tcp_keepalive_intvl=30
             - net.ipv4.tcp_keepalive_probes=5
             - net.ipv4.tcp_keepalive_time=180
-        volumes:
-            - aggregator_data:/config
         depends_on:
             - postgres
         ports:
@@ -272,5 +264,4 @@ volumes:
     kafka_data:
     postgres_data:
     timescale_data:
-    aggregator_data:
     zookeeper_data:
