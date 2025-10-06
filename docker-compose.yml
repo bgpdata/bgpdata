@@ -54,7 +54,7 @@ services:
         volumes:
             - ./web:/app
         entrypoint: >
-            /bin/sh -c "python manage.py run --host 0.0.0.0"
+            /bin/sh -c "python manage.py run --host 0.0.0.0 --reload"
 
     relay-rrc22:
         build: ./relay
