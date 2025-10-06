@@ -251,8 +251,8 @@ services:
         ports:
             - "3000:3000"
         volumes:
-            - ./web/grafana:/var/lib/grafana
-            - ./web/grafana/provisioning/:/etc/grafana/provisioning/
+            - ./grafana:/var/lib/grafana
+            - ./grafana/provisioning/:/etc/grafana/provisioning/
         environment:
             GF_SECURITY_ADMIN_PASSWORD: bgpdata
             GF_AUTH_ANONYMOUS_ENABLED: true

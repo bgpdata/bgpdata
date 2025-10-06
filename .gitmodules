@@ -19,3 +19,6 @@
 [submodule "k8s"]
 	path = k8s
 	url = git@github.com:bgpdata/k8s.git
+[submodule "grafana"]
+	path = grafana
+	url = git@github.com:bgpdata/grafana.git
