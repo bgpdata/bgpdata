@@ -24,7 +24,7 @@ services:
             POSTGRES_PASSWORD: bgpdata
             POSTGRES_USER: bgpdata
             POSTGRES_DB: bgpdata
-        
+
     web:
         build: ./web
         restart: unless-stopped
@@ -45,7 +45,8 @@ services:
             POSTGRES_DB: bgpdata
             POSTGRES_USER: bgpdata
             POSTGRES_PASSWORD: bgpdata
-            POSTMARK_API_KEY: your-postmark-api-key-here
+            POSTMARK_API_KEY: 6ca279ef-7fd7-4a05-a71a-fc390c342efb
+            OPENROUTER_API_KEY: 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
             FLASK_HOST: http://localhost:8080
             ENVIRONMENT: development
         depends_on:
