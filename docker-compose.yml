@@ -153,7 +153,7 @@ services:
             POSTGRES_DB: bgpdata
             POSTGRES_USER: bgpdata
             POSTGRES_PASSWORD: bgpdata
-            POSTGRES_DROP_peer_event_log: '1 month'
+            POSTGRES_DROP_peer_event_log: '1 day'
             POSTGRES_DROP_stat_reports: '1 day'
             POSTGRES_DROP_ip_rib_log: '1 day'
             POSTGRES_DROP_alerts: '1 day'
